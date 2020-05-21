@@ -33,17 +33,21 @@ import javax.validation.constraints.Size;
 @Table(name = "tbl_pessoa")
 /*@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Pessoa.findAll", query = "SELECT p FROM Pessoa p")
-    , @NamedQuery(name = "Pessoa.findByPesId", query = "SELECT p FROM Pessoa p WHERE p.pesId = :pesId")
-    , @NamedQuery(name = "Pessoa.findByPesNome", query = "SELECT p FROM Pessoa p WHERE p.pesNome = :pesNome")
-    , @NamedQuery(name = "Pessoa.findByPesRg", query = "SELECT p FROM Pessoa p WHERE p.pesRg = :pesRg")
-    , @NamedQuery(name = "Pessoa.findByPesCpf", query = "SELECT p FROM Pessoa p WHERE p.pesCpf = :pesCpf")
-    , @NamedQuery(name = "Pessoa.findByPesDtnasc", query = "SELECT p FROM Pessoa p WHERE p.pesDtnasc = :pesDtnasc")
-    , @NamedQuery(name = "Pessoa.findByPesFiliacao", query = "SELECT p FROM Pessoa p WHERE p.pesFiliacao = :pesFiliacao")
-    , @NamedQuery(name = "Pessoa.findByPesNaturalidade", query = "SELECT p FROM Pessoa p WHERE p.pesNaturalidade = :pesNaturalidade")
-    , @NamedQuery(name = "Pessoa.findByPesStatus", query = "SELECT p FROM Pessoa p WHERE p.pesStatus = :pesStatus")})*/
+    @NamedQuery(name = "ModelPessoa.findAll", query = "SELECT p FROM ModelPessoa p")
+    , @NamedQuery(name = "ModelPessoa.findByPesId", query = "SELECT p FROM ModelPessoa p WHERE p.pesId = :pesId")
+    , @NamedQuery(name = "ModelPessoa.findByPesNome", query = "SELECT p FROM ModelPessoa p WHERE p.pesNome = :pesNome")
+    , @NamedQuery(name = "ModelPessoa.findByPesRg", query = "SELECT p FROM ModelPessoa p WHERE p.pesRg = :pesRg")
+    , @NamedQuery(name = "ModelPessoa.findByPesCpf", query = "SELECT p FROM ModelPessoa p WHERE p.pesCpf = :pesCpf")
+    , @NamedQuery(name = "ModelPessoa.findByPesDtnasc", query = "SELECT p FROM ModelPessoa p WHERE p.pesDtnasc = :pesDtnasc")
+    , @NamedQuery(name = "ModelPessoa.findByPesFiliacao", query = "SELECT p FROM ModelPessoa p WHERE p.pesFiliacao = :pesFiliacao")
+    , @NamedQuery(name = "ModelPessoa.findByPesNaturalidade", query = "SELECT p FROM ModelPessoa p WHERE p.pesNaturalidade = :pesNaturalidade")
+    , @NamedQuery(name = "ModelPessoa.findByPesStatus", query = "SELECT p FROM ModelPessoa p WHERE p.pesStatus = :pesStatus")})*/
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Pessoa implements Serializable {
+public class ModelPessoa implements Serializable {
+
+    @JoinColumn(name = "cont_id", referencedColumnName = "cont_id")
+    @ManyToOne
+    private ModelContato contId;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -86,20 +90,20 @@ public class Pessoa implements Serializable {
     private Contato contId;*/
     @JoinColumn(name = "end_id", referencedColumnName = "end_id")
     @ManyToOne
-    private Endereco endId;
+    private ModelEndereco endId;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "pessoa")
-    private Professor professor;
+    private ModelProfessor professor;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "pessoa")
-    private Aluno aluno;
+    private ModelAluno aluno;
 
-    public Pessoa() {
+    public ModelPessoa() {
     }
 
-    public Pessoa(Integer pesId) {
+    public ModelPessoa(Integer pesId) {
         this.pesId = pesId;
     }
 
-    public Pessoa(Integer pesId, String pesNome, String pesRg, int pesCpf, String pesFiliacao, String pesNaturalidade) {
+    public ModelPessoa(Integer pesId, String pesNome, String pesRg, int pesCpf, String pesFiliacao, String pesNaturalidade) {
         this.pesId = pesId;
         this.pesNome = pesNome;
         this.pesRg = pesRg;
@@ -180,27 +184,27 @@ public class Pessoa implements Serializable {
         this.contId = contId;
     }*/
 
-    public Endereco getEndId() {
+    public ModelEndereco getEndId() {
         return endId;
     }
 
-    public void setEndId(Endereco endId) {
+    public void setEndId(ModelEndereco endId) {
         this.endId = endId;
     }
 
-    public Professor getProfessor() {
+    public ModelProfessor getProfessor() {
         return professor;
     }
 
-    public void setProfessor(Professor professor) {
+    public void setProfessor(ModelProfessor professor) {
         this.professor = professor;
     }
 
-    public Aluno getAluno() {
+    public ModelAluno getAluno() {
         return aluno;
     }
 
-    public void setAluno(Aluno aluno) {
+    public void setAluno(ModelAluno aluno) {
         this.aluno = aluno;
     }
 
@@ -214,10 +218,10 @@ public class Pessoa implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Pessoa)) {
+        if (!(object instanceof ModelPessoa)) {
             return false;
         }
-        Pessoa other = (Pessoa) object;
+        ModelPessoa other = (ModelPessoa) object;
         if ((this.pesId == null && other.pesId != null) || (this.pesId != null && !this.pesId.equals(other.pesId))) {
             return false;
         }
@@ -227,6 +231,14 @@ public class Pessoa implements Serializable {
     @Override
     public String toString() {
         return "model.Pessoa[ pesId=" + pesId + " ]";
+    }
+
+    public ModelContato getContId() {
+        return contId;
+    }
+
+    public void setContId(ModelContato contId) {
+        this.contId = contId;
     }
     
 }

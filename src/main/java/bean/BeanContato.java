@@ -5,10 +5,10 @@
  */
 package bean;
 
-import DAO.ContatoDAO;
+import DAO.DaoContato;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import model.Contato;
+import model.ModelContato;
 
 /**
  *
@@ -18,28 +18,28 @@ import model.Contato;
 @SessionScoped
 public class BeanContato {
 
-    private Contato contato = new Contato();
+    private ModelContato contato = new ModelContato();
 
     public BeanContato() {
     }
 
     public void salvarContato(){
     
-        ContatoDAO contatoDAO = new ContatoDAO();
+        DaoContato daoContato = new DaoContato();
         contato.setContEmail("email");
         contato.setContCelular("celular");
         contato.setContTelefone("telefone");
         contato.setContTerceiros("terceiros");
-        contatoDAO.salvarContato(contato);
+        daoContato.salvarContato(contato);
     
     }
     
     
-    public Contato getContato() {
+    public ModelContato getContato() {
         return contato;
     }
 
-    public void setContato(Contato contato) {
+    public void setContato(ModelContato contato) {
         this.contato = contato;
     }
 
