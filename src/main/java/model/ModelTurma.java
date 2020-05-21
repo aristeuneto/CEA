@@ -56,10 +56,13 @@ public class ModelTurma implements Serializable {
     @Size(max = 20)
     @Column(name = "turma_status")
     private String turmaStatus;
+    @Basic(optional = true)
     @OneToMany(mappedBy = "turmaId")
     private Collection<ModelAuxProfTurma> modelAuxProfTurmaCollection;
+    @Basic(optional = true)
     @OneToMany(mappedBy = "turmaId")
     private Collection<ModelAluno> alunoCollection;
+    @Basic(optional = true)
     @OneToMany(mappedBy = "turmaId")
     private Collection<ModelAuxTurmaDisc> modelAuxTurmaDiscCollection;
 
@@ -159,5 +162,5 @@ public class ModelTurma implements Serializable {
     public String toString() {
         return "model.ModelTurma[ turmaId=" + turmaId + " ]";
     }
-    
+
 }

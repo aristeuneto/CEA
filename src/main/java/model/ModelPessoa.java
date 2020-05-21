@@ -8,7 +8,6 @@ package model;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,7 +17,6 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -31,23 +29,8 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "tbl_pessoa")
-/*@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "ModelPessoa.findAll", query = "SELECT p FROM ModelPessoa p")
-    , @NamedQuery(name = "ModelPessoa.findByPesId", query = "SELECT p FROM ModelPessoa p WHERE p.pesId = :pesId")
-    , @NamedQuery(name = "ModelPessoa.findByPesNome", query = "SELECT p FROM ModelPessoa p WHERE p.pesNome = :pesNome")
-    , @NamedQuery(name = "ModelPessoa.findByPesRg", query = "SELECT p FROM ModelPessoa p WHERE p.pesRg = :pesRg")
-    , @NamedQuery(name = "ModelPessoa.findByPesCpf", query = "SELECT p FROM ModelPessoa p WHERE p.pesCpf = :pesCpf")
-    , @NamedQuery(name = "ModelPessoa.findByPesDtnasc", query = "SELECT p FROM ModelPessoa p WHERE p.pesDtnasc = :pesDtnasc")
-    , @NamedQuery(name = "ModelPessoa.findByPesFiliacao", query = "SELECT p FROM ModelPessoa p WHERE p.pesFiliacao = :pesFiliacao")
-    , @NamedQuery(name = "ModelPessoa.findByPesNaturalidade", query = "SELECT p FROM ModelPessoa p WHERE p.pesNaturalidade = :pesNaturalidade")
-    , @NamedQuery(name = "ModelPessoa.findByPesStatus", query = "SELECT p FROM ModelPessoa p WHERE p.pesStatus = :pesStatus")})*/
 @Inheritance(strategy = InheritanceType.JOINED)
-public class ModelPessoa implements Serializable {
-
-    @JoinColumn(name = "cont_id", referencedColumnName = "cont_id")
-    @ManyToOne
-    private ModelContato contId;
+public abstract class ModelPessoa implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -67,6 +50,7 @@ public class ModelPessoa implements Serializable {
     private String pesRg;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 20)
     @Column(name = "pes_cpf")
     private int pesCpf;
     @Column(name = "pes_dtnasc")
@@ -85,16 +69,16 @@ public class ModelPessoa implements Serializable {
     @Size(max = 20)
     @Column(name = "pes_status")
     private String pesStatus;
- /*   @JoinColumn(name = "cont_id", referencedColumnName = "cont_id")
+    // Tirar dps o @Basic
+    @Basic(optional = true)
+    @JoinColumn(name = "cont_id", referencedColumnName = "cont_id")
     @ManyToOne
-    private Contato contId;*/
+    private ModelContato contId;
+    // Tirar dps o @Basic
+    @Basic(optional = true)
     @JoinColumn(name = "end_id", referencedColumnName = "end_id")
     @ManyToOne
     private ModelEndereco endId;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "pessoa")
-    private ModelProfessor professor;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "pessoa")
-    private ModelAluno aluno;
 
     public ModelPessoa() {
     }
@@ -176,13 +160,13 @@ public class ModelPessoa implements Serializable {
         this.pesStatus = pesStatus;
     }
 
-  /*  public Contato getContId() {
+    public ModelContato getContId() {
         return contId;
     }
 
-    public void setContId(Contato contId) {
+    public void setContId(ModelContato contId) {
         this.contId = contId;
-    }*/
+    }
 
     public ModelEndereco getEndId() {
         return endId;
@@ -190,22 +174,6 @@ public class ModelPessoa implements Serializable {
 
     public void setEndId(ModelEndereco endId) {
         this.endId = endId;
-    }
-
-    public ModelProfessor getProfessor() {
-        return professor;
-    }
-
-    public void setProfessor(ModelProfessor professor) {
-        this.professor = professor;
-    }
-
-    public ModelAluno getAluno() {
-        return aluno;
-    }
-
-    public void setAluno(ModelAluno aluno) {
-        this.aluno = aluno;
     }
 
     @Override
@@ -233,12 +201,4 @@ public class ModelPessoa implements Serializable {
         return "model.Pessoa[ pesId=" + pesId + " ]";
     }
 
-    public ModelContato getContId() {
-        return contId;
-    }
-
-    public void setContId(ModelContato contId) {
-        this.contId = contId;
-    }
-    
 }
