@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" layout="responsive">
     <h:head>
         <title>Syschool - Sistema de Gestão Escolar</title>
         <link rel="shortcut icon" href="resources/image/cealogo.png" />
@@ -15,14 +15,14 @@
             <p:menuitem value="Home" url="index.xhtml"></p:menuitem>
             <p:submenu label="Cadastros">
                 <p:submenu label="Individuo">
-                    <p:menuitem value="Nova Pessoa" url="cadastro-pessoa.xhtml"></p:menuitem>
                     <p:menuitem value="Novo Aluno" url="cadastro-aluno.xhtml"></p:menuitem>
+                    <p:menuitem value="Nova Professor" url="#"></p:menuitem>
+                    <p:menuitem value="Novo Funcionário" url="#"></p:menuitem>
                 </p:submenu>
                 <p:menuitem value="Nova Turma" url="#"></p:menuitem>
                 <p:menuitem value="Nova Matrícula" url="#"></p:menuitem>
                 <p:menuitem value="Nova Disciplina" url="#"></p:menuitem>  
-                <p:submenu label="Profissional">
-                    <p:menuitem value="Professores" url="#"></p:menuitem> 
+                <p:submenu label="Profissional">                   
                     <p:menuitem value="Usuários" url="cadastro-acesso.xhtml"></p:menuitem>                        
                 </p:submenu>
             </p:submenu>

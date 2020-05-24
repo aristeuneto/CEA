@@ -8,16 +8,19 @@ and open the template in the editor.
     Author     : LUIZ
 */
 
-fieldset{ 
+fieldset { 
     font-size: 14px !important;
-    visibility: hidden;
+    background-color: rgba(46,100,254,0.1) !important;
+    visibility: visible;
+    border-radius: 10px;
+    border-color: black !important;
 }
 td, tr{
-    background: none !important;
-    visibility: visible !important;
-    
+    border: black !important;
+    background-color: rgba(46,100,254,0.0) !important;
+    visibility: visible;
 }
 label{
-    font-size: large !important;
+    font-size: medium;
     font-weight: bold;
 }
