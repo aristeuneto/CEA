@@ -4,7 +4,8 @@
              xmlns:h="http://xmlns.jcp.org/jsf/html"
              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
              template="template-cea.xhtml"
-             xmlns:p="http://primefaces.org/ui">
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <!-- Adionando JS para traduzir calendário-->
     <h:outputScript name="pt_BR.js" library="js"></h:outputScript>
@@ -23,9 +24,19 @@
             <p:inputText value="" placeholder="Filiação"></p:inputText>
             <p:outputLabel value="Naturalidade: "></p:outputLabel>
             <p:inputText value="" placeholder="Naturalidade"></p:inputText>
-            <p:outputLabel value="CEP: "></p:outputLabel>
-            <p:inputText value="" placeholder="CEP"></p:inputText>
-
+            <p:outputLabel value="Contato: "></p:outputLabel>
+            <p:selectOneMenu value="#{beanContato.contato.contCelular}">
+                <f:selectItem itemValue="#{cont_id}" itemLabel="#{cont_celular}"></f:selectItem>
+            </p:selectOneMenu>
+            <p:outputLabel value="Endereço: "></p:outputLabel>
+             <p:selectOneMenu value="#{beanEndereco.modelEndereco}">
+                <f:selectItem itemValue="#{end_id}" itemLabel="#{end_cidade}"></f:selectItem>
+            </p:selectOneMenu>
+            <p:outputLabel value="Status: "></p:outputLabel>
+            <p:selectOneRadio >
+                <f:selectItem itemValue="ok" itemLabel="Ativo"></f:selectItem>    
+                <f:selectItem itemValue="no" itemLabel="Inativo"></f:selectItem>
+            </p:selectOneRadio>
         </p:panelGrid>
     </p:fieldset>
 

@@ -8,3 +8,16 @@ and open the template in the editor.
     Author     : LUIZ
 */
 
+fieldset{ 
+    font-size: 14px !important;
+    visibility: hidden;
+}
+td, tr{
+    background: none !important;
+    visibility: visible !important;
+    
+}
+label{
+    font-size: large !important;
+    font-weight: bold;
+}
