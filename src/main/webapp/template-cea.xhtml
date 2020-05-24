@@ -6,25 +6,38 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Syschool - Sistema de Gestão Escolar</title>
+        <link rel="shortcut icon" href="resources/image/cealogo.png" />
     </h:head>
     <h:body>
-        
-        <h1>Inserir Logo da Escola - Sistema de Gestão Escolar</h1>
+        <justify>
+        <h:graphicImage width="100" height="100" library="image" name="cealogo.png"/>
+        <h:outputLabel><h1>C.E.A - Centro Educacional do Andaiá</h1></h:outputLabel></justify>
+
+
         <p:menubar>
             <p:menuitem value="Home" url="index.xhtml"></p:menuitem>
             <p:submenu label="Cadastros">
                 <p:menuitem value="Novo Aluno" url="cadastro-aluno.xhtml"></p:menuitem>
                 <p:menuitem value="Novo Professor" url="index.xhtml"></p:menuitem>
                 <p:menuitem value="Nova Turma" url="index.xhtml"></p:menuitem>
+                <p:menuitem value="Nova Matrícula" url="index.xhtml"></p:menuitem>
+                <p:menuitem value="Nova Disciplina" url="index.xhtml"></p:menuitem>               
             </p:submenu>
             <p:menuitem value="Lançamentos" url="index.xhtml"></p:menuitem>
             <p:menuitem value="Relatórios" url="index.xhtml"></p:menuitem>
             <p:menuitem value="Sair" url="index.xhtml"></p:menuitem>
-            
+
         </p:menubar>
         <hr/>
         <ui:insert></ui:insert>
 
     </h:body>
+    <style>
+        body{
+            background-image: url('resources/image/bc.png');      
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
 </html>
 
