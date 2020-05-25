@@ -8,8 +8,10 @@ package model;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -52,7 +54,7 @@ public abstract class ModelPessoa implements Serializable {
     @NotNull
     @Size(min = 1, max = 20)
     @Column(name = "pes_cpf")
-    private int pesCpf;
+    private String pesCpf;
     @Column(name = "pes_dtnasc")
     @Temporal(TemporalType.DATE)
     private Date pesDtnasc;
@@ -72,12 +74,12 @@ public abstract class ModelPessoa implements Serializable {
     // Tirar dps o @Basic
     @Basic(optional = true)
     @JoinColumn(name = "cont_id", referencedColumnName = "cont_id")
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private ModelContato contId;
     // Tirar dps o @Basic
     @Basic(optional = true)
     @JoinColumn(name = "end_id", referencedColumnName = "end_id")
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private ModelEndereco endId;
 
     public ModelPessoa() {
@@ -87,7 +89,7 @@ public abstract class ModelPessoa implements Serializable {
         this.pesId = pesId;
     }
 
-    public ModelPessoa(Integer pesId, String pesNome, String pesRg, int pesCpf, String pesFiliacao, String pesNaturalidade) {
+    public ModelPessoa(Integer pesId, String pesNome, String pesRg, String pesCpf, String pesFiliacao, String pesNaturalidade) {
         this.pesId = pesId;
         this.pesNome = pesNome;
         this.pesRg = pesRg;
@@ -120,11 +122,11 @@ public abstract class ModelPessoa implements Serializable {
         this.pesRg = pesRg;
     }
 
-    public int getPesCpf() {
+    public String getPesCpf() {
         return pesCpf;
     }
 
-    public void setPesCpf(int pesCpf) {
+    public void setPesCpf(String pesCpf) {
         this.pesCpf = pesCpf;
     }
 

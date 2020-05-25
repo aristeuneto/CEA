@@ -15,54 +15,57 @@
                 <p:fieldset legend="Dados Pessoais">   
                     <p:panelGrid columns="4" > 
                         <p:outputLabel for="Nome" value="Nome: "></p:outputLabel>
-                        <p:inputText id="Nome" value="" placeholder="Nome"></p:inputText>
+                        <p:inputText id="Nome" value="#{beanAluno.modelAluno.pesNome}" placeholder="Nome"></p:inputText>
                         <p:outputLabel for="Rg" value="Rg: "></p:outputLabel>
-                        <p:inputMask id="Rg" value="Celular" mask="99999999-99" placeholder="RG"/>
+                        <p:inputMask id="Rg" value="#{beanAluno.modelAluno.pesRg}" mask="99999999-99" placeholder="RG"/>
                         <p:outputLabel for="Cpf" value="CPF: "></p:outputLabel>
-                        <p:inputMask id="Cpf" value="Cpf" mask="999.999.999-99" placeholder="CPF"/>
-                        <p:outputLabel for="popup" value="Nascimento: "/>
-                        <p:calendar id="popup" locale="pt_BR" pattern="dd/MM/yyyy" value="#{calendarView.date2}" placeholder="Data de Nascimento"/> 
+                        <p:inputMask id="Cpf" value="#{beanAluno.modelAluno.pesCpf}" mask="999.999.999-99" placeholder="CPF"/>
+                        <p:outputLabel for="Nascimento" value="Nascimento: "/>
+                        <p:inputMask id="Nascimento" value="#{beanAluno.modelAluno.pesCpf}" mask="99/99/9999" placeholder="Data de Nascimento"/>
+                     <!--   <p:calendar id="popup" locale="pt_BR" pattern="dd/MM/yyyy" value="#{calendarView.date2}" placeholder="Data de Nascimento"/>  -->
                         <p:outputLabel for="Filiação" value="Filiação: "></p:outputLabel>
-                        <p:inputText id="Filiação" value="" placeholder="Filiação"></p:inputText>            
+                        <p:inputText id="Filiação" value="#{beanAluno.modelAluno.pesFiliacao}" placeholder="Filiação"></p:inputText>            
                         <p:outputLabel for="Naturalidade" value="Naturalidade: "></p:outputLabel>         
-                        <p:inputText id="Naturalidade" value="" placeholder="Naturalidade"></p:inputText>
+                        <p:inputText id="Naturalidade" value="#{beanAluno.modelAluno.pesNaturalidade}" placeholder="Naturalidade"></p:inputText>
+                        <p:outputLabel for="Origem" value="Escola Origem: "></p:outputLabel> 
+                        <p:inputText id="Origem" value="#{beanAluno.modelAluno.aluEscolaOrigem}" placeholder="Origem"></p:inputText>
+                        <p:outputLabel for="Obs" value="Observação: "></p:outputLabel> 
+                        <p:inputText id="Obs" value="#{beanAluno.modelAluno.aluObs}" placeholder="Origem"></p:inputText>
                     </p:panelGrid>      
                 </p:fieldset>
                 <p:fieldset legend="Contato">    
                     <p:panelGrid columns="2"> 
                         <p:outputLabel for="Celular" value="Celular: "></p:outputLabel>
-                        <p:inputMask id="Celular" value="Celular" mask="(99) 99999-9999" placeholder="Celular"/>
-                        <p:outputLabel for="Telefone" value="Telefone: "></p:outputLabel>
-                        <p:inputMask id="Telefone" value="Telefone" mask="(99) 9999-9999" placeholder="Telefone"/>
-                        <p:outputLabel for="E-mail" value="E-mail: "></p:outputLabel>
-                        <p:inputMask id="E-mail" value="" mask="" placeholder="E-mail"/>
-                        <p:outputLabel for="Terceiros" value="Terceiros:"></p:outputLabel>
-                        <p:inputMask id="Terceiros" value="" mask="" placeholder="Terceiros"/>
-                        <p:outputLabel for="Status" value="Status:"></p:outputLabel>
-                        <p:selectOneRadio id="Status" value="" columns="2">
-                            <f:selectItem id="Status" itemLabel="Ativo" itemValue="Ativo"></f:selectItem>
-                            <f:selectItem id="status" itemLabel="Inativo" itemValue="Inativo"></f:selectItem>
-                        </p:selectOneRadio>
+                        <p:inputMask id="Celular" value="#{beanAluno.modelContato.contCelular}" mask="(99) 99999-9999" placeholder="Celular"/>
+                        <p:outputLabel for="Telefone" value="Telefone "></p:outputLabel>
+                        <p:inputMask id="Telefone" value="#{beanAluno.modelContato.contTelefone}" mask="(99) 9999-9999" placeholder="Telefone"/>
+                        <p:outputLabel for="E-mail" value="E-mail "></p:outputLabel>
+                        <p:inputMask id="E-mail" value="#{beanAluno.modelContato.contEmail}" mask="" placeholder="E-mail"/>
+                        <p:outputLabel for="Terceiros" value="Terceiros"></p:outputLabel>
+                        <p:inputMask id="Terceiros" value="#{beanAluno.modelContato.contTerceiros}" mask="" placeholder="Terceiros"/>
+                        <!--    <p:outputLabel for="Status" value="Status"></p:outputLabel>
+                          <p:selectOneRadio id="Status" value="" columns="2">
+                               <f:selectItem itemLabel="Ativo" itemValue="Ativo"></f:selectItem>
+                               <f:selectItem itemLabel="Inativo" itemValue="Inativo"></f:selectItem>
+                           </p:selectOneRadio> -->
                     </p:panelGrid>      
                 </p:fieldset>
                 <p:fieldset legend="Localização">    
                     <p:panelGrid columns="4" >
-                        <p:outputLabel for="Rua" value="Rua: "></p:outputLabel>
-                        <p:inputText id="Rua" value="" placeholder="Rua"></p:inputText>
-                        <p:outputLabel for="Numero" value="Numero: "></p:outputLabel>
-                        <p:inputText id="Numero" value="" placeholder="Numero"></p:inputText>
-                        <p:outputLabel for="Bairro" value="Bairro: "></p:outputLabel>
-                        <p:inputText id="Bairro" value="" placeholder="Bairro"></p:inputText>
-                        <p:outputLabel for="Cep" value="Cep:"></p:outputLabel>
-                        <p:inputMask id="Cep" value="Cep" mask="99999-999" placeholder="CEP"/>
-                        <p:outputLabel for="Cidade" value="Cidade: "></p:outputLabel>
-                        <p:inputText id="Cidade" value="" placeholder="Cidade"></p:inputText>
-                        <p:outputLabel for="Estado" value="Estado:"></p:outputLabel>
-                        <p:inputText id="Estado" value="" placeholder="Estado"></p:inputText>
-                        <p:outputLabel for="Pais" value="Pais: "></p:outputLabel>
-                        <p:inputText id="Pais" value="" placeholder="Pais"></p:inputText>
-                        <p:outputLabel for="Obs" value="Obs: "></p:outputLabel>
-                        <p:inputText id="Obs" value="" placeholder="Observações"></p:inputText>
+                        <p:outputLabel for="Rua" value="Rua "></p:outputLabel>
+                        <p:inputText id="Rua" value="#{beanAluno.modelEndereco.endRua}" placeholder="Rua"></p:inputText>
+                        <p:outputLabel for="Numero" value="Numero "></p:outputLabel>
+                        <p:inputText id="Numero" value="#{beanAluno.modelEndereco.endNum}" placeholder="Numero"></p:inputText>
+                        <p:outputLabel for="Bairro" value="Bairro "></p:outputLabel>
+                        <p:inputText id="Bairro" value="#{beanAluno.modelEndereco.endBairro}" placeholder="Bairro"></p:inputText>
+                        <p:outputLabel for="Cep" value="Cep"></p:outputLabel>
+                        <p:inputMask id="Cep" value="#{beanAluno.modelEndereco.endCep}" mask="99999-999" placeholder="CEP"/>
+                        <p:outputLabel for="Cidade" value="Cidade "></p:outputLabel>
+                        <p:inputText id="Cidade" value="#{beanAluno.modelEndereco.endCidade}" placeholder="Cidade"></p:inputText>
+                        <p:outputLabel for="Estado" value="Estado"></p:outputLabel>
+                        <p:inputText id="Estado" value="#{beanAluno.modelEndereco.endEstado}" placeholder="Estado"></p:inputText>
+                        <p:outputLabel for="Pais" value="Pais "></p:outputLabel>
+                        <p:inputText id="Pais" value="#{beanAluno.modelEndereco.endPais}" placeholder="Pais"></p:inputText>
                     </p:panelGrid>  
                 </p:fieldset>  
                 <p:fieldset legend="Opções">    

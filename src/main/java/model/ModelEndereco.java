@@ -8,8 +8,10 @@ package model;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -81,7 +83,7 @@ public class ModelEndereco implements Serializable {
     @NotNull
     @Column(name = "end_num")
     private int endNum;
-    @OneToMany(mappedBy = "endId")
+    @OneToMany(mappedBy = "endId", cascade = CascadeType.ALL)
     private Collection<ModelPessoa> pessoaCollection;
 
     public ModelEndereco() {

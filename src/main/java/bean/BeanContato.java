@@ -6,6 +6,7 @@
 package bean;
 
 import DAO.DaoContato;
+import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import model.ModelContato;
@@ -16,7 +17,7 @@ import model.ModelContato;
  */
 @ManagedBean
 @SessionScoped
-public class BeanContato {
+public class BeanContato implements Serializable{
 
     private ModelContato contato = new ModelContato();
 

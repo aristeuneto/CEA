@@ -41,7 +41,7 @@ public class Principal {
         aluno.setPesNome("Neto");
         aluno.setAluObs("obs");
         aluno.setAluStatus("status");
-        aluno.setPesCpf(0645);
+        aluno.setPesCpf("04540");
         aluno.setPesDtnasc(calendar.getTime());
         aluno.setPesRg("rg");
         aluno.setPesFiliacao("filiacao");
