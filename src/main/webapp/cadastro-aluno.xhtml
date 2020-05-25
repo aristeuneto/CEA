@@ -21,7 +21,7 @@
                         <p:outputLabel for="Cpf" value="CPF: "></p:outputLabel>
                         <p:inputMask id="Cpf" value="#{beanAluno.modelAluno.pesCpf}" mask="999.999.999-99" placeholder="CPF"/>
                         <p:outputLabel for="Nascimento" value="Nascimento: "/>
-                        <p:inputMask id="Nascimento" value="#{beanAluno.modelAluno.pesCpf}" mask="99/99/9999" placeholder="Data de Nascimento"/>
+                        <p:inputMask id="Nascimento" value="#{beanAluno.dataNascimento}" mask="99/99/9999" placeholder="Data de Nascimento"/>
                         <p:outputLabel for="Filiação" value="Filiação: "></p:outputLabel>
                         <p:inputText id="Filiação" value="#{beanAluno.modelAluno.pesFiliacao}" placeholder="Filiação"></p:inputText>            
                         <p:outputLabel for="Naturalidade" value="Naturalidade: "></p:outputLabel>         
@@ -29,7 +29,7 @@
                         <p:outputLabel for="Origem" value="Escola Origem: "></p:outputLabel> 
                         <p:inputText id="Origem" value="#{beanAluno.modelAluno.aluEscolaOrigem}" placeholder="Origem"></p:inputText>
                         <p:outputLabel for="Obs" value="Observação: "></p:outputLabel> 
-                        <p:inputText id="Obs" value="#{beanAluno.modelAluno.aluObs}" placeholder="Origem"></p:inputText>
+                        <p:inputText id="Obs" value="#{beanAluno.modelAluno.aluObs}" placeholder="Obs"></p:inputText>
                     </p:panelGrid>      
                 </p:fieldset>
                 <p:fieldset legend="Contato">    
@@ -68,8 +68,10 @@
                     </p:panelGrid>  
                 </p:fieldset>  
                 <p:fieldset legend="Opções">    
-                    <p:panelGrid columns="1" >
-                        <p:commandButton value="Enviar" ajax="true" action="#{beanAluno.salvarAluno()}" update="@form"></p:commandButton>
+                    <p:panelGrid columns="3" >
+                        <p:commandButton value="Enviar" action="#{beanAluno.salvarAluno()}" update="@form"></p:commandButton>
+                        <p:commandButton value="Alterar" update="@form"></p:commandButton>
+                        <p:commandButton value="Excluir" ajax="true" update="@form"></p:commandButton>
                     </p:panelGrid>  
                 </p:fieldset>
             </p:panelGrid> 

@@ -8,11 +8,13 @@ package bean;
 import DAO.DaoAcesso;
 import DAO.DaoAluno;
 import java.io.Serializable;
+import java.util.Date;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import model.ModelAluno;
 import model.ModelContato;
 import model.ModelEndereco;
+import util.BLDatas;
 
 /**
  *
@@ -20,22 +22,27 @@ import model.ModelEndereco;
  */
 @ManagedBean
 @SessionScoped
-public class BeanAluno implements Serializable{
+public class BeanAluno implements Serializable {
 
     private ModelAluno modelAluno = new ModelAluno();
     private ModelEndereco modelEndereco = new ModelEndereco();
     private ModelContato modelContato = new ModelContato();
+    private String dataNascimento = new String();
 
     public BeanAluno() {
     }
 
-    public void salvarAluno() {
+    public void salvarAluno() throws Exception {
+        BLDatas bLDatas = new BLDatas();
+        Date dtNascimento = bLDatas.converterDataStringParaDate(dataNascimento);
+
         DaoAluno daoAluno = new DaoAluno();
+        modelAluno.setPesDtnasc(dtNascimento);
         modelAluno.setEndId(modelEndereco);
         modelAluno.setContId(modelContato);
-     //   if (modelAluno != null) {
+        if (modelAluno != null) {
             daoAluno.salvarAluno(modelAluno);
-      //  }
+        }
 
     }
 
@@ -61,6 +68,14 @@ public class BeanAluno implements Serializable{
 
     public void setModelContato(ModelContato modelContato) {
         this.modelContato = modelContato;
+    }
+
+    public String getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(String dataNascimento) {
+        this.dataNascimento = dataNascimento;
     }
 
 }
