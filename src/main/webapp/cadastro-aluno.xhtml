@@ -22,7 +22,6 @@
                         <p:inputMask id="Cpf" value="#{beanAluno.modelAluno.pesCpf}" mask="999.999.999-99" placeholder="CPF"/>
                         <p:outputLabel for="Nascimento" value="Nascimento: "/>
                         <p:inputMask id="Nascimento" value="#{beanAluno.modelAluno.pesCpf}" mask="99/99/9999" placeholder="Data de Nascimento"/>
-                     <!--   <p:calendar id="popup" locale="pt_BR" pattern="dd/MM/yyyy" value="#{calendarView.date2}" placeholder="Data de Nascimento"/>  -->
                         <p:outputLabel for="Filiação" value="Filiação: "></p:outputLabel>
                         <p:inputText id="Filiação" value="#{beanAluno.modelAluno.pesFiliacao}" placeholder="Filiação"></p:inputText>            
                         <p:outputLabel for="Naturalidade" value="Naturalidade: "></p:outputLabel>         
@@ -70,7 +69,7 @@
                 </p:fieldset>  
                 <p:fieldset legend="Opções">    
                     <p:panelGrid columns="1" >
-                        <p:commandButton value="Enviar" ajax="true" action="#{beanAluno.salvarAluno()}" ></p:commandButton>
+                        <p:commandButton value="Enviar" ajax="true" action="#{beanAluno.salvarAluno()}" update="@form"></p:commandButton>
                     </p:panelGrid>  
                 </p:fieldset>
             </p:panelGrid> 
