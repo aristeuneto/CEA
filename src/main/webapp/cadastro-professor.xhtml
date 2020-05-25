@@ -9,7 +9,7 @@
 
     <!-- Adionando JS para traduzir calendário-->
     <h:outputScript name="pt_BR.js" library="js"></h:outputScript>
-    <p:fieldset legend="Cadastro de Alunos">
+    <p:fieldset legend="Cadastro de Professores">
         <h:form>
             <p:panelGrid columns="2" >
                 <p:fieldset legend="Dados Pessoais">   
@@ -65,11 +65,10 @@
                 </p:fieldset>  
                 <p:fieldset legend="Opções">    
                     <p:panelGrid columns="1" >
-                        <p:commandButton value="Enviar" ajax="true" action="#{beanAluno.salvarAluno()}" ></p:commandButton>
+                        <p:commandButton value="Enviar" ajax="true" action="#{beanProfesssor.salvarProfessor()}" ></p:commandButton>
                     </p:panelGrid>  
                 </p:fieldset>
             </p:panelGrid> 
         </h:form>
     </p:fieldset>
 </ui:decorate>
-

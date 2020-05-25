@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             template="template-cea.xhtml"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:f="http://xmlns.jcp.org/jsf/core"
+             xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <!-- Adionando JS para traduzir calendário-->
+    <p:fieldset legend="Cadastro de Turmas">
+        <h:form>
+            <p:panelGrid columns="2" >
+                <p:fieldset legend="Dados Gerais"> 
+                    <p:panelGrid columns="2" >          
+                        <p:outputLabel for="Nome" value="Nome: "></p:outputLabel>
+                        <p:inputText id="Nome" value="#{beanTurma.modelTurma.turmaNome}" placeholder="Digite o Nome "></p:inputText>
+                        <p:outputLabel for="Descrição" value="Descrição: "></p:outputLabel>
+                        <p:inputText  id="Descrição" value="#{beanTurma.modelTurma.turmaDescricao}" placeholder="Digite a Descrição"></p:inputText>
+                        <p:outputLabel for="Status" value="Status: "></p:outputLabel>
+                        <p:selectOneRadio id="Status" value="#{beanTurma.modelTurma.turmaStatus}" columns="2">
+                            <f:selectItem id="Status" itemLabel="Ativo" itemValue="Ativo"></f:selectItem>
+                            <f:selectItem id="status" itemLabel="Inativo" itemValue="Inativo"></f:selectItem>                            
+                        </p:selectOneRadio>
+                    </p:panelGrid> 
+                </p:fieldset>
+                <p:fieldset legend="Opções">    
+                    <p:panelGrid columns="1" >
+                        <p:commandButton value="Enviar" ajax="true" action="#{beanTurma.salvarTurma()}" ></p:commandButton>
+                    </p:panelGrid> 
+                </p:fieldset>
+            </p:panelGrid> 
+        </h:form>
+    </p:fieldset>   
+</ui:decorate>
+

@@ -10,20 +10,31 @@
         <link rel="stylesheet" href="resources/css/themes.css" />
     </h:head>
     <h:body>
+        <style>
+            body{
+                background-image: url('resources/image/bc.png');      
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+        </style>
         <h:graphicImage width="80" height="80" library="image" name="cealogo.png"/>
-        <p:menubar>
+        <p:menubar class="menu">
             <p:menuitem value="Home" url="index.xhtml"></p:menuitem>
             <p:submenu label="Cadastros">
                 <p:submenu label="Individuo">
                     <p:menuitem value="Novo Aluno" url="cadastro-aluno.xhtml"></p:menuitem>
-                    <p:menuitem value="Nova Professor" url="#"></p:menuitem>
+                    <p:menuitem value="Nova Professor" url="cadastro-professor.xhtml"></p:menuitem>
                     <p:menuitem value="Novo Funcionário" url="#"></p:menuitem>
                 </p:submenu>
-                <p:menuitem value="Nova Turma" url="#"></p:menuitem>
+                <p:menuitem value="Nova Turma" url="cadastro-turma.xhtml"></p:menuitem>
                 <p:menuitem value="Nova Matrícula" url="#"></p:menuitem>
                 <p:menuitem value="Nova Disciplina" url="#"></p:menuitem>  
                 <p:submenu label="Profissional">                   
                     <p:menuitem value="Usuários" url="cadastro-acesso.xhtml"></p:menuitem>                        
+                </p:submenu>
+                <p:submenu label="Boletins">                   
+                    <p:menuitem value="Novo Boletim" url="cadastro-boletim.xhtml"></p:menuitem>                        
+                    <p:menuitem value="Alimetar Boletim" url="#"></p:menuitem>                        
                 </p:submenu>
             </p:submenu>
             <p:menuitem value="Lançamentos" url="#"></p:menuitem>
@@ -34,12 +45,5 @@
         <ui:insert></ui:insert>
 
     </h:body>
-    <style>
-        body{
-            background-image: url('resources/image/bc.png');      
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-    </style>
 </html>
 

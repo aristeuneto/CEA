@@ -7,29 +7,38 @@
              xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <!-- Adionando JS para traduzir calendário-->
-    <p:fieldset >
-        <p:panelGrid columns="2" >
-
-            <p:outputLabel value="Nome: "></p:outputLabel>
-            <p:inputText value="" placeholder="Digite o nome "></p:inputText>
-            <p:outputLabel value="Login: "></p:outputLabel>
-            <p:inputText  value="" placeholder="Digite o Login"></p:inputText>
-            <p:outputLabel value="Senha: "></p:outputLabel>
-            <p:inputText  value="" placeholder="Digite a senha"></p:inputText>        
-            <p:outputLabel value="Pessoa: "></p:outputLabel>
-            <p:inputText  value="" placeholder="Pessoa "></p:inputText>        
-            <p:outputLabel value="Pessoa: "></p:outputLabel>
-            <p:selectOneMenu value="#{beanPessoa.modelPessoa.PessoaNome}">
-                <f:selectItem itemValue="#{idPessoa}" itemLabel="#{PesoaNoome}"></f:selectItem>
-            </p:selectOneMenu>
-            <p:outputLabel value="Status: "></p:outputLabel>
-            <p:selectOneRadio >
-                <f:selectItem itemValue="ok" itemLabel="Ativo"></f:selectItem>    
-                <f:selectItem itemValue="no" itemLabel="Inativo"></f:selectItem>
-            </p:selectOneRadio>
-
+    <p:fieldset legend="Cadastro de Usuários">
+        <p:panelGrid columns="3" >
+            <p:fieldset legend="Dados do Usuário">
+                <p:panelGrid columns="2" >
+                    <p:outputLabel value="Nome: "></p:outputLabel>
+                    <p:inputText value="" placeholder="Digite o nome "></p:inputText>
+                    <p:outputLabel value="Login: "></p:outputLabel>
+                    <p:inputText  value="" placeholder="Digite o Login"></p:inputText>
+                    <p:outputLabel value="Senha: "></p:outputLabel>
+                    <p:inputText  value="" placeholder="Digite a senha"></p:inputText>
+                </p:panelGrid> 
+            </p:fieldset>
+            <p:fieldset legend="Dados de Funcionário">
+                <p:panelGrid columns="2" >
+                <p:outputLabel value="Pessoa: "></p:outputLabel>
+                <p:selectOneMenu value="#">
+                    <f:selectItem itemValue="#" itemLabel="#"></f:selectItem>
+                </p:selectOneMenu>
+                <p:outputLabel value="Status: "></p:outputLabel>
+                <p:selectOneRadio >
+                    <f:selectItem itemValue="Ativo" itemLabel="Ativo"></f:selectItem>    
+                    <f:selectItem itemValue="Inativo" itemLabel="Inativo"></f:selectItem>
+                </p:selectOneRadio>
         </p:panelGrid>
     </p:fieldset>
+            <p:fieldset legend="Opções">    
+                <p:panelGrid columns="1" >
+                    <p:commandButton value="Enviar" ajax="true" action="#" ></p:commandButton>
+                </p:panelGrid>  
+            </p:fieldset>
+</p:panelGrid>
+</p:fieldset>
 
 </ui:decorate>
 
