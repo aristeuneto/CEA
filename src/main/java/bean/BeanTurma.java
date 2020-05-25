@@ -25,7 +25,7 @@ public class BeanTurma {
 
     public void salvarTurma(){
         DaoTurma daoTurma = new DaoTurma();
-        daoTurma.salvarAluno(modelTurma);
+        daoTurma.salvarTurma(modelTurma);
     
     }
     

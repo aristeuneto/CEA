@@ -20,7 +20,7 @@ public class DaoTurma {
 
     Session session = HibernateUtil.getSessionFactory().openSession();
 
-    public void salvarAluno(ModelTurma modelTurma) {
+    public void salvarTurma(ModelTurma modelTurma) {
 
         try {
 
@@ -40,7 +40,7 @@ public class DaoTurma {
 
     }
 
-    public void excluirAluno(ModelTurma modelTurma) {
+    public void excluirTurma(ModelTurma modelTurma) {
 
         try {
 
@@ -60,7 +60,7 @@ public class DaoTurma {
 
     }
 
-    public void atualizarAluno(ModelTurma modelTurma) {
+    public void atualizarTurma(ModelTurma modelTurma) {
 
         try {
             session.getTransaction().begin();
@@ -77,7 +77,7 @@ public class DaoTurma {
 
     }
 
-    public List<ModelTurma> listaAluno() {
+    public List<ModelTurma> listaTurma() {
         List<ModelTurma> listaTurma = new ArrayList<>();
         Query sql = (Query) session.createQuery("from ModelTurma");
         listaTurma = sql.getResultList();
