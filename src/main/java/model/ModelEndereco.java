@@ -82,7 +82,7 @@ public class ModelEndereco implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "end_num")
-    private int endNum;
+    private Integer endNum;
     @OneToMany(mappedBy = "endId", cascade = CascadeType.ALL)
     private Collection<ModelPessoa> pessoaCollection;
 
@@ -93,7 +93,7 @@ public class ModelEndereco implements Serializable {
         this.endId = endId;
     }
 
-    public ModelEndereco(Integer endId, String endPais, String endEstado, String endCidade, String endBairro, String endRua, String endCep, int endNum) {
+    public ModelEndereco(Integer endId, String endPais, String endEstado, String endCidade, String endBairro, String endRua, String endCep, Integer endNum) {
         this.endId = endId;
         this.endPais = endPais;
         this.endEstado = endEstado;
@@ -160,11 +160,11 @@ public class ModelEndereco implements Serializable {
         this.endCep = endCep;
     }
 
-    public int getEndNum() {
+    public Integer getEndNum() {
         return endNum;
     }
 
-    public void setEndNum(int endNum) {
+    public void setEndNum(Integer endNum) {
         this.endNum = endNum;
     }
 
