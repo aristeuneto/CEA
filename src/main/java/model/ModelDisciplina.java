@@ -57,7 +57,7 @@ public class ModelDisciplina implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "disc_carga")
-    private int discCarga;
+    private Integer discCarga;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 10)
@@ -77,7 +77,7 @@ public class ModelDisciplina implements Serializable {
         this.discId = discId;
     }
 
-    public ModelDisciplina(Integer discId, String discNome, String discDesc, int discCarga, String discStatus) {
+    public ModelDisciplina(Integer discId, String discNome, String discDesc, Integer discCarga, String discStatus) {
         this.discId = discId;
         this.discNome = discNome;
         this.discDesc = discDesc;
@@ -109,11 +109,11 @@ public class ModelDisciplina implements Serializable {
         this.discDesc = discDesc;
     }
 
-    public int getDiscCarga() {
+    public Integer getDiscCarga() {
         return discCarga;
     }
 
-    public void setDiscCarga(int discCarga) {
+    public void setDiscCarga(Integer discCarga) {
         this.discCarga = discCarga;
     }
 

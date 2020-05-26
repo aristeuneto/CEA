@@ -6,8 +6,10 @@
 package bean;
 
 import DAO.DaoTurma;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import model.ModelTurma;
 
 /**
@@ -23,12 +25,28 @@ public class BeanTurma {
     public BeanTurma() {
     }
 
-    public void salvarTurma(){
+    public void salvarTurma() {
         DaoTurma daoTurma = new DaoTurma();
-        daoTurma.salvarTurma(modelTurma);
-    
+
+        if (modelTurma != null) {
+            daoTurma.salvarTurma(modelTurma);
+            modelTurma = new ModelTurma();
+            mensagemSalvo(true);
+        } else {
+            mensagemSalvo(false);
+        }
+
     }
-    
+
+    public void mensagemSalvo(Boolean status) {
+        FacesContext context = FacesContext.getCurrentInstance();
+        if (status) {
+            context.addMessage(null, new FacesMessage("Sucesso!", "Cadastro Salvo!"));
+        } else {
+            context.addMessage(null, new FacesMessage("Erro!", "Erro ao Salvar!"));
+        }
+    }
+
     public ModelTurma getModelTurma() {
         return modelTurma;
     }
