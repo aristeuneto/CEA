@@ -68,9 +68,9 @@
                     </p:panelGrid>  
                 </p:fieldset>  
                 <p:fieldset legend="Opções">    
-                    <p:panelGrid columns="3" >
-                        <p:commandButton value="Enviar" action="#{beanAluno.salvarAluno()}" update="@form"></p:commandButton>
-                        <p:commandButton value="Alterar" update="@form"></p:commandButton>
+                    <p:panelGrid columns="3">
+                        <p:commandButton value="Enviar" action="#{beanAluno.salvarAluno()}" update="@form" ></p:commandButton>                       
+                        <p:commandButton value="Alterar" update="@form"></p:commandButton>         
                         <p:commandButton value="Excluir" ajax="true" update="@form"></p:commandButton>
                     </p:panelGrid>  
                 </p:fieldset>

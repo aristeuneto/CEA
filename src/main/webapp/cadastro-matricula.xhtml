@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             template="template-cea.xhtml"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:f="http://xmlns.jcp.org/jsf/core"
+             xmlns:h="http://xmlns.jcp.org/jsf/html">    
+
+    <!-- Adionando JS para traduzir calendário-->
+    <p:fieldset legend="Cadastro de Matriculas">
+
+        <p:panelGrid columns="2" >
+            <p:fieldset legend="Dados Gerais"> 
+                <h:form>
+                    <p:panelGrid columns="6" >          
+                        <p:outputLabel  for="Numero" value="Nº Matrícula:"></p:outputLabel>                                         
+                        <p:inputMask id="Numero" mask="9999-aaaa99.9999" value="#" placeholder="Numero da Matricula"></p:inputMask> 
+                        <p:outputLabel for="Ano" value="Ano Letivo: "></p:outputLabel>                       
+                        <p:inputMask id="Ano" value="#" mask="9999" placeholder="Ano Letivo"></p:inputMask>                      
+                        <p:outputLabel for="Data" value="Data da Matrícula: "/>
+                        <p:inputMask id="Data" value="#" mask="99/99/9999" placeholder="Data da Matrícula"/>
+                        <p:outputLabel for="Aluno" value="Aluno: "></p:outputLabel>
+                        <p:selectOneMenu id="Aluno" value="#{beanMatricula.modelMatricula.pesId}" effect="fold" editable="false" filter="true" filterMatchMode="startsWith">
+                            <f:selectItem itemLabel="Selecione Um" itemValue="null" />
+                            <f:selectItem itemLabel="#{beanAluno.modelAluno.pesNome}" itemValue="#{beanAluno.modelAluno.pesId}" />
+                        </p:selectOneMenu>
+                        <p:outputLabel for="serie" value="Série: " />
+                        <p:selectOneMenu id="serie" value="#" effect="fold" editable="false" filter="true" filterMatchMode="startsWith">  
+                            <f:selectItem itemLabel="G1 - Maternal" itemValue="1ª" />
+                            <f:selectItem itemLabel="G2 - Maternal" itemValue="2ª" />
+                            <f:selectItem itemLabel="G3 - Maternal" itemValue="3ª" />
+                            <f:selectItem itemLabel="G4 - Maternal" itemValue="4ª" />
+                        </p:selectOneMenu>
+                        <p:outputLabel for="Turno" value="Turno: " />
+                        <p:selectOneMenu id="Turno" value="#" effect="fold" editable="false" >
+                            <f:selectItem itemLabel="Matutino" itemValue="Matutino" />
+                            <f:selectItem itemLabel="Vespertino" itemValue="Vespertino" />
+                        </p:selectOneMenu>
+                        <p:outputLabel for="Status" value="Situação: "></p:outputLabel>
+                        <p:selectOneRadio>
+                            <f:selectItem id="Status" itemLabel="Ativo" itemValue="Ativo"></f:selectItem>
+                            <f:selectItem id="status" itemLabel="Inativo" itemValue="Inativo"></f:selectItem>                            
+                        </p:selectOneRadio>
+                    </p:panelGrid> 
+                </h:form>
+            </p:fieldset>
+            <p:fieldset legend="Opções">    
+                <p:panelGrid columns="3" >
+                    <p:commandButton value="Enviar" action="#{beanDisciplina.salvarDisciplina()}"></p:commandButton>
+                    <p:commandButton value="Alterar" action="#{beanDisciplina.alterarDisciplina()}" disabled="true"></p:commandButton>
+                    <p:commandButton value="Excluir" action="#{beanDisciplina.excluirDisciplina()}" disabled="true"></p:commandButton>
+                </p:panelGrid> 
+            </p:fieldset>
+        </p:panelGrid> 
+    </p:fieldset>   
+</ui:decorate>

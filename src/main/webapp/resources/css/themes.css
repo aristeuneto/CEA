@@ -9,17 +9,17 @@ and open the template in the editor.
 */
 
 fieldset{
-    
-    font-size: 14px !important;
+
+    font-size: 13px !important;
     text-decoration: #ffffff !important;
-    background-color: rgba(21,21,21,0.4) !important;
+    background-color: rgba(21,21,21,0.5) !important;
     visibility: visible;
     border-radius: 10px;
     border-color: #000066 !important;
 }
 td, tr{
     border: black !important;
-    background-color: rgba(46,100,254,0.0) !important;
+    background-color: rgba(21,21,21,0.0) !important;
     visibility: visible;
 }
 label{
@@ -31,8 +31,7 @@ label{
 
     background-image: url('../image/cover.jpg') !important;
     background-repeat: no-repeat;
-    background-size: inherit;
-    border-color: black;
+    background-size: inherit;   
     box-shadow: #99ffff 10px !important;  
     border-radius: 10px;
 }
@@ -40,7 +39,15 @@ legend{
     background-image: url('../image/bc.png') !important;
     background-repeat: no-repeat;
     background-size: inherit;
-    border-color: black;
     font-weight: bold;
     text-decoration: #ffff33 !important;
+}
+button{
+    background-image: url('../image/bc.png') !important;
+    background-repeat: no-repeat; 
+    box-shadow: #99ffff 50px !important;  
+    border-radius: 10px;  
+}
+select{
+    width: 183px !important;
 }
