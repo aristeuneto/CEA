@@ -50,14 +50,20 @@ public class BeanAluno implements Serializable {
             modelEndereco = new ModelEndereco();
             modelContato = new ModelContato();
             dataNascimento = new String();
-            mensagemSalvo();
+            mensagemSalvo(true);
+        } else {
+            mensagemSalvo(false);
         }
 
     }
 
-    public void mensagemSalvo() {
+    public void mensagemSalvo(Boolean status) {
         FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage("Sucesso!","Cadastro Salvo!"));
+        if (status) {
+            context.addMessage(null, new FacesMessage("Sucesso!", "Cadastro Salvo!"));
+        } else {
+            context.addMessage(null, new FacesMessage("Erro!", "Erro ao Salvar!"));
+        }
     }
 
     public ModelAluno getModelAluno() {
