@@ -8,12 +8,14 @@ and open the template in the editor.
     Author     : LUIZ
 */
 
-fieldset{ 
+fieldset{
+    
     font-size: 14px !important;
-    background-color: rgba(46,100,254,0.1) !important;
+    text-decoration: #ffffff !important;
+    background-color: rgba(21,21,21,0.4) !important;
     visibility: visible;
     border-radius: 10px;
-    border-color: black !important;
+    border-color: #000066 !important;
 }
 td, tr{
     border: black !important;
@@ -21,6 +23,7 @@ td, tr{
     visibility: visible;
 }
 label{
+    color: aliceblue;
     font-size: medium;
     font-weight: bold;
 }
@@ -38,8 +41,6 @@ legend{
     background-repeat: no-repeat;
     background-size: inherit;
     border-color: black;
-    box-shadow: #99ffff 10px !important ;
-    border-radius: 10px; 
     font-weight: bold;
     text-decoration: #ffff33 !important;
 }

@@ -18,20 +18,18 @@ public class BeanDisciplina {
     public void salvarDisciplina(){
     
         DaoDisciplina daoDisciplina = new DaoDisciplina();
-        disciplina.setDiscNome("nome");
-        disciplina.setDiscDesc("descricao");
-        disciplina.setDiscCarga (Integer.parseInt("carga"));
-        disciplina.setDiscStatus("status");
-        daoDisciplina.salvarDisciplina(disciplina);
+        daoDisciplina.salvarDisciplina(getDisciplina());
     
     }
-    
-    
-    public ModelDisciplina getContato() {
+
+    public ModelDisciplina getDisciplina() {
         return disciplina;
     }
 
     public void setDisciplina(ModelDisciplina disciplina) {
         this.disciplina = disciplina;
     }
+    
+    
+
 }
