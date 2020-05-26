@@ -5,18 +5,16 @@
  */
 package bean;
 
-import DAO.DaoAcesso;
-import DAO.DaoAluno;
-import java.io.Serializable;
+import DAO.DaoProfessor;
 import java.util.Date;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
-import model.ModelAluno;
 import model.ModelContato;
 import model.ModelEndereco;
+import model.ModelProfessor;
 import util.BLDatas;
 
 /**
@@ -26,27 +24,27 @@ import util.BLDatas;
 @Named
 @ManagedBean
 @SessionScoped
-public class BeanAluno implements Serializable {
+public class BeanProfessor {
 
-    private ModelAluno modelAluno = new ModelAluno();
+    private ModelProfessor modelProfessor = new ModelProfessor();
     private ModelEndereco modelEndereco = new ModelEndereco();
     private ModelContato modelContato = new ModelContato();
     private String dataNascimento = new String();
 
-    public BeanAluno() {
+    public BeanProfessor() {
     }
 
-    public void salvarAluno() throws Exception {
+    public void salvarProfessor() throws Exception {
         BLDatas bLDatas = new BLDatas();
         Date dtNascimento = bLDatas.converterDataStringParaDate(dataNascimento);
 
-        DaoAluno daoAluno = new DaoAluno();
-        modelAluno.setPesDtnasc(dtNascimento);
-        modelAluno.setEndId(modelEndereco);
-        modelAluno.setContId(modelContato);
-        if (modelAluno != null) {
-            daoAluno.salvarAluno(modelAluno);
-            modelAluno = new ModelAluno();
+        DaoProfessor daoProfessor = new DaoProfessor();
+        modelProfessor.setPesDtnasc(dtNascimento);
+        modelProfessor.setEndId(modelEndereco);
+        modelProfessor.setContId(modelContato);
+        if (modelProfessor != null) {
+            daoProfessor.salvarProfessor(modelProfessor);
+            modelProfessor = new ModelProfessor();
             modelEndereco = new ModelEndereco();
             modelContato = new ModelContato();
             dataNascimento = new String();
@@ -57,15 +55,15 @@ public class BeanAluno implements Serializable {
 
     public void mensagemSalvo() {
         FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage("Sucesso!","Cadastro Salvo!"));
+        context.addMessage(null, new FacesMessage("Sucesso!", "Cadastro Salvo!"));
     }
 
-    public ModelAluno getModelAluno() {
-        return modelAluno;
+    public ModelProfessor getModelProfessor() {
+        return modelProfessor;
     }
 
-    public void setModelAluno(ModelAluno modelAluno) {
-        this.modelAluno = modelAluno;
+    public void setModelProfessor(ModelProfessor modelProfesor) {
+        this.modelProfessor = modelProfesor;
     }
 
     public ModelEndereco getModelEndereco() {
