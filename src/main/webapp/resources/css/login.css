@@ -1,37 +1,40 @@
 
 
 .body{
-    
+
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-image: url('../image/cealogo.png') !important;
+    width: 50% !important;
+    visibility: hidden;
     align-content: center !important;
-    background-image: url('../image/b.jpg') !important;
-    visibility: collapse;
-    align-content: center;
-    background-size: cover;
+
     box-shadow: #99ffff 50px !important;     
 }
 
 div{
-  align-content: center !important;
-    background-color: rgba(21,21,21,0.5) !important;  
+    align-items: center !important;
+    align-content: center !important;
+    background-color: rgba(21,21,21,0.4) !important;  
     border-radius: 5% !important;
-    border-color:  darkorange !important;
+    border-color:  #ffff00 !important;
 }
 
 input{    
     border-radius: 10%;
-    border-color:  darkorange !important;
-    background-color: rgba(21,21,21,0.1) !important;
+    border-color:  #ffff00 !important;
+    background-color: rgba(21,21,21,0.6) !important;
     color: white !important;
 }
 
 button{
     text-justify: auto !important;
-   
     font-weight: bold !important;
     width: 130px;
     height: 40px;
-    
     box-shadow: #99ffff 50px !important;  
     border-radius: 20px !important;  
 }
-
+label{
+    color: white !important;
+}
