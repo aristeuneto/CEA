@@ -22,8 +22,8 @@
             <p:fieldset legend="Dados de Funcionário">
                 <p:panelGrid columns="2" >
                 <p:outputLabel value="Pessoa: "></p:outputLabel>
-                <p:selectOneMenu value="#">
-                    <f:selectItem itemValue="#" itemLabel="#"></f:selectItem>
+                <p:selectOneMenu value="#{beanAluno.modelAluno.pesId}">
+                    <f:selectItems itemValue="#{beanAluno.modelAluno.pesId}" itemLabel="#{beanAluno.modelAluno.pesNome}"></f:selectItems>
                 </p:selectOneMenu>
                 <p:outputLabel value="Status: "></p:outputLabel>
                 <p:selectOneRadio >

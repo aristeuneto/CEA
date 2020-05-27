@@ -50,6 +50,7 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.23</version>
         </dependency>
+ 
         <!-- PrimeFaces Themes-->
         <dependency>
             <groupId>org.primefaces.themes</groupId>
