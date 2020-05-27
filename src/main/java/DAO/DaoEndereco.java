@@ -79,8 +79,8 @@ public class DaoEndereco {
 
     public List<ModelEndereco> listaEndereco() {
         List<ModelEndereco> listaEnderecos = new ArrayList<>();
-        Query sql = (Query) session.createQuery("from ModelEndereco");
-        listaEnderecos = sql.getResultList();
+        org.hibernate.Query sql = session.createQuery("from ModelEndereco");
+        listaEnderecos = sql.list();
 
         return listaEnderecos;
     }

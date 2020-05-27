@@ -79,8 +79,8 @@ public class DaoMatricula {
 
     public List<ModelMatricula> listaMatricula() {
         List<ModelMatricula> listaMatriculas = new ArrayList<>();
-        Query sql = (Query) session.createQuery("from ModelMatricula");
-        listaMatriculas = sql.getResultList();
+        org.hibernate.Query sql = session.createQuery("from ModelMatricula");
+        listaMatriculas = sql.list();
 
         return listaMatriculas;
     }

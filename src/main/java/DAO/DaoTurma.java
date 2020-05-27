@@ -79,8 +79,8 @@ public class DaoTurma {
 
     public List<ModelTurma> listaTurma() {
         List<ModelTurma> listaTurma = new ArrayList<>();
-        Query sql = (Query) session.createQuery("from ModelTurma");
-        listaTurma = sql.getResultList();
+        org.hibernate.Query sql = session.createQuery("from ModelTurma");
+        listaTurma = sql.list();
 
         return listaTurma;
     }

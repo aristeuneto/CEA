@@ -79,8 +79,8 @@ public class DaoAluno {
 
     public List<ModelAluno> listaAluno() {
         List<ModelAluno> listaAluno = new ArrayList<>();
-        Query sql = (Query) session.createQuery("from ModelAluno");
-        listaAluno = sql.getResultList();
+        org.hibernate.Query sql =  session.createQuery("from ModelAluno");
+        listaAluno = sql.list();
 
         return listaAluno;
     }

@@ -80,8 +80,8 @@ public class DaoAuxBoleDisc {
 
     public List<ModelAuxBoleDisc> listaAuxBoleDisc() {
         List<ModelAuxBoleDisc> listaAuxBoleDiscs = new ArrayList<>();
-        Query sql = (Query) session.createQuery("from ModelAuxBoleDisc");
-        listaAuxBoleDiscs = sql.getResultList();
+        org.hibernate.Query sql = session.createQuery("from ModelAuxBoleDisc");
+        listaAuxBoleDiscs = sql.list();
 
         return listaAuxBoleDiscs;
     }

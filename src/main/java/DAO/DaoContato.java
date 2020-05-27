@@ -79,8 +79,8 @@ public class DaoContato {
 
     public List<ModelContato> listaContato() {
         List<ModelContato> listaContato = new ArrayList<>();
-        Query sql = (Query) session.createQuery("from ModelContato");
-        listaContato = sql.getResultList();
+        org.hibernate.Query sql = session.createQuery("from ModelContato");
+        listaContato = sql.list();
 
         return listaContato;
     }

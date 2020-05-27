@@ -79,8 +79,8 @@ public class DaoAcesso {
 
     public List<ModelAcesso> listaAluno() {
         List<ModelAcesso> listaAluno = new ArrayList<>();
-        Query sql = (Query) session.createQuery("from ModelAcesso");
-        listaAluno = sql.getResultList();
+        org.hibernate.Query sql = session.createQuery("from ModelAcesso");
+        listaAluno = sql.list();
 
         return listaAluno;
     }
@@ -91,9 +91,9 @@ public class DaoAcesso {
 
         try {
 
-            Query sql = (Query) session.createQuery("from ModelAcesso where acesLogin='" + modelAcesso.getAcesLogin()
-                    + "' and acesSenha='" + modelAcesso.getAcesSenha() + "'");
-            list = sql.getResultList();
+            org.hibernate.Query sql = session.createQuery("from model.ModelAcesso m where m.acesLogin='" + modelAcesso.getAcesLogin()
+                    + "' and m.acesSenha='" + modelAcesso.getAcesSenha() + "'");
+            list = sql.list();
             modelAcesso = list.get(0);
             return pModelAcesso;
         } catch (Exception e) {

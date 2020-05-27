@@ -79,8 +79,8 @@ public class DaoDisciplina {
 
     public List<ModelDisciplina> listaDisciplina() {
         List<ModelDisciplina> listaDisciplinas = new ArrayList<>();
-        Query sql = (Query) session.createQuery("from ModelDisciplina");
-        listaDisciplinas = sql.getResultList();
+        org.hibernate.Query sql = session.createQuery("from ModelDisciplina");
+        listaDisciplinas = sql.list();
 
         return listaDisciplinas;
     }

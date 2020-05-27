@@ -80,8 +80,8 @@ public class DaoBoletim {
 
     public List<ModelBoletim> listaBoletim() {
         List<ModelBoletim> listaBoletim = new ArrayList<>();
-        Query sql = (Query) session.createQuery("from ModelBoletim");
-        listaBoletim = sql.getResultList();
+        org.hibernate.Query sql = session.createQuery("from ModelBoletim");
+        listaBoletim = sql.list();
 
         return listaBoletim;
     }

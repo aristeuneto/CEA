@@ -79,8 +79,8 @@ public class DaoAuxProfDisc {
 
     public List<ModelAuxProfDisc> listaAuxProfDisc() {
         List<ModelAuxProfDisc> listaAuxProfDiscs = new ArrayList<>();
-        Query sql = (Query) session.createQuery("from ModelAuxProfDisc");
-        listaAuxProfDiscs = sql.getResultList();
+        org.hibernate.Query sql = session.createQuery("from ModelAuxProfDisc");
+        listaAuxProfDiscs = sql.list();
 
         return listaAuxProfDiscs;
     }

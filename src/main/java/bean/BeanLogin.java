@@ -6,8 +6,10 @@
 package bean;
 
 import DAO.DaoAcesso;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import model.ModelAcesso;
 
 /**
@@ -26,10 +28,19 @@ public class BeanLogin {
     public String efetuarLogin() {
         DaoAcesso daoAcesso = new DaoAcesso();
         daoAcesso.getModelAcesso(modelAcesso);
-        if(daoAcesso.getModelAcesso(modelAcesso) != null){
-        return "index.xhtml";
+        if (daoAcesso.getModelAcesso(modelAcesso) != null) {
+            return "/index.xhtml";
+        } else {
+            mensagemErro();
         }
         return null;
+    }
+
+    public void mensagemErro() {
+        FacesContext context = FacesContext.getCurrentInstance();
+
+        context.addMessage(null, new FacesMessage("Erro!", "Login ou Senha inválidos!!"));
+
     }
 
     public ModelAcesso getModelAcesso() {

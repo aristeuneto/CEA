@@ -79,8 +79,8 @@ public class DaoProfessor {
 
     public List<ModelProfessor> listaProfessor() {
         List<ModelProfessor> listaProfessores = new ArrayList<>();
-        Query sql = (Query) session.createQuery("from ModelProfessor");
-        listaProfessores = sql.getResultList();
+        org.hibernate.Query sql = session.createQuery("from ModelProfessor");
+        listaProfessores = sql.list();
 
         return listaProfessores;
     }
