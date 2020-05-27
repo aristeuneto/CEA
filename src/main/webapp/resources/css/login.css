@@ -1,21 +1,37 @@
 
 
 .body{
-    align-content: center;
+    
+    align-content: center !important;
     background-image: url('../image/fr.jpg') !important;
+    visibility: collapse;
+    align-content: center;
     background-size: cover;
     box-shadow: #99ffff 50px !important;     
 }
 
 div{
-    background-color: rgba(21,21,21,0.5) !important;    
+  align-content: center !important;
+    background-color: rgba(21,21,21,0.5) !important;  
+    border-radius: 5% !important;
+    border-color:  darkorange !important;
 }
 
 input{    
     border-radius: 10%;
+    border-color:  darkorange !important;
+    background-color: rgba(21,21,21,0.1) !important;
+    color: white !important;
 }
 
 button{
-    width: 150px;
-    height: 50px;
+    text-justify: auto !important;
+   
+    font-weight: bold !important;
+    width: 130px;
+    height: 40px;
+    
+    box-shadow: #99ffff 50px !important;  
+    border-radius: 20px !important;  
 }
+
