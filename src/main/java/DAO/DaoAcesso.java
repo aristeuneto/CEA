@@ -85,4 +85,21 @@ public class DaoAcesso {
         return listaAluno;
     }
 
+    public ModelAcesso getModelAcesso(ModelAcesso modelAcesso) {
+        ModelAcesso pModelAcesso = new ModelAcesso();
+        List<ModelAcesso> list = new ArrayList<>();
+
+        try {
+
+            Query sql = (Query) session.createQuery("from ModelAcesso where acesLogin='" + modelAcesso.getAcesLogin()
+                    + "' and acesSenha='" + modelAcesso.getAcesSenha() + "'");
+            list = sql.getResultList();
+            modelAcesso = list.get(0);
+            return pModelAcesso;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }

@@ -15,9 +15,9 @@
                 <h:panelGrid cellspacing="30" class="menu">
                     <h:graphicImage width="80" height="80" library="image" name="cealogo.png"/>                   
                     <p:messages id="messagesLogin"/>
-                    <p:inputText placeholder="Usuário" value="#{loginBean.login}" size="20" required="true" requiredMessage="Campo Login é obrigatório"/>
-                    <p:password placeholder="Senha" value="#{loginBean.senha}" size="20" required="true" requiredMessage="Campo Senha é obrigatório"/>
-                    <p:commandButton style="align-content: center;" value="Entrar" action="#{loginBean.logIn()}" update="messagesLogin"/>
+                    <p:inputText placeholder="Usuário" value="#{beanLogin.modelAcesso.acesLogin}" size="20" required="true" requiredMessage="Campo Login é obrigatório"/>
+                    <p:password placeholder="Senha" value="#{beanLogin.modelAcesso.acesSenha}" size="20" required="true" requiredMessage="Campo Senha é obrigatório"/>
+                    <p:commandButton style="align-content: center;" value="Entrar" action="#{beanLogin.efetuarLogin()}" update="messagesLogin"/>
                 </h:panelGrid>
             </h:form>           
                 <p:outputLabel >

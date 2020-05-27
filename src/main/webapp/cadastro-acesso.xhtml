@@ -4,41 +4,62 @@
              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
              template="template-cea.xhtml"
              xmlns:p="http://primefaces.org/ui"
-             xmlns:f="http://xmlns.jcp.org/jsf/core">
+             xmlns:f="http://xmlns.jcp.org/jsf/core"
+             xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+
+
+    <!-- Script para tornar a páginas responsiva! Tem que colocar a classe "ui-fluid" dentro de uma div-->
+    <style type="text/css">
+        /** Demo **/
+        .ui-outputlabel {
+            font-weight: bold;
+        }
+
+        .ui-orderlist .ui-orderlist-list {
+            height: auto;
+        }
+    </style>
+    <!-- ********************************************************************************************* -->
 
     <!-- Adionando JS para traduzir calendário-->
     <p:fieldset legend="Cadastro de Usuários">
-        <p:panelGrid columns="3" >
-            <p:fieldset legend="Dados do Usuário">
-                <p:panelGrid columns="2" >
-                    <p:outputLabel value="Nome: "></p:outputLabel>
-                    <p:inputText value="" placeholder="Digite o nome "></p:inputText>
-                    <p:outputLabel value="Login: "></p:outputLabel>
-                    <p:inputText  value="" placeholder="Digite o Login"></p:inputText>
-                    <p:outputLabel value="Senha: "></p:outputLabel>
-                    <p:inputText  value="" placeholder="Digite a senha"></p:inputText>
-                </p:panelGrid> 
-            </p:fieldset>
-            <p:fieldset legend="Dados de Funcionário">
-                <p:panelGrid columns="2" >
-                <p:outputLabel value="Pessoa: "></p:outputLabel>
-                <p:selectOneMenu value="#{beanAluno.modelAluno.pesId}">
-                    <f:selectItems itemValue="#{beanAluno.modelAluno.pesId}" itemLabel="#{beanAluno.modelAluno.pesNome}"></f:selectItems>
-                </p:selectOneMenu>
-                <p:outputLabel value="Status: "></p:outputLabel>
-                <p:selectOneRadio >
-                    <f:selectItem itemValue="Ativo" itemLabel="Ativo"></f:selectItem>    
-                    <f:selectItem itemValue="Inativo" itemLabel="Inativo"></f:selectItem>
-                </p:selectOneRadio>
-        </p:panelGrid>
+        <h:form>
+            <div header="Growl" class="ui-fluid">
+                <p:growl id="growl" showDetail="true" sticky="true" />
+                <p:panelGrid columns="3" >
+                    <p:fieldset legend="Dados do Usuário">
+                        <p:panelGrid columns="2" >
+                            <p:outputLabel value="Nome: "></p:outputLabel>
+                            <p:inputText value="#{beanAcesso.modelAcesso.acesNome}" placeholder="Digite o nome "></p:inputText>
+                            <p:outputLabel value="Login: "></p:outputLabel>
+                            <p:inputText  value="#{beanAcesso.modelAcesso.acesLogin}" placeholder="Digite o Login"></p:inputText>
+                            <p:outputLabel value="Senha: "></p:outputLabel>
+                            <p:password  value="#{beanAcesso.modelAcesso.acesSenha}" placeholder="Digite a senha"></p:password>
+                        </p:panelGrid> 
+                    </p:fieldset>
+                    <p:fieldset legend="Dados de Funcionário">
+                        <p:panelGrid columns="2" >
+                            <p:outputLabel value="Pessoa: "></p:outputLabel>
+                            <p:selectOneMenu value="#{beanAluno.modelAluno.pesId}">
+                                <f:selectItems itemValue="#{beanAluno.modelAluno.pesId}" itemLabel="#{beanAluno.modelAluno.pesNome}"></f:selectItems>
+                            </p:selectOneMenu>
+                            <p:outputLabel value="Status: "></p:outputLabel>
+                            <p:selectOneRadio >
+                                <f:selectItem itemValue="Ativo" itemLabel="Ativo"></f:selectItem>    
+                                <f:selectItem itemValue="Inativo" itemLabel="Inativo"></f:selectItem>
+                            </p:selectOneRadio>
+                        </p:panelGrid>
+                    </p:fieldset>
+                    <p:fieldset legend="Opções">    
+                        <p:panelGrid columns="1" >
+                            <p:commandButton value="Enviar" ajax="true" action="#{beanAcesso.salvarAcesso()}" update="@form" ></p:commandButton>
+                        </p:panelGrid>  
+                    </p:fieldset>
+                </p:panelGrid>
+            </div>
+        </h:form>
     </p:fieldset>
-            <p:fieldset legend="Opções">    
-                <p:panelGrid columns="1" >
-                    <p:commandButton value="Enviar" ajax="true" action="#" ></p:commandButton>
-                </p:panelGrid>  
-            </p:fieldset>
-</p:panelGrid>
-</p:fieldset>
 
 </ui:decorate>
 

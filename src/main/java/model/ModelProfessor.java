@@ -7,6 +7,7 @@ package model;
 
 import java.io.Serializable;
 import java.util.Collection;
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -31,6 +32,8 @@ public class ModelProfessor extends ModelPessoa implements Serializable {
     private Collection<ModelAuxProfDisc> auxProfDiscCollection;
     @OneToMany(mappedBy = "pesId")
     private Collection<ModelAuxProfTurma> auxProfTurmaCollection;
+    //  Tirar dps
+    @Basic(optional = true)
     @OneToMany(mappedBy = "pesId")
     private Collection<ModelAcesso> acessoCollection;
 
@@ -71,5 +74,5 @@ public class ModelProfessor extends ModelPessoa implements Serializable {
     public void setAcessoCollection(Collection<ModelAcesso> acessoCollection) {
         this.acessoCollection = acessoCollection;
     }
-    
+
 }

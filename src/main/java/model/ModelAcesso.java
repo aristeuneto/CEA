@@ -61,6 +61,8 @@ public class ModelAcesso implements Serializable {
     @Size(max = 20)
     @Column(name = "aces_status")
     private String acesStatus;
+    //  Tirar dps
+    @Basic(optional = true)
     @JoinColumn(name = "pes_id", referencedColumnName = "pes_id")
     @ManyToOne
     private ModelProfessor pesId;
@@ -151,5 +153,5 @@ public class ModelAcesso implements Serializable {
     public String toString() {
         return "model.ModelAcesso[ acesId=" + acesId + " ]";
     }
-    
+
 }
