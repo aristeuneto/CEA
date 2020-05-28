@@ -3,30 +3,47 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui" 
       class="body">
+
+    <!-- Script para tornar a páginas responsiva! Tem que colocar a classe "ui-fluid" dentro de uma div-->
+    <style type="text/css">
+        /** Demo **/
+        .ui-outputlabel {
+            font-weight: bold;
+        }
+
+        .ui-orderlist .ui-orderlist-list {
+            height: auto;
+        }
+    </style>
+    <!-- ********************************************************************************************* -->
+
     <h:head>
         <title>C.E.A - Centro Educacional do Andaiá</title> 
         <link rel="shortcut icon" href="resources/image/cealogo.png" />        
         <link rel="stylesheet" href="resources/css/login.css" />
     </h:head>
     <h:body>
-        <h:graphicImage width="80" height="80" library="image" name="cealogo.png"/>
-        <p:dialog  visible="true" width="400" height="400" header="Acessa ao Sistema" showHeader="false" modal="true" resizable="false">            
-            <br/>
-            <p:outputLabel value="C.E.A - Centro Educacional do Andaiá"></p:outputLabel>
-            <h:panelGrid style="margin: 0 auto;"><h:outputText styleClass="fa fa-lock fa-5x"/></h:panelGrid>
-            <h:form id="formLogin">
-                <h:panelGrid cellspacing="15" class="menu" >                                      
-                    <p:messages id="messagesLogin"/>
-                    <p:outputLabel value="Login:"></p:outputLabel>
-                    <p:inputText placeholder="Usuário" value="#{beanLogin.modelAcesso.acesLogin}" size="25" required="true" requiredMessage="Campo Login é obrigatório"/>
-                    <p:outputLabel value="Senha:"></p:outputLabel>
-                    <p:password placeholder="Senha" value="#{beanLogin.modelAcesso.acesSenha}" size="25" required="true" requiredMessage="Campo Senha é obrigatório"/>
-                    <br/>
-                    <p:commandButton style="align-content: center;" value="Entrar" action="#{beanLogin.efetuarLogin()}" update="messagesLogin"/>
-                </h:panelGrid>
-            </h:form> 
-        </p:dialog> 
-             <p:layoutUnit position="south" size="15%">    
-        </p:layoutUnit> 
+        <div header="Growl" class="ui-fluid">
+            <p:growl id="growl" showDetail="true" sticky="true" />
+            <!--  <h:graphicImage width="80" height="80" library="image" name="b.jpg"/> -->
+            <p:dialog visible="true" width="410" height="400" header="Acessa ao Sistema" showHeader="false" modal="true" resizable="false">            
+                <br/>
+                <p:outputLabel value="C.E.A - Centro Educacional do Andaiá"></p:outputLabel>
+                <h:panelGrid style="margin: 0 auto;"><h:outputText styleClass="fa fa-lock fa-5x"/></h:panelGrid>
+                <h:form id="formLogin">
+                    <h:panelGrid cellspacing="15" class="menu" >                                      
+                        <p:messages id="messagesLogin"/>
+                        <p:outputLabel value="Login:"></p:outputLabel>
+                        <p:inputText placeholder="Usuário" value="#{beanLogin.modelAcesso.acesLogin}" size="25" required="true" requiredMessage="Campo Login é obrigatório"/>
+                        <p:outputLabel value="Senha:"></p:outputLabel>
+                        <p:password placeholder="Senha" value="#{beanLogin.modelAcesso.acesSenha}" size="25" required="true" requiredMessage="Campo Senha é obrigatório"/>
+                        <br/>
+                        <p:commandButton style="align-content: center;" value="Entrar" action="#{beanLogin.efetuarLogin()}" update="messagesLogin"/>
+                    </h:panelGrid>
+                </h:form> 
+            </p:dialog> 
+            <p:layoutUnit position="south" size="15%">    
+            </p:layoutUnit>
+        </div>
     </h:body> 
 </html>
