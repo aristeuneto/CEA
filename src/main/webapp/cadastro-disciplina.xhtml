@@ -28,11 +28,11 @@
                     <p:fieldset legend="Dados Gerais"> 
                         <p:panelGrid columns="2" >          
                             <p:outputLabel for="Nome" value="Nome: "></p:outputLabel>
-                            <p:inputText id="Nome" value="#{beanDisciplina.disciplina.discNome}" placeholder="Nome"></p:inputText>
+                            <p:inputText id="Nome" value="#{beanDisciplina.modelDisciplina.discNome}" placeholder="Nome"></p:inputText>
                             <p:outputLabel  for="Descrição" value="Descrição "></p:outputLabel>
-                            <p:inputText id="Descrição" value="#{beanDisciplina.disciplina.discDesc}" placeholder="Descrição"></p:inputText>
+                            <p:inputText id="Descrição" value="#{beanDisciplina.modelDisciplina.discDesc}" placeholder="Descrição"></p:inputText>
                             <p:outputLabel for="Carga" value="Carga horária: "></p:outputLabel>
-                            <p:inputText id="Carga" value="#{beanDisciplina.disciplina.discCarga}" placeholder="Carga horária"></p:inputText>
+                            <p:inputText id="Carga" value="#{beanDisciplina.modelDisciplina.discCarga}" placeholder="Carga horária"></p:inputText>
                             <p:outputLabel for="Status" value="Situação: "></p:outputLabel>
                             <p:selectOneRadio id="Status" value="#{beanDisciplina.modelDisciplina.discStatus}">
                                 <f:selectItem itemLabel="Ativo" itemValue="Ativo"></f:selectItem>
