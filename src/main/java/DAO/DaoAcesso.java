@@ -60,7 +60,7 @@ public class DaoAcesso {
 
     }
 
-    public void atualizarAluno(ModelAcesso modelAcesso) {
+    public void atualizarAcesso(ModelAcesso modelAcesso) {
 
         try {
             session.getTransaction().begin();
@@ -77,12 +77,12 @@ public class DaoAcesso {
 
     }
 
-    public List<ModelAcesso> listaAluno() {
-        List<ModelAcesso> listaAluno = new ArrayList<>();
+    public List<ModelAcesso> listaAcesso() {
+        List<ModelAcesso> listaAcesso = new ArrayList<>();
         org.hibernate.Query sql = session.createQuery("from ModelAcesso");
-        listaAluno = sql.list();
+        listaAcesso = sql.list();
 
-        return listaAluno;
+        return listaAcesso;
     }
 
     public ModelAcesso getModelAcesso(ModelAcesso modelAcesso) {

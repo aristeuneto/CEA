@@ -5,7 +5,6 @@
  */
 package bean;
 
-import DAO.DaoAcesso;
 import DAO.DaoAluno;
 import java.io.Serializable;
 import java.util.Date;
@@ -56,8 +55,7 @@ public class BeanAluno implements Serializable {
         }
 
     }
-
-    public void mensagemSalvo(Boolean status) {
+        public void mensagemSalvo(Boolean status) {
         FacesContext context = FacesContext.getCurrentInstance();
         if (status) {
             context.addMessage(null, new FacesMessage("Sucesso!", "Cadastro Salvo!"));
@@ -98,4 +96,47 @@ public class BeanAluno implements Serializable {
         this.dataNascimento = dataNascimento;
     }
 
+    
+    /*luiz*/
+        public void atualizarAluno() throws Exception {
+        BLDatas bLDatas = new BLDatas();
+        Date dtNascimento = bLDatas.converterDataStringParaDate(dataNascimento);
+
+        DaoAluno daoAluno = new DaoAluno();
+        modelAluno.setPesDtnasc(dtNascimento);
+        modelAluno.setEndId(modelEndereco);
+        modelAluno.setContId(modelContato);
+        if (modelAluno != null) {
+            daoAluno.atualizarAluno(modelAluno);
+            modelAluno = new ModelAluno();
+            modelEndereco = new ModelEndereco();
+            modelContato = new ModelContato();
+            dataNascimento = new String();
+            mensagemSalvo(true);
+        } else {
+            mensagemSalvo(false);
+        }
+
+    }
+    
 }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+   
+

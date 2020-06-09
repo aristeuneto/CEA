@@ -24,11 +24,21 @@
     <!-- Adionando JS para traduzir calendário-->
     <h:outputScript name="pt_BR.js" library="js"></h:outputScript>
     <p:fieldset legend="Cadastro de Alunos">
+
+
+        <p:fieldset legend="Pesquisa">    
+            <p:panelGrid columns="3" >
+                <p:outputLabel for="pesquisa" value="Pesquisa "></p:outputLabel> 
+                <p:inputText id="pesquisa" style='width: 400px' value="#{beanAcesso.modelAcesso.acesNome}" placeholder="Busca de usuários"></p:inputText>
+                <p:commandButton value="Buscar" action="#"></p:commandButton>
+            </p:panelGrid>  
+        </p:fieldset>
+
         <h:form>
             <div header="Growl" class="ui-fluid">
                 <p:growl id="growl" showDetail="true" sticky="true" />      
                 <p:panelGrid columns="2" >
-                    <p:fieldset legend="Dados Pessoais">   
+                    <p:fieldset legend="Dados Pessoais">
                         <p:panelGrid columns="4" > 
                             <p:outputLabel for="Nome" value="Nome: "></p:outputLabel>
                             <p:inputText id="Nome" value="#{beanAluno.modelAluno.pesNome}" placeholder="Nome"></p:inputText>
@@ -86,8 +96,8 @@
                     <p:fieldset legend="Opções">    
                         <p:panelGrid columns="3" >
                             <p:commandButton value="Enviar" action="#{beanAluno.salvarAluno()}" update="@form"></p:commandButton>
-                            <p:commandButton value="Alterar" update="@form" disabled="true"></p:commandButton>
-                            <p:commandButton value="Excluir" ></p:commandButton>
+                            <p:commandButton value="Alterar" action="#{beanAluno.atualizarAluno()}" update="@form"></p:commandButton>
+                            <p:commandButton value="Excluir" disabled="true"></p:commandButton>
                         </p:panelGrid>  
                     </p:fieldset>
                 </p:panelGrid>

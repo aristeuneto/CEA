@@ -57,4 +57,18 @@ public class BeanAcesso {
         this.modelAcesso = modelAcesso;
     }
 
+
+    public void atualizarAcesso() {
+        DaoAcesso daoAcesso = new DaoAcesso();
+
+        if (modelAcesso != null) {
+            daoAcesso.atualizarAcesso(modelAcesso);
+            modelAcesso = new ModelAcesso();
+            mensagemSalvo(true);
+        } else {
+            mensagemSalvo(false);
+        }
+
+    }
+               
 }
