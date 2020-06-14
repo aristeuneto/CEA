@@ -6,10 +6,12 @@
 package bean;
 
 import DAO.DaoTurma;
+import java.util.ArrayList;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 import model.ModelTurma;
 
 /**
@@ -20,6 +22,7 @@ import model.ModelTurma;
 @SessionScoped
 public class BeanTurma {
 
+    private ArrayList<SelectItem> listaTurma = null;
     private ModelTurma modelTurma = new ModelTurma();
 
     public BeanTurma() {
@@ -53,6 +56,24 @@ public class BeanTurma {
 
     public void setModelTurma(ModelTurma modelTurma) {
         this.modelTurma = modelTurma;
+    }
+
+    public ArrayList<SelectItem> getListaTurma() {
+
+        if (listaTurma == null) {
+            listaTurma = new ArrayList<>();
+            DaoTurma daoTurma = new DaoTurma();
+
+            for (ModelTurma T : daoTurma.listaTurma()) {
+                SelectItem s = new SelectItem(T.getTurmaId(), T.getTurmaNome());
+                listaTurma.add(s);
+            }
+        }
+        return listaTurma;
+    }
+
+    public void setListaTurma(ArrayList<SelectItem> listaTurma) {
+        this.listaTurma = listaTurma;
     }
 
 }

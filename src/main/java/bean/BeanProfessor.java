@@ -6,11 +6,14 @@
 package bean;
 
 import DAO.DaoProfessor;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 import javax.inject.Named;
 import model.ModelContato;
 import model.ModelEndereco;
@@ -26,6 +29,7 @@ import util.BLDatas;
 @SessionScoped
 public class BeanProfessor {
 
+    private ArrayList<SelectItem> listaProfessor;
     private ModelProfessor modelProfessor = new ModelProfessor();
     private ModelEndereco modelEndereco = new ModelEndereco();
     private ModelContato modelContato = new ModelContato();
@@ -93,6 +97,24 @@ public class BeanProfessor {
 
     public void setDataNascimento(String dataNascimento) {
         this.dataNascimento = dataNascimento;
+    }
+
+    public ArrayList<SelectItem> getListaProfessor() {
+
+        if (listaProfessor == null) {
+            listaProfessor = new ArrayList<>();
+            DaoProfessor daoProfessor = new DaoProfessor();
+
+            for (ModelProfessor P : daoProfessor.listaProfessor()) {
+                SelectItem s = new SelectItem(P.getPesId(), P.getPesNome());
+                listaProfessor.add(s);
+            }
+        }
+        return listaProfessor;
+    }
+
+    public void setListaProfessor(ArrayList<SelectItem> listaProfessor) {
+        this.listaProfessor = listaProfessor;
     }
 
 }

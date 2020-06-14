@@ -6,10 +6,12 @@
 package bean;
 
 import DAO.DaoAcesso;
+import java.util.ArrayList;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 import javax.inject.Named;
 import model.ModelAcesso;
 
@@ -22,6 +24,7 @@ import model.ModelAcesso;
 @SessionScoped
 public class BeanAcesso {
 
+    private ArrayList<SelectItem> listaAcesso;
     private ModelAcesso modelAcesso = new ModelAcesso();
 
     public BeanAcesso() {
@@ -57,18 +60,23 @@ public class BeanAcesso {
         this.modelAcesso = modelAcesso;
     }
 
+    public ArrayList<SelectItem> getListaAcesso() {
+        
+        if (listaAcesso == null) {
+            listaAcesso = new ArrayList<>();
+            DaoAcesso daoAcesso = new DaoAcesso();
 
-    public void atualizarAcesso() {
-        DaoAcesso daoAcesso = new DaoAcesso();
+            for (ModelAcesso A : daoAcesso.listaAcesso()) {
+                SelectItem s = new SelectItem(A.getAcesId(), A.getAcesNome());
+                listaAcesso.add(s);
+            }
 
-        if (modelAcesso != null) {
-            daoAcesso.atualizarAcesso(modelAcesso);
-            modelAcesso = new ModelAcesso();
-            mensagemSalvo(true);
-        } else {
-            mensagemSalvo(false);
         }
-
+        return listaAcesso;
     }
-               
+
+    public void setListaAcesso(ArrayList<SelectItem> listaAcesso) {
+        this.listaAcesso = listaAcesso;
+    }
+
 }

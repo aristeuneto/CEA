@@ -6,9 +6,6 @@
              xmlns:p="http://primefaces.org/ui"
              xmlns:f="http://xmlns.jcp.org/jsf/core"
              xmlns:h="http://xmlns.jcp.org/jsf/html">
-
-
-
     <!-- Script para tornar a páginas responsiva! Tem que colocar a classe "ui-fluid" dentro de uma div-->
     <style type="text/css">
         /** Demo **/
@@ -20,13 +17,12 @@
             height: auto;
         }
     </style>
-    <!-- ********************************************************************************************* -->
     <!-- Adionando JS para traduzir calendário-->
     <p:fieldset legend="Cadastro de Usuários">
         <p:fieldset legend="Pesquisa">    
             <p:panelGrid columns="3" >
                 <p:outputLabel for="pesquisa" value="Pesquisa "></p:outputLabel> 
-                <p:inputText id="pesquisa" style='width: 400px' value="#{beanAcesso.modelAcesso.}" placeholder="Busca de usuários"></p:inputText>
+                <p:inputText id="pesquisa" style='width: 400px' value="" placeholder="Busca de usuários"></p:inputText>
                 <p:commandButton value="Buscar" action="#"></p:commandButton>
             </p:panelGrid>  
         </p:fieldset>
@@ -47,11 +43,13 @@
                     <p:fieldset legend="Dados de Funcionário">
                         <p:panelGrid columns="2" >
                             <p:outputLabel value="Pessoa: "></p:outputLabel>
-                            <p:selectOneMenu value="#{beanAluno.modelAluno.pesId}">
-                                <f:selectItems itemValue="#{beanAluno.modelAluno.pesId}" itemLabel="#{beanAluno.modelAluno.pesNome}"></f:selectItems>
+                            <p:selectOneMenu value="#{beanAcesso.modelAcesso.pesId}" effect="fold" editable="false" filter="true" filterMatchMode="startsWith">
+                                
+                                <f:selectItems value="#{beanProfessor.listaProfessor}" var="listaProfessor" itemValue="#{listaProfessor}" itemLabel="#{beanProfessor.modelProfessor.pesId}"/>
+                               
                             </p:selectOneMenu>
                             <p:outputLabel value="Status: "></p:outputLabel>
-                            <p:selectOneRadio >
+                            <p:selectOneRadio value="#{beanAcesso.modelAcesso.acesStatus}">
                                 <f:selectItem itemValue="Ativo" itemLabel="Ativo"></f:selectItem>    
                                 <f:selectItem itemValue="Inativo" itemLabel="Inativo"></f:selectItem>
                             </p:selectOneRadio>

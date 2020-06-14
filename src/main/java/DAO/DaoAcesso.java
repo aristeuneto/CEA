@@ -40,7 +40,7 @@ public class DaoAcesso {
 
     }
 
-    public void excluirAluno(ModelAcesso modelAcesso) {
+    public void excluirAcesso(ModelAcesso modelAcesso) {
 
         try {
 

@@ -41,6 +41,12 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "ModelMatricula.findByMatStatus", query = "SELECT m FROM ModelMatricula m WHERE m.matStatus = :matStatus")})
 public class ModelMatricula implements Serializable {
 
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 20)
+    @Column(name = "mat_numero")
+    private String matNumero;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -169,5 +175,6 @@ public class ModelMatricula implements Serializable {
     public String toString() {
         return "model.ModelMatricula[ matId=" + matId + " ]";
     }
+
     
 }

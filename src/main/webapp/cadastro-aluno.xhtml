@@ -24,12 +24,10 @@
     <!-- Adionando JS para traduzir calendário-->
     <h:outputScript name="pt_BR.js" library="js"></h:outputScript>
     <p:fieldset legend="Cadastro de Alunos">
-
-
         <p:fieldset legend="Pesquisa">    
             <p:panelGrid columns="3" >
                 <p:outputLabel for="pesquisa" value="Pesquisa "></p:outputLabel> 
-                <p:inputText id="pesquisa" style='width: 400px' value="#{beanAcesso.modelAcesso.acesNome}" placeholder="Busca de usuários"></p:inputText>
+                <p:inputText id="pesquisa" style='width: 400px' value="" placeholder="Busca de usuários"></p:inputText>
                 <p:commandButton value="Buscar" action="#"></p:commandButton>
             </p:panelGrid>  
         </p:fieldset>

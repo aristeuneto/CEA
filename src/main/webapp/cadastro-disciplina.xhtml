@@ -21,6 +21,13 @@
     <!-- ********************************************************************************************* -->
 
     <p:fieldset legend="Cadastro de Boletins">
+        <p:fieldset legend="Pesquisa">    
+            <p:panelGrid columns="3" >
+                <p:outputLabel for="pesquisa" value="Pesquisa "></p:outputLabel> 
+                <p:inputText id="pesquisa" style='width: 400px' value="" placeholder="Busca de usuários"></p:inputText>
+                <p:commandButton value="Buscar" action="#"></p:commandButton>
+            </p:panelGrid>  
+        </p:fieldset>
         <div header="Growl" class="ui-fluid">
             <h:form>
                 <p:growl id="growl" showDetail="true" sticky="true" /> 
@@ -41,8 +48,10 @@
                         </p:panelGrid> 
                     </p:fieldset>
                     <p:fieldset legend="Opções">    
-                        <p:panelGrid columns="1" >
+                        <p:panelGrid columns="3" >
                             <p:commandButton value="Enviar" action="#{beanDisciplina.salvarDisciplina()}" update="@form"></p:commandButton>
+                            <p:commandButton value="Alterar" action="#" disabled="true"></p:commandButton>
+                            <p:commandButton value="Excluir" disabled="true"></p:commandButton>
                         </p:panelGrid> 
                     </p:fieldset>
                 </p:panelGrid> 

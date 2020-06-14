@@ -9,40 +9,52 @@
 
     <!-- Adionando JS para traduzir calendário-->
     <p:fieldset legend="Cadastro de Boletins">
-        <h:form>
-            <p:panelGrid columns="2" >
-                <p:fieldset legend="Dados Gerais"> 
-                    <p:panelGrid columns="2" >          
-                        <p:outputLabel for="Nome" value="Nome: "></p:outputLabel>
-                        <p:selectOneMenu id="Nome" value="#">
-                            <f:selectItem itemLabel="#" itemValue="#"></f:selectItem>
-                        </p:selectOneMenu>
-                        <p:outputLabel for="Status" value="Situação: "></p:outputLabel>
-                        <p:selectOneRadio>
-                            <f:selectItem id="Status" itemLabel="Ativo" itemValue="Ativo"></f:selectItem>
-                            <f:selectItem id="status" itemLabel="Inativo" itemValue="Inativo"></f:selectItem>                            
-                        </p:selectOneRadio>
-                    </p:panelGrid> 
-                </p:fieldset>
-                <p:fieldset legend="Nota das Unidades"> 
-                    <p:panelGrid columns="4" >          
-                        <p:outputLabel for="Nota1" value="1ª unidade: "></p:outputLabel>
-                        <p:inputMask id="Nota1" mask="99,9" value="#" placeholder="00,0"></p:inputMask>
-                        <p:outputLabel for="Nota2" value="2ª unidade: "></p:outputLabel>
-                        <p:inputMask id="Nota2" mask="99,9" value="#" placeholder="00,0"></p:inputMask>
-                        <p:outputLabel for="Nota3" value="3ª unidade: "></p:outputLabel>
-                        <p:inputMask id="Nota3" mask="99,9" value="#" placeholder="00,0"></p:inputMask>
-                        <p:outputLabel for="Nota4" value="4ª unidade: "></p:outputLabel>
-                        <p:inputMask id="Nota4" mask="99,9" value="#" placeholder="00,0"></p:inputMask>
-                    </p:panelGrid> 
-                </p:fieldset>
-                <p:fieldset legend="Opções">    
-                    <p:panelGrid columns="1" >
-                        <p:commandButton value="Enviar" ajax="true" action="#" ></p:commandButton>
-                    </p:panelGrid> 
-                </p:fieldset>
-            </p:panelGrid> 
-        </h:form>
+        <p:fieldset legend="Pesquisa">    
+            <p:panelGrid columns="3" >
+                <p:outputLabel for="pesquisa" value="Pesquisa "></p:outputLabel> 
+                <p:inputText id="pesquisa" style='width: 400px' value="" placeholder="Busca de usuários"></p:inputText>
+                <p:commandButton value="Buscar" action="#"></p:commandButton>
+            </p:panelGrid>  
+        </p:fieldset>
+        <div header="Growl" class="ui-fluid">
+            <h:form>
+                <p:growl id="growl" showDetail="true" sticky="true" /> 
+                <p:panelGrid columns="2" >
+                    <p:fieldset legend="Dados Gerais"> 
+                        <p:panelGrid columns="2" >          
+                            <p:outputLabel for="Nome" value="Nome: "></p:outputLabel>
+                            <p:selectOneMenu id="Nome" value="#{beanBoletim.modelBoletim.pesId}">
+                                <f:selectItems value="#{beanAluno.listaAluno}" itemValue="#{beanAluno.modelAluno.pesId}"></f:selectItems>
+                            </p:selectOneMenu>
+                            <p:outputLabel for="Status" value="Situação: "></p:outputLabel>
+                            <p:selectOneRadio value="#{beanBoletim.modelBoletim.boleSituacao}">
+                                <f:selectItem id="Status" itemLabel="Ativo" itemValue="Ativo"></f:selectItem>
+                                <f:selectItem id="status" itemLabel="Inativo" itemValue="Inativo"></f:selectItem>                            
+                            </p:selectOneRadio>
+                        </p:panelGrid> 
+                    </p:fieldset>
+                    <p:fieldset legend="Nota das Unidades"> 
+                        <p:panelGrid columns="2" >          
+                            <p:outputLabel for="Nota1" value="1ª unidade: "></p:outputLabel>
+                            <p:inputMask id="Nota1" mask="99,9" value="#{beanBoletim.modelBoletim.boleNota01}" placeholder="00,0"></p:inputMask>
+                            <p:outputLabel for="Nota2" value="2ª unidade: "></p:outputLabel>
+                            <p:inputMask id="Nota2" mask="99,9" value="#{beanBoletim.modelBoletim.boleNota02}" placeholder="00,0"></p:inputMask>
+                            <p:outputLabel for="Nota3" value="3ª unidade: "></p:outputLabel>
+                            <p:inputMask id="Nota3" mask="99,9" value="#{beanBoletim.modelBoletim.boleNota03}" placeholder="00,0"></p:inputMask>
+                            <p:outputLabel for="Nota4" value="4ª unidade: "></p:outputLabel>
+                            <p:inputMask id="Nota4" mask="99,9" value="#{beanBoletim.modelBoletim.boleNota04}" placeholder="00,0"></p:inputMask>
+                        </p:panelGrid> 
+                    </p:fieldset>
+                    <p:fieldset legend="Opções">    
+                        <p:panelGrid columns="3" >
+                            <p:commandButton value="Enviar" ajax="true" action="#{beanBoletim.salvarBoletim()}" update="@form"></p:commandButton>
+                            <p:commandButton value="Alterar" action="#" disabled="true"></p:commandButton>
+                            <p:commandButton value="Excluir" disabled="true"></p:commandButton>
+                        </p:panelGrid> 
+                    </p:fieldset>
+                </p:panelGrid> 
+            </h:form>
+        </div>
     </p:fieldset>   
 </ui:decorate>
 

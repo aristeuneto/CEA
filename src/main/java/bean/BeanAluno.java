@@ -7,11 +7,13 @@ package bean;
 
 import DAO.DaoAluno;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 import javax.inject.Named;
 import model.ModelAluno;
 import model.ModelContato;
@@ -25,8 +27,9 @@ import util.BLDatas;
 @Named
 @ManagedBean
 @SessionScoped
-public class BeanAluno implements Serializable {
+public class BeanAluno {
 
+    private ArrayList<SelectItem> listaAluno = null;
     private ModelAluno modelAluno = new ModelAluno();
     private ModelEndereco modelEndereco = new ModelEndereco();
     private ModelContato modelContato = new ModelContato();
@@ -55,7 +58,8 @@ public class BeanAluno implements Serializable {
         }
 
     }
-        public void mensagemSalvo(Boolean status) {
+
+    public void mensagemSalvo(Boolean status) {
         FacesContext context = FacesContext.getCurrentInstance();
         if (status) {
             context.addMessage(null, new FacesMessage("Sucesso!", "Cadastro Salvo!"));
@@ -96,47 +100,21 @@ public class BeanAluno implements Serializable {
         this.dataNascimento = dataNascimento;
     }
 
-    
-    /*luiz*/
-        public void atualizarAluno() throws Exception {
-        BLDatas bLDatas = new BLDatas();
-        Date dtNascimento = bLDatas.converterDataStringParaDate(dataNascimento);
+    public ArrayList<SelectItem> getListaAluno() {
+        if (listaAluno == null) {
+            listaAluno = new ArrayList<>();
+            DaoAluno daoAluno = new DaoAluno();
 
-        DaoAluno daoAluno = new DaoAluno();
-        modelAluno.setPesDtnasc(dtNascimento);
-        modelAluno.setEndId(modelEndereco);
-        modelAluno.setContId(modelContato);
-        if (modelAluno != null) {
-            daoAluno.atualizarAluno(modelAluno);
-            modelAluno = new ModelAluno();
-            modelEndereco = new ModelEndereco();
-            modelContato = new ModelContato();
-            dataNascimento = new String();
-            mensagemSalvo(true);
-        } else {
-            mensagemSalvo(false);
+            for (ModelAluno Al : daoAluno.listaAluno()) {
+                SelectItem a = new SelectItem(Al.getPesId(), Al.getPesNome());
+                listaAluno.add(a);
+            }
         }
-
+        return listaAluno;
     }
-    
-}
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-   
 
+    public void setListaAluno(ArrayList<SelectItem> listaAluno) {
+        this.listaAluno = listaAluno;
+    }
+
+}
