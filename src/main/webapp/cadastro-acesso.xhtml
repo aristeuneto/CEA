@@ -12,20 +12,12 @@
         .ui-outputlabel {
             font-weight: bold;
         }
-
         .ui-orderlist .ui-orderlist-list {
             height: auto;
         }
     </style>
     <!-- Adionando JS para traduzir calendário-->
     <p:fieldset legend="Cadastro de Usuários">
-        <p:fieldset legend="Pesquisa">    
-            <p:panelGrid columns="3" >
-                <p:outputLabel for="pesquisa" value="Pesquisa "></p:outputLabel> 
-                <p:inputText id="pesquisa" style='width: 400px' value="" placeholder="Busca de usuários"></p:inputText>
-                <p:commandButton value="Buscar" action="#"></p:commandButton>
-            </p:panelGrid>  
-        </p:fieldset>
         <h:form>
             <div header="Growl" class="ui-fluid">
                 <p:growl id="growl" showDetail="true" sticky="true" />
@@ -43,10 +35,10 @@
                     <p:fieldset legend="Dados de Funcionário">
                         <p:panelGrid columns="2" >
                             <p:outputLabel value="Pessoa: "></p:outputLabel>
-                            <p:selectOneMenu value="#{beanAcesso.modelAcesso.pesId}" effect="fold" editable="false" filter="true" filterMatchMode="startsWith">
-                                
-                                <f:selectItems value="#{beanProfessor.listaProfessor}" var="listaProfessor" itemValue="#{listaProfessor}" itemLabel="#{beanProfessor.modelProfessor.pesId}"/>
-                               
+                            <p:selectOneMenu value="#{beanAcesso.modelAcesso.pesId}" effect="fold" editable="false" filter="true" filterMatchMode="startsWith" >
+
+                                <f:selectItems value="#{beanProfessor.modelProfessor.pesId}" var="listaProfessor" itemValue="#{listaProfessor.pesId}" itemLabel="#{listaProfessor.pesNome}"/>
+
                             </p:selectOneMenu>
                             <p:outputLabel value="Status: "></p:outputLabel>
                             <p:selectOneRadio value="#{beanAcesso.modelAcesso.acesStatus}">
@@ -63,9 +55,42 @@
                         </p:panelGrid>  
                     </p:fieldset>
                 </p:panelGrid>
-            </div>
+            </div>  
         </h:form>
     </p:fieldset>
+    <div header="Growl" class="ui-fluid" align="center">
+        <p:growl id="growl" showDetail="true" sticky="true" />  
+        <p:fieldset legend="Lista de Usuários" >
+            <h:form id="list">
+                <p:dataTable value="#{beanAcesso.listaAcesso}" var="lista" scrollRows="20" scrollable="true" liveScroll="true" scrollHeight="180">
 
+                    <p:column  headerText="ID" sortBy="#{lista.acesId}" filterBy="#{lista.acesId}" class="cell">
+                        <h:outputText value="#{lista.acesId}" />
+                    </p:column>
+
+                    <p:column headerText="NOME" sortBy="#{lista.acesNome}" filterBy="#{lista.acesNome}" class="cell" >
+                        <h:outputText value="#{lista.acesNome}"/>
+                    </p:column>
+
+                    <p:column headerText="LOGIN" sortBy="#{lista.acesLogin}" filterBy="#{lista.acesLogin}" class="cell">
+                        <h:outputText value="#{lista.acesLogin}" />
+                    </p:column>
+
+                    <p:column headerText="FUNCIONÁRIO" sortBy="#{lista.pesId}" filterBy="#{lista.pesId}" class="cell">
+                        <h:outputText value="#{lista.pesId.pesNome}"/>
+                    </p:column>
+
+                    <p:column headerText="STATUS" sortBy="#{lista.acesStatus}" filterBy="#{lista.acesStatus}" class="cell">
+                        <h:outputText value="#{lista.acesStatus}" />
+                    </p:column>
+
+                    <p:column headerText="OPÇÕES" class="cell">
+                        <h:commandButton value="EDITAR" action="#{beanAcesso.setModelAcesso(lista)}" class="button" ></h:commandButton>
+                        <h:commandButton value="EXCLUIR" action="#" class="button"></h:commandButton>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </p:fieldset>
+    </div>
 </ui:decorate>
 

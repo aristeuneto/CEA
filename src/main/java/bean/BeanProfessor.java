@@ -6,7 +6,6 @@
 package bean;
 
 import DAO.DaoProfessor;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.faces.application.FacesMessage;
@@ -29,7 +28,7 @@ import util.BLDatas;
 @SessionScoped
 public class BeanProfessor {
 
-    private ArrayList<SelectItem> listaProfessor;
+    private ArrayList<ModelProfessor> listaProfessor;
     private ModelProfessor modelProfessor = new ModelProfessor();
     private ModelEndereco modelEndereco = new ModelEndereco();
     private ModelContato modelContato = new ModelContato();
@@ -99,22 +98,23 @@ public class BeanProfessor {
         this.dataNascimento = dataNascimento;
     }
 
-    public ArrayList<SelectItem> getListaProfessor() {
-
-        if (listaProfessor == null) {
+    public ArrayList<ModelProfessor> getListaProfessor() {
+                if (listaProfessor == null) {
             listaProfessor = new ArrayList<>();
             DaoProfessor daoProfessor = new DaoProfessor();
 
             for (ModelProfessor P : daoProfessor.listaProfessor()) {
-                SelectItem s = new SelectItem(P.getPesId(), P.getPesNome());
-                listaProfessor.add(s);
+                
+                listaProfessor.add(P);
             }
         }
         return listaProfessor;
     }
 
-    public void setListaProfessor(ArrayList<SelectItem> listaProfessor) {
+    public void setListaProfessor(ArrayList<ModelProfessor> listaProfessor) {
         this.listaProfessor = listaProfessor;
     }
+
+  
 
 }

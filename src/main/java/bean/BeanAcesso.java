@@ -7,11 +7,11 @@ package bean;
 
 import DAO.DaoAcesso;
 import java.util.ArrayList;
+import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.model.SelectItem;
 import javax.inject.Named;
 import model.ModelAcesso;
 
@@ -24,18 +24,19 @@ import model.ModelAcesso;
 @SessionScoped
 public class BeanAcesso {
 
-    private ArrayList<SelectItem> listaAcesso;
+    private List<ModelAcesso> listaAcesso;
     private ModelAcesso modelAcesso = new ModelAcesso();
 
     public BeanAcesso() {
     }
 
     public void salvarAcesso() {
+
         DaoAcesso daoAcesso = new DaoAcesso();
 
-        if (modelAcesso != null) {
-            daoAcesso.salvarAcesso(modelAcesso);
-            modelAcesso = new ModelAcesso();
+        if (getModelAcesso() != null) {
+            daoAcesso.salvarAcesso(getModelAcesso());
+            setModelAcesso(new ModelAcesso());
             mensagemSalvo(true);
         } else {
             mensagemSalvo(false);
@@ -60,23 +61,25 @@ public class BeanAcesso {
         this.modelAcesso = modelAcesso;
     }
 
-    public ArrayList<SelectItem> getListaAcesso() {
-        
+    
+    public List<ModelAcesso> getListaAcesso() {
         if (listaAcesso == null) {
             listaAcesso = new ArrayList<>();
             DaoAcesso daoAcesso = new DaoAcesso();
 
             for (ModelAcesso A : daoAcesso.listaAcesso()) {
-                SelectItem s = new SelectItem(A.getAcesId(), A.getAcesNome());
-                listaAcesso.add(s);
+
+                listaAcesso.add(A);
             }
 
         }
+
         return listaAcesso;
     }
 
-    public void setListaAcesso(ArrayList<SelectItem> listaAcesso) {
+    public void setListaAcesso(List<ModelAcesso> listaAcesso) {
         this.listaAcesso = listaAcesso;
     }
+
 
 }
