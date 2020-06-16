@@ -6,14 +6,13 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.model.SelectItem;
 import model.ModelDisciplina;
 
 @SessionScoped
 @ManagedBean
 public class BeanDisciplina {
 
-    private ArrayList<SelectItem> listaDisciplina = null;
+    private ArrayList<ModelDisciplina> listaDisciplina;
     private ModelDisciplina modelDisciplina = new ModelDisciplina();
 
     public BeanDisciplina() {
@@ -48,23 +47,22 @@ public class BeanDisciplina {
         this.modelDisciplina = modelDisciplina;
     }
 
-    public ArrayList<SelectItem> getListaDisciplina() {
-        
-        if (listaDisciplina == null){
-           listaDisciplina = new ArrayList<>(); 
-           DaoDisciplina daoDisciplina = new DaoDisciplina();
+    public ArrayList<ModelDisciplina> getListaDisciplina() {
+        DaoDisciplina daoDisciplina = new DaoDisciplina();
+        if (listaDisciplina == null) {
+            listaDisciplina = new ArrayList<>();
 
-              for (ModelDisciplina Al : daoDisciplina.listaDisciplina()){
-                  SelectItem s = new SelectItem(Al.getDiscId(), Al.getDiscNome());
-                  listaDisciplina.add(s);
-              }
-           
+            for (ModelDisciplina Al : daoDisciplina.listaDisciplina()) {
+
+                listaDisciplina.add(Al);
+            }
+
         }
-        
+
         return listaDisciplina;
     }
 
-    public void setListaDisciplina(ArrayList<SelectItem> listaDisciplina) {
+    public void setListaDisciplina(ArrayList<ModelDisciplina> listaDisciplina) {
         this.listaDisciplina = listaDisciplina;
     }
 

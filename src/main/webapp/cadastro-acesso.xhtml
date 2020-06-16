@@ -35,9 +35,9 @@
                     <p:fieldset legend="Dados de Funcionário">
                         <p:panelGrid columns="2" >
                             <p:outputLabel value="Pessoa: "></p:outputLabel>
-                            <p:selectOneMenu value="#{beanAcesso.modelAcesso.pesId}" effect="fold" editable="false" filter="true" filterMatchMode="startsWith" >
+                            <p:selectOneMenu value="" effect="fold" editable="false" filter="true" filterMatchMode="startsWith" >
 
-                                <f:selectItems value="#{beanProfessor.modelProfessor.pesId}" var="listaProfessor" itemValue="#{listaProfessor.pesId}" itemLabel="#{listaProfessor.pesNome}"/>
+                                <f:selectItems value="#{beanProfessor.listaProfessor}" var="listaP" itemValue="#{listaP.pesId}" itemLabel="#{listaP.pesNome}"/>
 
                             </p:selectOneMenu>
                             <p:outputLabel value="Status: "></p:outputLabel>
@@ -50,7 +50,7 @@
                     <p:fieldset legend="Opções">    
                         <p:panelGrid columns="3" >
                             <p:commandButton value="Enviar" ajax="true" action="#{beanAcesso.salvarAcesso()}" update="@form" ></p:commandButton>
-                            <p:commandButton value="Alterar" action="#{beanAcesso.atualizarAcesso()}" update="@form" ></p:commandButton>
+                            <p:commandButton value="Alterar" ajax="true" action="#{beanAcesso.atualizarAcesso}" update="@form" ></p:commandButton>
                             <p:commandButton value="Excluir" disabled="true"></p:commandButton>
                         </p:panelGrid>  
                     </p:fieldset>
@@ -58,13 +58,15 @@
             </div>  
         </h:form>
     </p:fieldset>
-    <div header="Growl" class="ui-fluid" align="center">
+    <div header="Growl" class="ui-fluid" >
         <p:growl id="growl" showDetail="true" sticky="true" />  
         <p:fieldset legend="Lista de Usuários" >
             <h:form id="list">
-                <p:dataTable value="#{beanAcesso.listaAcesso}" var="lista" scrollRows="20" scrollable="true" liveScroll="true" scrollHeight="180">
+                <h:commandButton value="Refresh" action="#{beanAcesso.setListaAcesso(listaAcesso)}" class="button" ></h:commandButton>
+                <p:dataTable value="#{beanAcesso.listaAcesso}" var="lista" emptyMessage="Não existem valores para exibição" scrollRows="10" scrollable="true" liveScroll="true" 
+               scrollHeight="170" >
 
-                    <p:column  headerText="ID" sortBy="#{lista.acesId}" filterBy="#{lista.acesId}" class="cell">
+                    <p:column style="width: 105px !important;" headerText="ID" sortBy="#{lista.acesId}" filterBy="#{lista.acesId}" class="cell">
                         <h:outputText value="#{lista.acesId}" />
                     </p:column>
 

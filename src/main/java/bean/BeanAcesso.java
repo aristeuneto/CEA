@@ -53,6 +53,29 @@ public class BeanAcesso {
         }
     }
 
+    public void AtualizarAcesso() {
+
+        DaoAcesso daoAcesso = new DaoAcesso();
+
+        if (getModelAcesso() != null) {
+            daoAcesso.atualizarAcesso(getModelAcesso());
+            setModelAcesso(new ModelAcesso());
+            mensagemSalvo(true);
+        } else {
+            mensagemSalvo(false);
+        }
+
+    }
+
+    public void mensagemAtualizar(Boolean status) {
+        FacesContext context = FacesContext.getCurrentInstance();
+        if (status) {
+            context.addMessage(null, new FacesMessage("Sucesso!", "Cadastro Atualizado!"));
+        } else {
+            context.addMessage(null, new FacesMessage("Erro!", "Erro ao Atualizar!"));
+        }
+    }
+
     public ModelAcesso getModelAcesso() {
         return modelAcesso;
     }
@@ -61,17 +84,15 @@ public class BeanAcesso {
         this.modelAcesso = modelAcesso;
     }
 
-    
     public List<ModelAcesso> getListaAcesso() {
+        DaoAcesso daoAcesso = new DaoAcesso();
+        listaAcesso = daoAcesso.listaAcesso();
+
         if (listaAcesso == null) {
             listaAcesso = new ArrayList<>();
-            DaoAcesso daoAcesso = new DaoAcesso();
-
             for (ModelAcesso A : daoAcesso.listaAcesso()) {
-
                 listaAcesso.add(A);
             }
-
         }
 
         return listaAcesso;
@@ -80,6 +101,5 @@ public class BeanAcesso {
     public void setListaAcesso(List<ModelAcesso> listaAcesso) {
         this.listaAcesso = listaAcesso;
     }
-
 
 }

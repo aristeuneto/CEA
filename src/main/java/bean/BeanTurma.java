@@ -11,7 +11,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.model.SelectItem;
 import model.ModelTurma;
 
 /**
@@ -22,7 +21,7 @@ import model.ModelTurma;
 @SessionScoped
 public class BeanTurma {
 
-    private ArrayList<SelectItem> listaTurma = null;
+    private ArrayList<ModelTurma> listaTurma;
     private ModelTurma modelTurma = new ModelTurma();
 
     public BeanTurma() {
@@ -49,6 +48,29 @@ public class BeanTurma {
             context.addMessage(null, new FacesMessage("Erro!", "Erro ao Salvar!"));
         }
     }
+    
+        public void atualizarTurma() {
+        DaoTurma daoTurma = new DaoTurma();
+
+        if (modelTurma != null) {
+            
+            daoTurma.atualizarTurma(modelTurma);
+            modelTurma = new ModelTurma();
+            mensagemAtualizado(true);
+        } else {
+            mensagemAtualizado( false);
+        }
+
+    }
+
+    public void mensagemAtualizado (Boolean status) {
+        FacesContext context = FacesContext.getCurrentInstance();
+        if (status) {
+            context.addMessage(null, new FacesMessage("Sucesso!", "Cadastro Atualizado!"));
+        } else {
+            context.addMessage(null, new FacesMessage("Erro!", "Erro ao Atualizar!"));
+        }
+    }
 
     public ModelTurma getModelTurma() {
         return modelTurma;
@@ -58,21 +80,21 @@ public class BeanTurma {
         this.modelTurma = modelTurma;
     }
 
-    public ArrayList<SelectItem> getListaTurma() {
+    public ArrayList<ModelTurma> getListaTurma() {
+        DaoTurma daoTurma = new DaoTurma();
+        listaTurma = (ArrayList<ModelTurma>) daoTurma.listaTurma();
 
         if (listaTurma == null) {
             listaTurma = new ArrayList<>();
-            DaoTurma daoTurma = new DaoTurma();
-
             for (ModelTurma T : daoTurma.listaTurma()) {
-                SelectItem s = new SelectItem(T.getTurmaId(), T.getTurmaNome());
-                listaTurma.add(s);
+                listaTurma.add(T);
             }
         }
+
         return listaTurma;
     }
 
-    public void setListaTurma(ArrayList<SelectItem> listaTurma) {
+    public void setListaTurma(ArrayList<ModelTurma> listaTurma) {
         this.listaTurma = listaTurma;
     }
 

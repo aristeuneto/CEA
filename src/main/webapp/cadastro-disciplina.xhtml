@@ -20,20 +20,13 @@
     </style>
     <!-- ********************************************************************************************* -->
 
-    <p:fieldset legend="Cadastro de Boletins">
-        <p:fieldset legend="Pesquisa">    
-            <p:panelGrid columns="3" >
-                <p:outputLabel for="pesquisa" value="Pesquisa "></p:outputLabel> 
-                <p:inputText id="pesquisa" style='width: 400px' value="" placeholder="Busca de usuários"></p:inputText>
-                <p:commandButton value="Buscar" action="#"></p:commandButton>
-            </p:panelGrid>  
-        </p:fieldset>
+    <p:fieldset legend="Cadastro de Disciplinas">
         <div header="Growl" class="ui-fluid">
             <h:form>
                 <p:growl id="growl" showDetail="true" sticky="true" /> 
                 <p:panelGrid columns="2" >
                     <p:fieldset legend="Dados Gerais"> 
-                        <p:panelGrid columns="2" >          
+                        <p:panelGrid columns="4" >          
                             <p:outputLabel for="Nome" value="Nome: "></p:outputLabel>
                             <p:inputText id="Nome" value="#{beanDisciplina.modelDisciplina.discNome}" placeholder="Nome"></p:inputText>
                             <p:outputLabel  for="Descrição" value="Descrição "></p:outputLabel>
@@ -56,7 +49,44 @@
                     </p:fieldset>
                 </p:panelGrid> 
             </h:form>
-        </div>
-    </p:fieldset>   
+        </div>       
+    </p:fieldset>  
+        <div header="Growl" class="ui-fluid" >
+        <p:growl id="growl" showDetail="true" sticky="true" />  
+        <p:fieldset legend="Lista de Usuários" >
+            
+            <h:form id="list">
+                <h:commandButton value="Refresh" action="#{beanDisciplina.setListaDisciplina(listaDisciplina)}" class="button" ></h:commandButton>
+                <p:dataTable value="#{beanDisciplina.listaDisciplina}" var="lista" emptyMessage="Não existem valores para exibição" scrollRows="10" scrollable="true" liveScroll="true" 
+               scrollHeight="180" >
+
+                    <p:column  style="width: 105px !important;" headerText="ID" sortBy="#{lista.discId}" filterBy="#{lista.discId}" class="cell">
+                        <h:outputText value="#{lista.discId}" />
+                    </p:column>
+
+                    <p:column headerText="NOME" sortBy="#{lista.discNome}" filterBy="#{lista.discNome}" class="cell" >
+                        <h:outputText value="#{lista.discNome}"/>
+                    </p:column>
+
+                    <p:column headerText="DESCRIÇÃO" sortBy="#{lista.discDesc}" filterBy="#{lista.discDesc}" class="cell">
+                        <h:outputText value="#{lista.discDesc}" />
+                    </p:column>
+
+                    <p:column headerText="CARGA HORÁRIA" sortBy="#{lista.discCarga}" filterBy="#{lista.discCarga}" class="cell">
+                        <h:outputText value="#{lista.discCarga}"/>
+                    </p:column>
+
+                    <p:column headerText="STATUS" sortBy="#{lista.discStatus}" filterBy="#{lista.discStatus}" class="cell">
+                        <h:outputText value="#{lista.discStatus}" />
+                    </p:column>
+
+                    <p:column headerText="OPÇÕES" class="cell">
+                        <h:commandButton value="EDITAR" action="#{beanDisciplina.setModelDisciplina(lista)}" class="button" ></h:commandButton>
+                        <h:commandButton value="EXCLUIR" action="#" class="button"></h:commandButton>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </p:fieldset>
+    </div>
 </ui:decorate>
 
