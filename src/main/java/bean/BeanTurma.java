@@ -19,20 +19,21 @@ import model.ModelTurma;
  */
 @ManagedBean
 @SessionScoped
-public class BeanTurma {
+public class BeanTurma extends BeanTela{
 
     private ArrayList<ModelTurma> listaTurma;
     private ModelTurma modelTurma = new ModelTurma();
+    DaoTurma daoTurma = new DaoTurma();
 
     public BeanTurma() {
     }
 
     public void salvarTurma() {
-        DaoTurma daoTurma = new DaoTurma();
 
         if (modelTurma != null) {
-            daoTurma.salvarTurma(modelTurma);
+            daoTurma.salvarTurma(modelTurma); 
             modelTurma = new ModelTurma();
+            mudarParaView();
             mensagemSalvo(true);
         } else {
             mensagemSalvo(false);
@@ -48,22 +49,8 @@ public class BeanTurma {
             context.addMessage(null, new FacesMessage("Erro!", "Erro ao Salvar!"));
         }
     }
-    
-        public void atualizarTurma() {
-        DaoTurma daoTurma = new DaoTurma();
 
-        if (modelTurma != null) {
-            
-            daoTurma.atualizarTurma(modelTurma);
-            modelTurma = new ModelTurma();
-            mensagemAtualizado(true);
-        } else {
-            mensagemAtualizado( false);
-        }
-
-    }
-
-    public void mensagemAtualizado (Boolean status) {
+    public void mensagemAtualizado(Boolean status) {
         FacesContext context = FacesContext.getCurrentInstance();
         if (status) {
             context.addMessage(null, new FacesMessage("Sucesso!", "Cadastro Atualizado!"));
@@ -78,15 +65,42 @@ public class BeanTurma {
 
     public void setModelTurma(ModelTurma modelTurma) {
         this.modelTurma = modelTurma;
+
+    }
+
+    public void AtualizarTurma() {
+
+        if (modelTurma != null) {
+            daoTurma.atualizarTurma(modelTurma); 
+            modelTurma = new ModelTurma();
+            mudarParaView();
+            mensagemAtualizado(true);
+             
+        } else {
+            mensagemAtualizado(false);
+        }
+    }
+
+    public void mensagemAtualizar(Boolean status) {
+        FacesContext context = FacesContext.getCurrentInstance();
+        if (status) {
+            context.addMessage(null, new FacesMessage("Sucesso!", "Cadastro Atualizado!"));
+        } else {
+            context.addMessage(null, new FacesMessage("Erro!", "Erro ao Atualizar!"));
+        }
+    }
+
+    public void deletarTurma() {
+
     }
 
     public ArrayList<ModelTurma> getListaTurma() {
         DaoTurma daoTurma = new DaoTurma();
         listaTurma = (ArrayList<ModelTurma>) daoTurma.listaTurma();
-
         if (listaTurma == null) {
             listaTurma = new ArrayList<>();
             for (ModelTurma T : daoTurma.listaTurma()) {
+
                 listaTurma.add(T);
             }
         }

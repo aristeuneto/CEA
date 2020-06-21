@@ -14,13 +14,13 @@ public class BeanDisciplina {
 
     private ArrayList<ModelDisciplina> listaDisciplina;
     private ModelDisciplina modelDisciplina = new ModelDisciplina();
+    DaoDisciplina daoDisciplina = new DaoDisciplina();
 
     public BeanDisciplina() {
     }
 
     public void salvarDisciplina() {
 
-        DaoDisciplina daoDisciplina = new DaoDisciplina();
         if (modelDisciplina != null) {
             daoDisciplina.salvarDisciplina(modelDisciplina);
             modelDisciplina = new ModelDisciplina();
@@ -38,6 +38,8 @@ public class BeanDisciplina {
             context.addMessage(null, new FacesMessage("Erro!", "Erro ao Salvar!"));
         }
     }
+    
+    
 
     public ModelDisciplina getModelDisciplina() {
         return modelDisciplina;
