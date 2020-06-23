@@ -29,7 +29,7 @@ public class BeanTela {
     public void mudarParaEdit(){
         Tela = "Edit";
     }
-    public void mudarParaView(){
+    public void mudarParaView(){          
         Tela = "View";
     }
 }

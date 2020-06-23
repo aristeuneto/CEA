@@ -69,25 +69,7 @@ public class BeanTurma extends BeanTela{
     }
 
     public void AtualizarTurma() {
-
-        if (modelTurma != null) {
-            daoTurma.atualizarTurma(modelTurma); 
-            modelTurma = new ModelTurma();
-            mudarParaView();
-            mensagemAtualizado(true);
-             
-        } else {
-            mensagemAtualizado(false);
-        }
-    }
-
-    public void mensagemAtualizar(Boolean status) {
-        FacesContext context = FacesContext.getCurrentInstance();
-        if (status) {
-            context.addMessage(null, new FacesMessage("Sucesso!", "Cadastro Atualizado!"));
-        } else {
-            context.addMessage(null, new FacesMessage("Erro!", "Erro ao Atualizar!"));
-        }
+        
     }
 
     public void deletarTurma() {

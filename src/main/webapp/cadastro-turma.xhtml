@@ -18,14 +18,16 @@
         }
     </style>
 
-    <!-- ********************************************************************************************* -->
-    <p:fieldset legend="Cadastro de Turmas" rendered="#{beanTurma.view == false}">
-        <h:form id="frm1" >
+    <h:form id="frm0">
+        <p:fieldset legend="Cadastro de Turmas" rendered="#{beanTurma.save}">
+
             <p:growl id="growl" showDetail="true" sticky="true" />    
             <div header="Growl" class="ui-fluid">
+                <p:commandButton value="Buscar" ajax="false" action="#{beanTurma.mudarParaView()}" update=":frm1"></p:commandButton>
                 <p:panelGrid columns="2" >
                     <p:fieldset legend="Dados Gerais"> 
-                        <p:panelGrid columns="4" >          
+                        <p:panelGrid columns="4" >
+
                             <p:outputLabel for="Nome" value="Nome: "></p:outputLabel>
                             <p:inputText id="Nome" value="#{beanTurma.modelTurma.turmaNome}" placeholder="Digite o Nome "></p:inputText>
                             <p:outputLabel for="Status" value="Status: "></p:outputLabel><br/>
@@ -39,21 +41,20 @@
                     </p:fieldset>
                     <p:fieldset legend="Opções">    
                         <p:panelGrid columns="3" >
-                            <p:commandButton value="Enviar" ajax="true" action="#{beanTurma.salvarTurma()}" update=":frm1" ></p:commandButton>
-                            <p:commandButton value="Alterar" ajax="false" action="#{beanTurma.AtualizarTurma()}" update=":frm1"></p:commandButton>
-                            <p:commandButton value="Buscar"  action="#{beanTurma.mudarParaView()}" update=":frm2"></p:commandButton>
+                            <p:commandButton value="Enviar" ajax="false" action="#{beanTurma.salvarTurma()}" update="@form" rendered="#{beanTurma.save == true}"></p:commandButton>
                         </p:panelGrid> 
                     </p:fieldset>
                 </p:panelGrid> 
-            </div>
-        </h:form>
-    </p:fieldset>
-    <p:fieldset legend="Lista de Turmas" rendered="#{beanTurma.view}">
-        <h:form id="frm2" >
+            </div>            
+        </p:fieldset>     
+    </h:form>
+    <h:form id="frm1">
+        <p:fieldset legend="Lista de Turmas" rendered="#{beanTurma.view}">
+
             <div header="Growl" class="ui-fluid" >  
                 <p:growl id="growl" showDetail="true" sticky="true" />  
-                <p:commandButton value="novo" ajax="false" action="#{beanTurma.mudarParaSave()}" update=":frm1" ></p:commandButton>
-                <p:commandButton value="Atualizar"  action="#{beanTurma.setListaTurma(listaTurma)}" update=":frm2"></p:commandButton>
+                <p:commandButton value="novo" ajax="false" action="#{beanTurma.mudarParaSave()}" update=":frm0" ></p:commandButton>
+                <p:commandButton value="Atualizar"  action="#{beanTurma.setListaTurma(listaTurma)}" update=":frm1"></p:commandButton>
                 <p:dataTable value="#{beanTurma.listaTurma}" var="lista" emptyMessage="Não existem valores para exibição" scrollRows="10" scrollable="true" liveScroll="true" 
                              scrollHeight="180" >
 
@@ -73,13 +74,45 @@
                         <h:outputText value="#{lista.turmaStatus}" />
                     </p:column>
 
-                    <p:column headerText="OPÇÕES" class="cell" style="width: 170px !important;">
-                        <p:commandButton value="EDITAR"  action="#{beanTurma.setModelTurma(lista)}" onclick="#{beanTurma.mudarParaSave()}" ajax="false" class="button"></p:commandButton>
-                        <p:commandButton value="EXCLUIR" class="button"></p:commandButton>
+                    <p:column headerText="OPÇÕES" class="cell" style="width: 120px !important;">
+                        <p:commandButton value="Atualizar"  action="#{beanTurma.mudarParaEdit()}" ajax="false" onclick="#{beanTurma.setModelTurma(lista)}" update=":frm2"></p:commandButton>
                     </p:column>
                 </p:dataTable>
             </div>
-        </h:form>
-    </p:fieldset>
+        </p:fieldset>
+    </h:form>
+    <h:form id="frm2" rendered="#{beanTurma.edit == true}">
+        <p:fieldset legend="Cadastro de Turmas" rendered="#{beanTurma.edit}">
+            <p:growl id="growl" showDetail="true" sticky="true" />    
+            <div header="Growl" class="ui-fluid">
+                <p:commandButton value="novo" ajax="false" action="#{beanTurma.mudarParaSave()}" update=":frm0" ></p:commandButton>
+                <p:commandButton value="Buscar" ajax="false" action="#{beanTurma.mudarParaView()}" update=":frm1"></p:commandButton>
+                <p:panelGrid columns="2" >
+                    <p:fieldset legend="Dados Gerais"> 
+                        <p:panelGrid columns="4" >
+                            <p:outputLabel value="Id: "></p:outputLabel>
+                            <p:inputText disabled="true" value="#{beanTurma.modelTurma.turmaId}"></p:inputText><br/>
+                            <h:inputHidden value="#{beanTurma.modelTurma.turmaId}"></h:inputHidden>
+                            <p:outputLabel for="Nome" value="Nome: "></p:outputLabel>
+                            <p:inputText id="Nome" value="#{beanTurma.modelTurma.turmaNome}" placeholder="Digite o Nome "></p:inputText>
+                            <p:outputLabel for="Status" value="Status: "></p:outputLabel><br/>
+                            <p:outputLabel for="Descrição" value="Descrição: "></p:outputLabel>
+                            <p:inputText  id="Descrição" value="#{beanTurma.modelTurma.turmaDescricao}" placeholder="Digite a Descrição"></p:inputText>
+                            <p:selectOneRadio id="Status" value="#{beanTurma.modelTurma.turmaStatus}" columns="2">
+                                <f:selectItem itemLabel="Ativo" itemValue="Ativo"></f:selectItem>
+                                <f:selectItem itemLabel="Inativo" itemValue="Inativo"></f:selectItem>                            
+                            </p:selectOneRadio>
+                        </p:panelGrid> 
+                    </p:fieldset>
+                    <p:fieldset legend="Opções">    
+                        <p:panelGrid columns="3" >
+                            <p:commandButton value="Alterar" ajax="false" action="#{beanTurma.AtualizarTurma()}" update=":frm2" ></p:commandButton>
+                            <p:commandButton value="Deletar" ajax="false" ></p:commandButton>
+                        </p:panelGrid> 
+                    </p:fieldset>
+                </p:panelGrid> 
+            </div>
+        </p:fieldset>
+    </h:form>
 </ui:decorate>
 
