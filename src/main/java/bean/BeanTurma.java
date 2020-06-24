@@ -19,7 +19,7 @@ import model.ModelTurma;
  */
 @ManagedBean
 @SessionScoped
-public class BeanTurma extends BeanTela{
+public class BeanTurma extends BeanTela {
 
     private ArrayList<ModelTurma> listaTurma;
     private ModelTurma modelTurma = new ModelTurma();

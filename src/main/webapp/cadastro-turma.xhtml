@@ -42,6 +42,8 @@
                     <p:fieldset legend="Opções">    
                         <p:panelGrid columns="3" >
                             <p:commandButton value="Enviar" ajax="false" action="#{beanTurma.salvarTurma()}" update="@form" rendered="#{beanTurma.save == true}"></p:commandButton>
+                            <p:commandButton value="Alterar" disabled="true"></p:commandButton>
+                            <p:commandButton value="Deletar" disabled="true"></p:commandButton>
                         </p:panelGrid> 
                     </p:fieldset>
                 </p:panelGrid> 
@@ -53,10 +55,10 @@
 
             <div header="Growl" class="ui-fluid" >  
                 <p:growl id="growl" showDetail="true" sticky="true" />  
-                <p:commandButton value="novo" ajax="false" action="#{beanTurma.mudarParaSave()}" update=":frm0" ></p:commandButton>
-                <p:commandButton value="Atualizar"  action="#{beanTurma.setListaTurma(listaTurma)}" update=":frm1"></p:commandButton>
+                <p:commandButton value="Cadastrar Novo" ajax="false" action="#{beanTurma.mudarParaSave()}" update=":frm0" ></p:commandButton>
+                <p:commandButton value="Refresh" ajax="false" action="#{beanTurma.setListaTurma(listaTurma)}" update=":frm1"></p:commandButton>
                 <p:dataTable value="#{beanTurma.listaTurma}" var="lista" emptyMessage="Não existem valores para exibição" scrollRows="10" scrollable="true" liveScroll="true" 
-                             scrollHeight="180" >
+                             scrollHeight="360" >
 
                     <p:column style="width: 105px !important;" headerText="ID" sortBy="#{lista.turmaId}" filterBy="#{lista.turmaId}" class="cell">
                         <h:outputText value="#{lista.turmaId}" />
@@ -74,7 +76,7 @@
                         <h:outputText value="#{lista.turmaStatus}" />
                     </p:column>
 
-                    <p:column headerText="OPÇÕES" class="cell" style="width: 120px !important;">
+                    <p:column headerText="OPÇÕES" class="cell" style="width: 90px !important;">
                         <p:commandButton value="Atualizar"  action="#{beanTurma.mudarParaEdit()}" ajax="false" onclick="#{beanTurma.setModelTurma(lista)}" update=":frm2"></p:commandButton>
                     </p:column>
                 </p:dataTable>
@@ -82,7 +84,7 @@
         </p:fieldset>
     </h:form>
     <h:form id="frm2" rendered="#{beanTurma.edit == true}">
-        <p:fieldset legend="Cadastro de Turmas" rendered="#{beanTurma.edit}">
+        <p:fieldset legend="Atualização de Turmas" rendered="#{beanTurma.edit}">
             <p:growl id="growl" showDetail="true" sticky="true" />    
             <div header="Growl" class="ui-fluid">
                 <p:commandButton value="novo" ajax="false" action="#{beanTurma.mudarParaSave()}" update=":frm0" ></p:commandButton>
@@ -106,6 +108,7 @@
                     </p:fieldset>
                     <p:fieldset legend="Opções">    
                         <p:panelGrid columns="3" >
+                            <p:commandButton value="Enviar" disabled="true"></p:commandButton>
                             <p:commandButton value="Alterar" ajax="false" action="#{beanTurma.AtualizarTurma()}" update=":frm2" ></p:commandButton>
                             <p:commandButton value="Deletar" ajax="false" ></p:commandButton>
                         </p:panelGrid> 

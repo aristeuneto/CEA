@@ -22,7 +22,7 @@ import model.ModelAcesso;
 @Named
 @ManagedBean
 @SessionScoped
-public class BeanAcesso {
+public class BeanAcesso extends BeanTela{
 
     private List<ModelAcesso> listaAcesso;
     private ModelAcesso modelAcesso = new ModelAcesso();
