@@ -11,12 +11,14 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.inject.Named;
 import model.ModelTurma;
 
 /**
  *
  * @author neto_
  */
+@Named
 @ManagedBean
 @SessionScoped
 public class BeanTurma extends BeanTela {
@@ -32,8 +34,8 @@ public class BeanTurma extends BeanTela {
 
         if (modelTurma != null) {
             daoTurma.salvarTurma(modelTurma); 
-            modelTurma = new ModelTurma();
             mudarParaView();
+            modelTurma = new ModelTurma();
             mensagemSalvo(true);
         } else {
             mensagemSalvo(false);

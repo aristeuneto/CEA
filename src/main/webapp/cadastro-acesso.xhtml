@@ -16,12 +16,11 @@
             height: auto;
         }
     </style>
-    <h:form>
+    <h:form id="frm" >
         <p:fieldset legend="Cadastro de Usuários" rendered="#{beanAcesso.save}">
-
+            <p:growl id="growl" showDetail="true" sticky="true" />
             <div header="Growl" class="ui-fluid">
-                <p:growl id="growl" showDetail="true" sticky="true" />
-                <p:commandButton value="Buscar" ajax="false" action="#{beanAcesso.mudarParaView()}" update="@form"></p:commandButton>
+                <p:commandButton value="Buscar" ajax="false" action="#{beanAcesso.mudarParaView()}" update=":frm"></p:commandButton>
                 <p:panelGrid columns="3" >
                     <p:fieldset legend="Dados do Usuário">
                         <p:panelGrid columns="2" >
@@ -50,7 +49,7 @@
                     </p:fieldset>
                     <p:fieldset legend="Opções">    
                         <p:panelGrid columns="3" >
-                            <p:commandButton value="Enviar" ajax="false" action="#{beanAcesso.salvarAcesso()}" update="@form" ></p:commandButton>
+                            <p:commandButton value="Enviar" ajax="false" action="#{beanAcesso.salvarAcesso()}" update=":frm" ></p:commandButton>
                             <p:commandButton value="Alterar" disabled="true" ></p:commandButton>
                             <p:commandButton value="Excluir" disabled="true"></p:commandButton>
                         </p:panelGrid>  
@@ -58,17 +57,57 @@
                 </p:panelGrid>
             </div>      
         </p:fieldset>
+    </h:form>
 
+    <h:form id="list" >
+        <p:fieldset legend="Lista de Usuários" rendered="#{beanAcesso.view}">
+            <div header="Growl" class="ui-fluid">
+                <p:growl id="growl" showDetail="true" sticky="true" />  
+                <p:commandButton value="Novo" ajax="false" action="#{beanAcesso.mudarParaSave()}" update="@form"></p:commandButton>
+                <p:commandButton value="Refresh" ajax="false" action="#{beanAcesso.setListaAcesso(listaAcesso)}" update=":list"></p:commandButton>
+                <p:dataTable value="#{beanAcesso.listaAcesso}" var="lista" emptyMessage="Não existem valores para exibição" scrollRows="10" scrollable="true" liveScroll="true" 
+                             scrollHeight="170" >
+
+                    <p:column style="width: 105px !important;" headerText="ID" sortBy="#{lista.acesId}" filterBy="#{lista.acesId}" class="cell">
+                        <h:outputText value="#{lista.acesId}" />
+                    </p:column>
+
+                    <p:column headerText="NOME" sortBy="#{lista.acesNome}" filterBy="#{lista.acesNome}" class="cell" >
+                        <h:outputText value="#{lista.acesNome}"/>
+                    </p:column>
+
+                    <p:column headerText="LOGIN" sortBy="#{lista.acesLogin}" filterBy="#{lista.acesLogin}" class="cell">
+                        <h:outputText value="#{lista.acesLogin}" />
+                    </p:column>
+
+                    <p:column headerText="FUNCIONÁRIO" sortBy="#{lista.pesId}" filterBy="#{lista.pesId}" class="cell">
+                        <h:outputText value="#{lista.pesId.pesNome}"/>
+                    </p:column>
+
+                    <p:column headerText="STATUS" sortBy="#{lista.acesStatus}" filterBy="#{lista.acesStatus}" class="cell">
+                        <h:outputText value="#{lista.acesStatus}" />
+                    </p:column>
+
+                    <p:column headerText="OPÇÕES" class="cell" style="width: 90px !important;">
+                        <p:commandButton value="Atualizar" action="#{beanAcesso.setModelAcesso(lista)}" onclick="#{beanAcesso.mudarParaEdit()}" ajax="false" update=":frm1"></p:commandButton>  
+                    </p:column>
+                </p:dataTable>
+            </div>
+        </p:fieldset>
+    </h:form>
+
+    <h:form id="frm1" >
         <p:fieldset legend="Atualização de Usuários" rendered="#{beanAcesso.edit}">
-            <div>
-                <p:commandButton value="Novo" ajax="false" action="#{beanAcesso.mudarParaSave()}" update=":list"></p:commandButton>
+            <p:growl id="growl" showDetail="true" sticky="true" />
+            <div header="Growl" class="ui-fluid">
+                <p:commandButton value="Cadastrar Novo" ajax="false" action="#{beanAcesso.mudarParaSave()}" update=":frm"></p:commandButton>
                 <p:commandButton value="Buscar" ajax="false" action="#{beanAcesso.mudarParaView()}" update=":list"></p:commandButton>
                 <p:panelGrid columns="3" >
                     <p:fieldset legend="Dados do Usuário">
                         <p:panelGrid columns="2" >
                             <p:outputLabel value="Id: "></p:outputLabel>
                             <p:inputText value="#{beanAcesso.modelAcesso.acesId}" disabled="true"></p:inputText>
-                            <h:inputHidden value="#{beanAcesso.modelAcesso.acesId}" ></h:inputHidden>
+                            <h:inputHidden value="#{beanAcesso.modelAcesso.acesId}" ></h:inputHidden><br/>
                             <p:outputLabel value="Nome: "></p:outputLabel>
                             <p:inputText value="#{beanAcesso.modelAcesso.acesNome}" placeholder="Digite o nome "></p:inputText>
                             <p:outputLabel value="Login: "></p:outputLabel>
@@ -95,51 +134,12 @@
                     <p:fieldset legend="Opções">    
                         <p:panelGrid columns="3" >
                             <p:commandButton value="Enviar" disabled="true"></p:commandButton>
-                            <p:commandButton value="Alterar" action="#{beanAcesso.atualizarAcesso}" ajax="false" update="@form"></p:commandButton>
+                            <p:commandButton value="Alterar" action="#{beanAcesso.atualizarAcesso}" ajax="false" update=":frm1"></p:commandButton>
                             <p:commandButton value="Excluir" ></p:commandButton>
                         </p:panelGrid>  
                     </p:fieldset>
                 </p:panelGrid>
             </div>      
-        </p:fieldset>
-
-    </h:form>
-    <h:form id="list">
-        <p:fieldset legend="Lista de Usuários" rendered="#{beanAcesso.view}">
-            <div header="Growl" class="ui-fluid">
-                <p:growl id="growl" showDetail="true" sticky="true" />  
-
-
-                <p:commandButton value="Novo" ajax="false" action="#{beanAcesso.mudarParaSave()}" update=":list"></p:commandButton>
-                <p:commandButton value="Atualizar" ajax="false" action="#{beanAcesso.setListaAcesso(listaAcesso)}" update=":list"></p:commandButton>
-                <p:dataTable value="#{beanAcesso.listaAcesso}" var="lista" emptyMessage="Não existem valores para exibição" scrollRows="10" scrollable="true" liveScroll="true" 
-                             scrollHeight="170" >
-
-                    <p:column style="width: 105px !important;" headerText="ID" sortBy="#{lista.acesId}" filterBy="#{lista.acesId}" class="cell">
-                        <h:outputText value="#{lista.acesId}" />
-                    </p:column>
-
-                    <p:column headerText="NOME" sortBy="#{lista.acesNome}" filterBy="#{lista.acesNome}" class="cell" >
-                        <h:outputText value="#{lista.acesNome}"/>
-                    </p:column>
-
-                    <p:column headerText="LOGIN" sortBy="#{lista.acesLogin}" filterBy="#{lista.acesLogin}" class="cell">
-                        <h:outputText value="#{lista.acesLogin}" />
-                    </p:column>
-
-                    <p:column headerText="FUNCIONÁRIO" sortBy="#{lista.pesId}" filterBy="#{lista.pesId}" class="cell">
-                        <h:outputText value="#{lista.pesId.pesNome}"/>
-                    </p:column>
-
-                    <p:column headerText="STATUS" sortBy="#{lista.acesStatus}" filterBy="#{lista.acesStatus}" class="cell">
-                        <h:outputText value="#{lista.acesStatus}" />
-                    </p:column>
-
-                    <p:column headerText="OPÇÕES" class="cell" style="width: 90px !important;">
-                        <p:commandButton value="Atualizar" action="#{beanAcesso.setModelAcesso(lista)}" onclick="#{beanAcesso.mudarParaEdit()}" ajax="false"></p:commandButton>  
-                    </p:column>
-                </p:dataTable>
-            </div>
         </p:fieldset>
     </h:form>
 </ui:decorate>

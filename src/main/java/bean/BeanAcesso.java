@@ -22,20 +22,20 @@ import model.ModelAcesso;
 @Named
 @ManagedBean
 @SessionScoped
-public class BeanAcesso extends BeanTela{
+public class BeanAcesso extends BeanTela {
 
     private List<ModelAcesso> listaAcesso;
     private ModelAcesso modelAcesso = new ModelAcesso();
+    DaoAcesso daoAcesso = new DaoAcesso();
 
     public BeanAcesso() {
     }
 
     public void salvarAcesso() {
 
-        DaoAcesso daoAcesso = new DaoAcesso();
-
         if (getModelAcesso() != null) {
             daoAcesso.salvarAcesso(getModelAcesso());
+            mudarParaView();
             setModelAcesso(new ModelAcesso());
             mensagemSalvo(true);
         } else {

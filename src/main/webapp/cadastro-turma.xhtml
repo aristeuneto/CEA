@@ -20,7 +20,6 @@
 
     <h:form id="frm0">
         <p:fieldset legend="Cadastro de Turmas" rendered="#{beanTurma.save}">
-
             <p:growl id="growl" showDetail="true" sticky="true" />    
             <div header="Growl" class="ui-fluid">
                 <p:commandButton value="Buscar" ajax="false" action="#{beanTurma.mudarParaView()}" update=":frm1"></p:commandButton>
@@ -52,7 +51,6 @@
     </h:form>
     <h:form id="frm1">
         <p:fieldset legend="Lista de Turmas" rendered="#{beanTurma.view}">
-
             <div header="Growl" class="ui-fluid" >  
                 <p:growl id="growl" showDetail="true" sticky="true" />  
                 <p:commandButton value="Cadastrar Novo" ajax="false" action="#{beanTurma.mudarParaSave()}" update=":frm0" ></p:commandButton>
@@ -83,11 +81,12 @@
             </div>
         </p:fieldset>
     </h:form>
+    
     <h:form id="frm2" rendered="#{beanTurma.edit == true}">
         <p:fieldset legend="Atualização de Turmas" rendered="#{beanTurma.edit}">
             <p:growl id="growl" showDetail="true" sticky="true" />    
             <div header="Growl" class="ui-fluid">
-                <p:commandButton value="novo" ajax="false" action="#{beanTurma.mudarParaSave()}" update=":frm0" ></p:commandButton>
+                <p:commandButton value="Cadastrar Novo" ajax="false" action="#{beanTurma.mudarParaSave()}" update=":frm0" ></p:commandButton>
                 <p:commandButton value="Buscar" ajax="false" action="#{beanTurma.mudarParaView()}" update=":frm1"></p:commandButton>
                 <p:panelGrid columns="2" >
                     <p:fieldset legend="Dados Gerais"> 
