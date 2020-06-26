@@ -83,7 +83,8 @@ public class BeanTurma extends BeanTela {
         listaTurma = (ArrayList<ModelTurma>) daoTurma.listaTurma();
         if (listaTurma == null) {
             listaTurma = new ArrayList<>();
-            for (ModelTurma T : daoTurma.listaTurma()) {
+      //      for (ModelTurma T : daoTurma.listaTurma()) {
+            for (ModelTurma T : listaTurma) {
 
                 listaTurma.add(T);
             }

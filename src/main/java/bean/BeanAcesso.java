@@ -90,7 +90,7 @@ public class BeanAcesso extends BeanTela {
 
         if (listaAcesso == null) {
             listaAcesso = new ArrayList<>();
-            for (ModelAcesso A : daoAcesso.listaAcesso()) {
+            for (ModelAcesso A : listaAcesso) {
                 listaAcesso.add(A);
             }
         }
