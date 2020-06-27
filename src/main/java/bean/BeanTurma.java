@@ -33,7 +33,7 @@ public class BeanTurma extends BeanTela {
     public void salvarTurma() {
 
         if (modelTurma != null) {
-            daoTurma.salvarTurma(modelTurma); 
+            daoTurma.salvarTurma(modelTurma);
             mudarParaView();
             modelTurma = new ModelTurma();
             mensagemSalvo(true);
@@ -67,14 +67,18 @@ public class BeanTurma extends BeanTela {
 
     public void setModelTurma(ModelTurma modelTurma) {
         this.modelTurma = modelTurma;
+        mudarParaEdit();
+    }
+
+    public void AtualizarTurma(ModelTurma modelTurma) {
+
+        daoTurma.atualizarTurma(modelTurma);
 
     }
 
-    public void AtualizarTurma() {
-        
-    }
+    public void deletarTurma(ModelTurma modelTurma) {
 
-    public void deletarTurma() {
+        daoTurma.excluirTurma(modelTurma);
 
     }
 
