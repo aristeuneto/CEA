@@ -23,7 +23,9 @@ public class DaoTurma {
     public void salvarTurma(ModelTurma modelTurma) {
 
         try {
-
+            if (session.isOpen() == false) {
+                session = HibernateUtil.getSessionFactory().openSession();
+            }
             session.getTransaction().begin();
             session.persist(modelTurma);
             session.getTransaction().commit();
@@ -43,7 +45,9 @@ public class DaoTurma {
     public void excluirTurma(ModelTurma modelTurma) {
 
         try {
-
+            if (session.isOpen() == false) {
+                session = HibernateUtil.getSessionFactory().openSession();
+            }
             session.getTransaction().begin();
             session.delete(modelTurma);
             session.getTransaction().commit();
@@ -63,6 +67,9 @@ public class DaoTurma {
     public void atualizarTurma(ModelTurma modelTurma) {
 
         try {
+            if (session.isOpen() == false) {
+                session = HibernateUtil.getSessionFactory().openSession();
+            }
             session.getTransaction().begin();
             session.update(modelTurma);
             session.getTransaction().commit();
@@ -78,10 +85,24 @@ public class DaoTurma {
     }
 
     public List<ModelTurma> listaTurma() {
-        List<ModelTurma> listaTurma = new ArrayList<>();
-        org.hibernate.Query sql = session.createQuery("from ModelTurma");
-        listaTurma = sql.list();
 
-        return listaTurma;
+        try {
+            if (session.isOpen() == false) {
+                session = HibernateUtil.getSessionFactory().openSession();
+            }
+            List<ModelTurma> listaTurma = new ArrayList<>();
+            org.hibernate.Query sql = session.createQuery("from ModelTurma");
+            listaTurma = sql.list();
+
+            return listaTurma;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return null;
     }
 }

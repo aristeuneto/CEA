@@ -26,7 +26,6 @@
                 <p:panelGrid columns="2" >
                     <p:fieldset legend="Dados Gerais"> 
                         <p:panelGrid columns="4" >
-
                             <p:outputLabel for="Nome" value="Nome: "></p:outputLabel>
                             <p:inputText id="Nome" value="#{beanTurma.modelTurma.turmaNome}" placeholder="Digite o Nome "></p:inputText>
                             <p:outputLabel for="Status" value="Status: "></p:outputLabel><br/>
@@ -75,7 +74,7 @@
                     </p:column>
 
                     <p:column headerText="OPÇÕES" class="cell" style="width: 90px !important;">
-                        <p:commandButton value="Atualizar"  action="#{beanTurma.mudarParaEdit()}" ajax="false" onclick="#{beanTurma.setModelTurma(lista)}" update=":frm2"></p:commandButton>
+                        <p:commandLink value="Atualizar"  ajax="false" action="#{beanTurma.setModelTurma(lista)}" update=":frm2"></p:commandLink>
                     </p:column>
                 </p:dataTable>
             </div>
@@ -108,8 +107,8 @@
                     <p:fieldset legend="Opções">    
                         <p:panelGrid columns="3" >
                             <p:commandButton value="Enviar" disabled="true"></p:commandButton>
-                            <p:commandButton value="Alterar" ajax="false" action="#{beanTurma.AtualizarTurma()}" update=":frm2" ></p:commandButton>
-                            <p:commandButton value="Deletar" ajax="false" ></p:commandButton>
+                            <p:commandButton value="Alterar" ajax="false" action="#{beanTurma.AtualizarTurma(beanTurma.modelTurma)}" update=":frm2" ></p:commandButton>
+                            <p:commandButton value="Deletar" ajax="false" action="#{beanTurma.deletarTurma(beanTurma.modelTurma)}"></p:commandButton>
                         </p:panelGrid> 
                     </p:fieldset>
                 </p:panelGrid> 
