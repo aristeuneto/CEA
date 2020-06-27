@@ -6,14 +6,13 @@
 package bean;
 
 import DAO.DaoAluno;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.model.SelectItem;
 import javax.inject.Named;
 import model.ModelAluno;
 import model.ModelContato;
@@ -27,13 +26,14 @@ import util.BLDatas;
 @Named
 @ManagedBean
 @SessionScoped
-public class BeanAluno {
+public class BeanAluno extends BeanTela {
 
-    private ArrayList<SelectItem> listaAluno = null;
+    private ArrayList<ModelAluno> listaAluno = null;
     private ModelAluno modelAluno = new ModelAluno();
     private ModelEndereco modelEndereco = new ModelEndereco();
     private ModelContato modelContato = new ModelContato();
     private String dataNascimento = new String();
+    DaoAluno daoAluno = new DaoAluno();
 
     public BeanAluno() {
     }
@@ -42,7 +42,6 @@ public class BeanAluno {
         BLDatas bLDatas = new BLDatas();
         Date dtNascimento = bLDatas.converterDataStringParaDate(dataNascimento);
 
-        DaoAluno daoAluno = new DaoAluno();
         modelAluno.setPesDtnasc(dtNascimento);
         modelAluno.setEndId(modelEndereco);
         modelAluno.setContId(modelContato);
@@ -52,6 +51,7 @@ public class BeanAluno {
             modelEndereco = new ModelEndereco();
             modelContato = new ModelContato();
             dataNascimento = new String();
+            mudarParaView();
             mensagemSalvo(true);
         } else {
             mensagemSalvo(false);
@@ -100,20 +100,21 @@ public class BeanAluno {
         this.dataNascimento = dataNascimento;
     }
 
-    public ArrayList<SelectItem> getListaAluno() {
-        if (listaAluno == null) {
-            listaAluno = new ArrayList<>();
-            DaoAluno daoAluno = new DaoAluno();
+    public ArrayList<ModelAluno> getListaAluno() {
 
-            for (ModelAluno Al : daoAluno.listaAluno()) {
-                SelectItem a = new SelectItem(Al.getPesId(), Al.getPesNome());
-                listaAluno.add(a);
+        listaAluno = (ArrayList<ModelAluno>) daoAluno.listaAluno();
+        if (listaAluno == null) {
+            listaAluno = new ArrayList<>();    
+            for (ModelAluno A : listaAluno) {
+
+                listaAluno.add(A);
             }
         }
+
         return listaAluno;
     }
 
-    public void setListaAluno(ArrayList<SelectItem> listaAluno) {
+    public void setListaAluno(ArrayList<ModelAluno> listaAluno) {
         this.listaAluno = listaAluno;
     }
 

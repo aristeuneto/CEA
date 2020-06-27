@@ -52,15 +52,7 @@ public class BeanTurma extends BeanTela {
         }
     }
 
-    public void mensagemAtualizado(Boolean status) {
-        FacesContext context = FacesContext.getCurrentInstance();
-        if (status) {
-            context.addMessage(null, new FacesMessage("Sucesso!", "Cadastro Atualizado!"));
-        } else {
-            context.addMessage(null, new FacesMessage("Erro!", "Erro ao Atualizar!"));
-        }
-    }
-
+   
     public ModelTurma getModelTurma() {
         return modelTurma;
     }
@@ -73,9 +65,21 @@ public class BeanTurma extends BeanTela {
     public void AtualizarTurma(ModelTurma modelTurma) {
 
         daoTurma.atualizarTurma(modelTurma);
+        mudarParaView();
+        
 
     }
 
+     public void mensagemAtualizado(Boolean status) {
+        FacesContext context = FacesContext.getCurrentInstance();
+        if (status) {
+            context.addMessage(null, new FacesMessage("Sucesso!", "Cadastro Atualizado!"));   
+        } else {
+            context.addMessage(null, new FacesMessage("Erro!", "Erro ao Atualizar!"));
+        }
+    }
+
+    
     public void deletarTurma(ModelTurma modelTurma) {
 
         daoTurma.excluirTurma(modelTurma);

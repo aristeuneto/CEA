@@ -16,11 +16,11 @@
             height: auto;
         }
     </style>
-    <h:form id="frm0" >
+    <h:form id="frmc" >
         <p:fieldset legend="Cadastro de Usuários" rendered="#{beanAcesso.save}">
             <p:growl id="growl" showDetail="true" sticky="true" />
             <div header="Growl" class="ui-fluid">
-                <p:commandButton value="Buscar" ajax="false" action="#{beanAcesso.mudarParaView()}" update=":frm1"></p:commandButton>
+                <p:commandButton value="Buscar" ajax="false" action="#{beanAcesso.mudarParaView()}" update=":frmc1"></p:commandButton>
                 <p:panelGrid columns="3" >
                     <p:fieldset legend="Dados do Usuário">
                         <p:panelGrid columns="2" >
@@ -49,7 +49,7 @@
                     </p:fieldset>
                     <p:fieldset legend="Opções">    
                         <p:panelGrid columns="3" >
-                            <p:commandButton value="Enviar" ajax="false" action="#{beanAcesso.salvarAcesso()}" update=":frm0" ></p:commandButton>
+                            <p:commandButton value="Enviar" ajax="false" action="#{beanAcesso.salvarAcesso()}" update=":frmc" ></p:commandButton>
                             <p:commandButton value="Alterar" disabled="true" ></p:commandButton>
                             <p:commandButton value="Excluir" disabled="true"></p:commandButton>
                         </p:panelGrid>  
@@ -59,12 +59,12 @@
         </p:fieldset>
     </h:form>
 
-    <h:form id="frm1">
+    <h:form id="frmc1">
         <p:fieldset legend="Lista de Usuários" rendered="#{beanAcesso.view}">
             <div header="Growl" class="ui-fluid">
                 <p:growl id="growl" showDetail="true" sticky="true" />  
-                <p:commandButton value="Novo" ajax="false" action="#{beanAcesso.mudarParaSave()}" update=":frm0"></p:commandButton>
-                <p:commandButton value="Refresh" ajax="false" action="#{beanAcesso.setListaAcesso(listaAcesso)}" update=":frm1"></p:commandButton>
+                <p:commandButton value="Novo" ajax="false" action="#{beanAcesso.mudarParaSave()}" update=":frmc"></p:commandButton>
+                <p:commandButton value="Refresh" ajax="false" action="#{beanAcesso.setListaAcesso(listaAcesso)}" update=":frmc1"></p:commandButton>
                 <p:dataTable value="#{beanAcesso.listaAcesso}" var="lista" emptyMessage="Não existem valores para exibição" scrollRows="10" scrollable="true" liveScroll="true" 
                              scrollHeight="170" >
 
@@ -89,19 +89,19 @@
                     </p:column>
 
                     <p:column headerText="OPÇÕES" class="cell" style="width: 90px !important;">
-                        <p:commandButton value="Atualizar" action="#{beanAcesso.mudarParaEdit()}" onclick="#{beanAcesso.setModelAcesso(lista)}" ajax="false" update=":frm1"></p:commandButton>  
+                        <p:commandButton value="Atualizar" action="#{beanAcesso.mudarParaEdit()}" onclick="#{beanAcesso.setModelAcesso(lista)}" ajax="false" update=":frmc1"></p:commandButton>  
                     </p:column>
                 </p:dataTable>
             </div>
         </p:fieldset>
     </h:form>
 
-    <h:form id="frm2">
+    <h:form id="frmc2">
         <p:fieldset legend="Atualização de Usuários" rendered="#{beanAcesso.edit}">
             <p:growl id="growl" showDetail="true" sticky="true" />
             <div header="Growl" class="ui-fluid">
-                <p:commandButton value="Cadastrar Novo" ajax="false" action="#{beanAcesso.mudarParaSave()}" update=":frm0"></p:commandButton>
-                <p:commandButton value="Buscar" ajax="false" action="#{beanAcesso.mudarParaView()}" update=":frm1"></p:commandButton>
+                <p:commandButton value="Cadastrar Novo" ajax="false" action="#{beanAcesso.mudarParaSave()}" update=":frmc"></p:commandButton>
+                <p:commandButton value="Buscar" ajax="false" action="#{beanAcesso.mudarParaView()}" update=":frmc1"></p:commandButton>
                 <p:panelGrid columns="3" >
                     <p:fieldset legend="Dados do Usuário">
                         <p:panelGrid columns="2" >
@@ -134,7 +134,7 @@
                     <p:fieldset legend="Opções">    
                         <p:panelGrid columns="3" >
                             <p:commandButton value="Enviar" disabled="true"></p:commandButton>
-                            <p:commandButton value="Alterar" action="#{beanAcesso.atualizarAcesso}" ajax="false" update=":frm2"></p:commandButton>
+                            <p:commandButton value="Alterar" action="#{beanAcesso.atualizarAcesso}" ajax="false" update=":frmc2"></p:commandButton>
                             <p:commandButton value="Excluir" ></p:commandButton>
                         </p:panelGrid>  
                     </p:fieldset>
