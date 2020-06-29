@@ -10,7 +10,7 @@ import model.ModelDisciplina;
 
 @SessionScoped
 @ManagedBean
-public class BeanDisciplina {
+public class BeanDisciplina extends BeanTela{
 
     private ArrayList<ModelDisciplina> listaDisciplina;
     private ModelDisciplina modelDisciplina = new ModelDisciplina();
@@ -24,6 +24,7 @@ public class BeanDisciplina {
         if (modelDisciplina != null) {
             daoDisciplina.salvarDisciplina(modelDisciplina);
             modelDisciplina = new ModelDisciplina();
+            mudarParaView();
             mensagemSalvo(true);
         } else {
             mensagemSalvo(false);

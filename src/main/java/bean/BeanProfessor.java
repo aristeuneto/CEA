@@ -26,7 +26,7 @@ import util.BLDatas;
 @Named
 @ManagedBean
 @SessionScoped
-public class BeanProfessor {
+public class BeanProfessor extends BeanTela{
 
     private ArrayList<ModelProfessor> listaProfessor;
     private ModelProfessor modelProfessor = new ModelProfessor();

@@ -22,7 +22,7 @@
         <p:fieldset legend="Cadastro de Turmas" rendered="#{beanTurma.save}">
             <p:growl id="growl" showDetail="true" sticky="true" />    
             <div header="Growl" class="ui-fluid">
-                <p:commandButton value="Buscar" ajax="false" action="#{beanTurma.mudarParaView()}" update=":frm1"></p:commandButton>
+                <p:commandButton value="Buscar" ajax="true" action="#{beanTurma.mudarParaView()}" update=":frm1"></p:commandButton>
                 <p:panelGrid columns="2" >
                     <p:fieldset legend="Dados Gerais"> 
                         <p:panelGrid columns="4" >
@@ -74,13 +74,13 @@
                     </p:column>
 
                     <p:column headerText="OPÇÕES" class="cell" style="width: 90px !important;">
-                        <p:commandLink value="Atualizar"  ajax="false" action="#{beanTurma.setModelTurma(lista)}" update=":frm2"></p:commandLink>
+                        <p:commandButton value="Modificar" action="#{beanTurma.setModelTurma(lista)}" ajax="false" update=":frm2"></p:commandButton>
                     </p:column>
                 </p:dataTable>
             </div>
         </p:fieldset>
     </h:form>
-    
+
     <h:form id="frm2" rendered="#{beanTurma.edit == true}">
         <p:fieldset legend="Atualização de Turmas" rendered="#{beanTurma.edit}">
             <p:growl id="growl" showDetail="true" sticky="true" />    
@@ -102,13 +102,14 @@
                                 <f:selectItem itemLabel="Ativo" itemValue="Ativo"></f:selectItem>
                                 <f:selectItem itemLabel="Inativo" itemValue="Inativo"></f:selectItem>                            
                             </p:selectOneRadio>
-                        </p:panelGrid> 
+                        </p:panelGrid>                             
                     </p:fieldset>
                     <p:fieldset legend="Opções">    
-                        <p:panelGrid columns="3" >
+                        <p:panelGrid columns="4" >
+                            <p:growl id="message" showDetail="true" />
                             <p:commandButton value="Enviar" disabled="true"></p:commandButton>
-                            <p:commandButton value="Alterar" ajax="false" action="#{beanTurma.AtualizarTurma(beanTurma.modelTurma)}" update=":frm2" ></p:commandButton>
-                            <p:commandButton value="Deletar" ajax="false" action="#{beanTurma.deletarTurma(beanTurma.modelTurma)}"></p:commandButton>
+                            <p:commandButton value="Alterar" ajax="false" action="#{beanTurma.AtualizarTurma(beanTurma.modelTurma)}"></p:commandButton>
+                            <p:commandButton value="Deletar" ajax="false" action="#{beanTurma.deletarTurma(beanTurma.modelTurma)}"></p:commandButton>                      
                         </p:panelGrid> 
                     </p:fieldset>
                 </p:panelGrid> 

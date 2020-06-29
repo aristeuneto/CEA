@@ -19,11 +19,11 @@
         }
     </style>
     <!-- ********************************************************************************************* -->
-
-    <p:fieldset legend="Cadastro de Disciplinas">
-        <div header="Growl" class="ui-fluid">
-            <h:form>
+    <h:form id="frmd">
+        <p:fieldset legend="Cadastro de Disciplinas" rendered="#{beanDisciplina.save}">
+            <div header="Growl" class="ui-fluid">
                 <p:growl id="growl" showDetail="true" sticky="true" /> 
+                <p:commandButton value="Buscar" ajax="false" action="#{beanDisciplina.mudarParaView()}" update=":frmd2" immediate="true"></p:commandButton>
                 <p:panelGrid columns="2" >
                     <p:fieldset legend="Dados Gerais"> 
                         <p:panelGrid columns="4" >          
@@ -42,23 +42,61 @@
                     </p:fieldset>
                     <p:fieldset legend="Opções">    
                         <p:panelGrid columns="3" >
-                            <p:commandButton value="Enviar" action="#{beanDisciplina.salvarDisciplina()}" update="@form"></p:commandButton>
-                            <p:commandButton value="Alterar" ></p:commandButton>
-                            <p:commandButton value="Excluir" disabled="true"></p:commandButton>
+                            <p:commandButton value="Enviar" action="#{beanDisciplina.salvarDisciplina()}" update=":frmd"></p:commandButton>
+                            <p:commandButton value="Alterar" disabled="true" ></p:commandButton>
+                            <p:commandButton value="Excluir" disabled="true" ></p:commandButton>
                         </p:panelGrid> 
                     </p:fieldset>
                 </p:panelGrid> 
-            </h:form>
-        </div>       
-    </p:fieldset>  
-        <div header="Growl" class="ui-fluid" >
-        <p:growl id="growl" showDetail="true" sticky="true" />  
-        <p:fieldset legend="Lista de Usuários" >
-            
-            <h:form id="list">
-                <h:commandButton value="Refresh" action="#{beanDisciplina.setListaDisciplina(listaDisciplina)}" class="button" ></h:commandButton>
+            </div>       
+        </p:fieldset>  
+    </h:form>
+
+    <h:form id="frmd1" >
+        <p:fieldset legend="Atualização de Disciplinas" rendered="#{beanDisciplina.edit}">
+            <div header="Growl" class="ui-fluid">
+                <p:growl id="growl" showDetail="true" sticky="true" /> 
+                <p:commandButton value="Cadastrar Novo" ajax="false" action="#{beanDisciplina.mudarParaSave()}" update=":frmd" ></p:commandButton>
+                <p:commandButton value="Buscar" ajax="false" action="#{beanDisciplina.mudarParaView()}" update=":frmd2" ></p:commandButton>
+                <p:panelGrid columns="2" >
+                    <p:fieldset legend="Dados Gerais"> 
+                        <p:panelGrid columns="4" > 
+                            <p:outputLabel value="Id: "></p:outputLabel>
+                            <p:inputText disabled="true" value="#{beanDisciplina.modelDisciplina.discId}"></p:inputText><br/>
+                            <h:inputHidden value="#{beanDisciplina.modelDisciplina.discId}"></h:inputHidden>
+                            <p:outputLabel for="Nome" value="Nome: "></p:outputLabel>
+                            <p:inputText id="Nome" value="#{beanDisciplina.modelDisciplina.discNome}" placeholder="Nome"></p:inputText>
+                            <p:outputLabel  for="Descrição" value="Descrição "></p:outputLabel>
+                            <p:inputText id="Descrição" value="#{beanDisciplina.modelDisciplina.discDesc}" placeholder="Descrição"></p:inputText>
+                            <p:outputLabel for="Carga" value="Carga horária: "></p:outputLabel>
+                            <p:inputText id="Carga" value="#{beanDisciplina.modelDisciplina.discCarga}" placeholder="Carga horária"></p:inputText>
+                            <p:outputLabel for="Status" value="Situação: "></p:outputLabel>
+                            <p:selectOneRadio id="Status" value="#{beanDisciplina.modelDisciplina.discStatus}">
+                                <f:selectItem itemLabel="Ativo" itemValue="Ativo"></f:selectItem>
+                                <f:selectItem itemLabel="Inativo" itemValue="Inativo"></f:selectItem>                            
+                            </p:selectOneRadio>
+                        </p:panelGrid> 
+                    </p:fieldset>
+                    <p:fieldset legend="Opções">    
+                        <p:panelGrid columns="3" >
+                            <p:commandButton value="Enviar" disabled="true"></p:commandButton>
+                            <p:commandButton value="Alterar" ></p:commandButton>
+                            <p:commandButton value="Excluir" ></p:commandButton>
+                        </p:panelGrid> 
+                    </p:fieldset>
+                </p:panelGrid> 
+            </div>       
+        </p:fieldset>  
+    </h:form>
+
+    <h:form id="frmd2">       
+        <p:fieldset legend="Lista de Usuários" rendered="#{beanDisciplina.view}">
+            <div header="Growl" class="ui-fluid" >
+                <p:growl id="growl" showDetail="true" sticky="true" /> 
+                <p:commandButton value="Cadastrar Novo" ajax="false" action="#{beanDisciplina.mudarParaSave()}" update=":frmd" ></p:commandButton>
+                <p:commandButton value="Refresh" action="#{beanDisciplina.setListaDisciplina(listaDisciplina)}" ajax="false" update=":frmd2"></p:commandButton>
                 <p:dataTable value="#{beanDisciplina.listaDisciplina}" var="lista" emptyMessage="Não existem valores para exibição" scrollRows="10" scrollable="true" liveScroll="true" 
-               scrollHeight="180" >
+                             scrollHeight="360" >
 
                     <p:column  style="width: 105px !important;" headerText="ID" sortBy="#{lista.discId}" filterBy="#{lista.discId}" class="cell">
                         <h:outputText value="#{lista.discId}" />
@@ -80,13 +118,12 @@
                         <h:outputText value="#{lista.discStatus}" />
                     </p:column>
 
-                    <p:column headerText="OPÇÕES" class="cell">
-                        <h:commandButton value="EDITAR" action="#{beanDisciplina.setModelDisciplina(lista)}" class="button" ></h:commandButton>
-                        <h:commandButton value="EXCLUIR" action="#" class="button"></h:commandButton>
+                    <p:column headerText="OPÇÕES" class="cell" style="width: 90px !important;">
+                        <p:commandButton value="Modificar" onclick="#{beanDisciplina.setModelDisciplina(lista)}" action="#{beanDisciplina.mudarParaEdit()}" ajax="false" update=":frmd1"></p:commandButton>
                     </p:column>
-                </p:dataTable>
-            </h:form>
-        </p:fieldset>
-    </div>
+                </p:dataTable>  
+            </div>
+        </p:fieldset>    
+    </h:form>
 </ui:decorate>
 

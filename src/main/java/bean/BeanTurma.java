@@ -40,7 +40,6 @@ public class BeanTurma extends BeanTela {
         } else {
             mensagemSalvo(false);
         }
-
     }
 
     public void mensagemSalvo(Boolean status) {
@@ -52,7 +51,6 @@ public class BeanTurma extends BeanTela {
         }
     }
 
-   
     public ModelTurma getModelTurma() {
         return modelTurma;
     }
@@ -66,24 +64,33 @@ public class BeanTurma extends BeanTela {
 
         daoTurma.atualizarTurma(modelTurma);
         mudarParaView();
-        
-
+        mensagemAtualizado(true);
     }
 
-     public void mensagemAtualizado(Boolean status) {
+    public void mensagemAtualizado(Boolean status) {
         FacesContext context = FacesContext.getCurrentInstance();
         if (status) {
-            context.addMessage(null, new FacesMessage("Sucesso!", "Cadastro Atualizado!"));   
+            context.addMessage(null, new FacesMessage("Sucesso!", "Cadastro Atualizado!"));
         } else {
             context.addMessage(null, new FacesMessage("Erro!", "Erro ao Atualizar!"));
         }
     }
 
-    
     public void deletarTurma(ModelTurma modelTurma) {
 
         daoTurma.excluirTurma(modelTurma);
+        mudarParaView();
+        mensagemDeletar(true);
 
+    }
+
+    public void mensagemDeletar(Boolean status) {
+        FacesContext context = FacesContext.getCurrentInstance();
+        if (status) {
+            context.addMessage(null, new FacesMessage("Sucesso!", "Cadastro Deletado!"));
+        } else {
+            context.addMessage(null, new FacesMessage("Erro!", "Erro ao Deletar!"));
+        }
     }
 
     public ArrayList<ModelTurma> getListaTurma() {
@@ -91,9 +98,8 @@ public class BeanTurma extends BeanTela {
         listaTurma = (ArrayList<ModelTurma>) daoTurma.listaTurma();
         if (listaTurma == null) {
             listaTurma = new ArrayList<>();
-      //      for (ModelTurma T : daoTurma.listaTurma()) {
+            //      for (ModelTurma T : daoTurma.listaTurma()) {
             for (ModelTurma T : listaTurma) {
-
                 listaTurma.add(T);
             }
         }

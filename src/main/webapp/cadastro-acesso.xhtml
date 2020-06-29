@@ -20,7 +20,7 @@
         <p:fieldset legend="Cadastro de Usuários" rendered="#{beanAcesso.save}">
             <p:growl id="growl" showDetail="true" sticky="true" />
             <div header="Growl" class="ui-fluid">
-                <p:commandButton value="Buscar" ajax="false" action="#{beanAcesso.mudarParaView()}" update=":frmc1"></p:commandButton>
+                <p:commandButton value="Buscar" ajax="false" action="#{beanAcesso.mudarParaView()}" update=":frmc1" immediate="true"></p:commandButton>
                 <p:panelGrid columns="3" >
                     <p:fieldset legend="Dados do Usuário">
                         <p:panelGrid columns="2" >
@@ -35,11 +35,10 @@
                     <p:fieldset legend="Dados de Funcionário">
                         <p:panelGrid columns="2" >
                             <p:outputLabel value="Pessoa: "></p:outputLabel>
-                            <p:selectOneMenu value="#{beanAcesso.modelAcesso.pesId}" effect="fold" editable="false" filter="true" filterMatchMode="startsWith" >
-
-                                <f:selectItems value="#{beanProfessor.listaProfessor}" var="listaP" itemValue="#{listaP.pesId}" itemLabel="#{listaP.pesNome}"/>
-
+                            <p:selectOneMenu value="#{beanAcesso.modelAcesso.pesId}" effect="fold" editable="false" filter="true" filterMatchMode="startsWith">
+                                <f:selectItems value="#{beanProfessor.listaProfessor}" var="listaP" itemValue="#{listaP.pesId}" itemLabel="#{listaP.pesNome}" />
                             </p:selectOneMenu>
+                           
                             <p:outputLabel value="Status: "></p:outputLabel>
                             <p:selectOneRadio value="#{beanAcesso.modelAcesso.acesStatus}">
                                 <f:selectItem itemValue="Ativo" itemLabel="Ativo"></f:selectItem>    
@@ -63,7 +62,7 @@
         <p:fieldset legend="Lista de Usuários" rendered="#{beanAcesso.view}">
             <div header="Growl" class="ui-fluid">
                 <p:growl id="growl" showDetail="true" sticky="true" />  
-                <p:commandButton value="Novo" ajax="false" action="#{beanAcesso.mudarParaSave()}" update=":frmc"></p:commandButton>
+                <p:commandButton value="Novo" ajax="false" action="#{beanAcesso.mudarParaSave()}" update=":frmc" ></p:commandButton>
                 <p:commandButton value="Refresh" ajax="false" action="#{beanAcesso.setListaAcesso(listaAcesso)}" update=":frmc1"></p:commandButton>
                 <p:dataTable value="#{beanAcesso.listaAcesso}" var="lista" emptyMessage="Não existem valores para exibição" scrollRows="10" scrollable="true" liveScroll="true" 
                              scrollHeight="170" >
@@ -89,7 +88,7 @@
                     </p:column>
 
                     <p:column headerText="OPÇÕES" class="cell" style="width: 90px !important;">
-                        <p:commandButton value="Atualizar" action="#{beanAcesso.mudarParaEdit()}" onclick="#{beanAcesso.setModelAcesso(lista)}" ajax="false" update=":frmc1"></p:commandButton>  
+                        <p:commandButton value="Modificar" action="#{beanAcesso.mudarParaEdit()}" onclick="#{beanAcesso.setModelAcesso(lista)}" ajax="false" update=":frmc1"></p:commandButton>  
                     </p:column>
                 </p:dataTable>
             </div>
@@ -100,14 +99,14 @@
         <p:fieldset legend="Atualização de Usuários" rendered="#{beanAcesso.edit}">
             <p:growl id="growl" showDetail="true" sticky="true" />
             <div header="Growl" class="ui-fluid">
-                <p:commandButton value="Cadastrar Novo" ajax="false" action="#{beanAcesso.mudarParaSave()}" update=":frmc"></p:commandButton>
-                <p:commandButton value="Buscar" ajax="false" action="#{beanAcesso.mudarParaView()}" update=":frmc1"></p:commandButton>
+                <p:commandButton value="Cadastrar Novo" ajax="false" action="#{beanAcesso.mudarParaSave()}" update=":frmc" immediate="true"></p:commandButton>
+                <p:commandButton value="Buscar" ajax="false" action="#{beanAcesso.mudarParaView()}" update=":frmc1" immediate="true"></p:commandButton>
                 <p:panelGrid columns="3" >
                     <p:fieldset legend="Dados do Usuário">
                         <p:panelGrid columns="2" >
-                            <p:outputLabel value="Id: "></p:outputLabel>
-                            <p:inputText value="#{beanAcesso.modelAcesso.acesId}" disabled="true"></p:inputText>
                             <h:inputHidden value="#{beanAcesso.modelAcesso.acesId}" ></h:inputHidden><br/>
+                            <p:outputLabel value="Id: "></p:outputLabel>
+                            <p:inputText value="#{beanAcesso.modelAcesso.acesId}" disabled="true"></p:inputText>     
                             <p:outputLabel value="Nome: "></p:outputLabel>
                             <p:inputText value="#{beanAcesso.modelAcesso.acesNome}" placeholder="Digite o nome "></p:inputText>
                             <p:outputLabel value="Login: "></p:outputLabel>
