@@ -13,7 +13,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.model.SelectItem;
 import model.ModelMatricula;
 import util.BLDatas;
 
@@ -23,17 +22,18 @@ import util.BLDatas;
  */
 @ManagedBean
 @SessionScoped
-public class BeanMatricula implements Serializable {
+public class BeanMatricula extends BeanTela implements Serializable {
 
-    private ArrayList<SelectItem> listaMatricula = null;
+    private ArrayList<ModelMatricula> listaMatricula = null;
     private ModelMatricula modelMatricula = new ModelMatricula();
     private String data = new String();
+    DaoMatricula daoMatricula = new DaoMatricula();
 
     public BeanMatricula() {
     }
 
-    public void salvarMatricula() throws Exception{
-        DaoMatricula daoMatricula = new DaoMatricula();
+    public void salvarMatricula() throws Exception {
+       
         BLDatas bLDatas = new BLDatas();
 
         Date dt = bLDatas.converterDataStringParaDate(getData());
@@ -41,6 +41,7 @@ public class BeanMatricula implements Serializable {
             daoMatricula.salvarMatricula(modelMatricula);
             modelMatricula = new ModelMatricula();
             setData(new String());
+            mudarParaView();
             mensagemSalvo(true);
         } else {
             mensagemSalvo(false);
@@ -57,6 +58,40 @@ public class BeanMatricula implements Serializable {
         }
     }
 
+     public void AtualizarMatricula(ModelMatricula modelMatricula) {
+
+        daoMatricula.atualizarMatricula(modelMatricula);
+        mudarParaView();
+        mensagemAtualizado(true);
+    }
+
+    public void mensagemAtualizado(Boolean status) {
+        FacesContext context = FacesContext.getCurrentInstance();
+        if (status) {
+            context.addMessage(null, new FacesMessage("Sucesso!", "Cadastro Atualizado!"));
+        } else {
+            context.addMessage(null, new FacesMessage("Erro!", "Erro ao Atualizar!"));
+        }
+    }
+
+    public void deletarMatricula(ModelMatricula modelMatricula) {
+
+        daoMatricula.excluirMatricula(modelMatricula);
+        mudarParaView();
+        mensagemDeletar(true);
+
+    }
+
+    public void mensagemDeletar(Boolean status) {
+        FacesContext context = FacesContext.getCurrentInstance();
+        if (status) {
+            context.addMessage(null, new FacesMessage("Sucesso!", "Cadastro Deletado!"));
+        } else {
+            context.addMessage(null, new FacesMessage("Erro!", "Erro ao Deletar!"));
+        }
+    }
+
+    
     public ModelMatricula getModelMatricula() {
         return modelMatricula;
     }
@@ -65,30 +100,29 @@ public class BeanMatricula implements Serializable {
         this.modelMatricula = modelMatricula;
     }
 
-    public ArrayList<SelectItem> getListaMatricula() {
-
-        if (listaMatricula == null) {
-            listaMatricula = new ArrayList<>();
-            DaoMatricula daoMatricula = new DaoMatricula();
-
-            for (ModelMatricula M : daoMatricula.listaMatricula()) {
-                SelectItem s = new SelectItem(M.getMatId());
-                listaMatricula.add(s);
-            }
-        }
-        return listaMatricula;
-    }
-
-    public void setListaMatricula(ArrayList<SelectItem> listaMatricula) {
-        this.listaMatricula = listaMatricula;
-    }
-
     public String getData() {
         return data;
     }
 
     public void setData(String data) {
         this.data = data;
+    }
+
+    public ArrayList<ModelMatricula> getListaMatricula() {
+
+        listaMatricula = (ArrayList<ModelMatricula>) daoMatricula.listaMatricula();
+        
+        if (listaMatricula == null) {
+            listaMatricula = new ArrayList<>();
+            for (ModelMatricula M : listaMatricula) {
+                listaMatricula.add(M);
+            }
+        }
+        return listaMatricula;
+    }
+
+    public void setListaMatricula(ArrayList<ModelMatricula> listaMatricula) {
+        this.listaMatricula = listaMatricula;
     }
 
 }

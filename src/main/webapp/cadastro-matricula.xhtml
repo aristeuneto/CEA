@@ -16,20 +16,14 @@
         .ui-orderlist .ui-orderlist-list {
             height: auto;
         }
-    </style>    
+    </style> 
     <h:outputScript name="pt_BR.js" library="js"></h:outputScript>
-    <p:fieldset legend="Cadastro de Matriculas">
-        <p:fieldset legend="Pesquisa">    
-            <p:panelGrid columns="3" >
-                <p:outputLabel for="pesquisa" value="Pesquisa "></p:outputLabel> 
-                <p:inputText id="pesquisa" style='width: 400px' value="" placeholder="Busca de usuários"></p:inputText>
-                <p:commandButton value="Buscar" action="#"></p:commandButton>
-            </p:panelGrid>  
-        </p:fieldset>
-        <!-- Adionando JS para traduzir calendário-->
-        <h:form>
+    <h:form id="frmm"> 
+        <p:fieldset legend="Atualização de Matriculas" rendered="#{beanMatricula.save}">
             <div header="Growl" class="ui-fluid">
                 <p:growl id="growl" showDetail="true" sticky="true"/>
+                <p:commandButton value="Cadastrar Nova" ajax="false" action="#{beanMatricula.mudarParaSave()}" update=":frmm" immediate="true"></p:commandButton>
+                <p:commandButton value="Buscar" ajax="false" action="#{beanMatricula.mudarParaView()}" update=":frmm2" immediate="true"></p:commandButton>
                 <p:panelGrid columns="2" >
                     <p:fieldset legend="Dados Gerais">    
                         <p:panelGrid columns="6" >          
@@ -64,13 +58,100 @@
                     </p:fieldset>
                     <p:fieldset legend="Opções">    
                         <p:panelGrid columns="3" >
-                            <p:commandButton value="Enviar" action="#{beanMatricula.salvarMatricula()}" update="@form"></p:commandButton>
-                            <p:commandButton value="Alterar" action="#" disabled="true"></p:commandButton>
-                            <p:commandButton value="Excluir" action="#" disabled="true"></p:commandButton>
+                            <p:commandButton value="Enviar" ajax="false" action="#{beanMatricula.salvarMatricula()}" update=":frmm"></p:commandButton>
+                            <p:commandButton value="Alterar" disabled="true"></p:commandButton>
+                            <p:commandButton value="Excluir" disabled="true"></p:commandButton>
                         </p:panelGrid> 
                     </p:fieldset>
                 </p:panelGrid>
+            </div> 
+        </p:fieldset>
+    </h:form>
+    
+        <h:form id="frmm1">
+        <p:fieldset legend="Cadastro de Matriculas" rendered="#{beanMatricula.edit}">
+            <div header="Growl" class="ui-fluid">
+                <p:growl id="growl" showDetail="true" sticky="true"/>
+                <p:commandButton value="Buscar" ajax="false" action="#{beanMatricula.mudarParaView()}" update=":frmm2" immediate="true"></p:commandButton>
+                <p:panelGrid columns="2" >
+                    <p:fieldset legend="Dados Gerais">    
+                        <p:panelGrid columns="6" >          
+                            <p:outputLabel  for="Numero" value="Nº Matrícula:"></p:outputLabel>                                         
+                            <p:inputMask id="Numero" mask="9999-aaaa99.9999" value="#" placeholder="Numero da Matricula"></p:inputMask> 
+                            <p:outputLabel for="Ano" value="Ano Letivo: "></p:outputLabel>                       
+                            <p:inputMask id="Ano" value="#{beanMatricula.modelMatricula.matAnoLetivo}" mask="9999" placeholder="Ano Letivo"></p:inputMask>                      
+                            <p:outputLabel for="Data" value="Data da Matrícula: "/>
+                            <p:inputMask id="Data" value="#{beanMatricula.data}" mask="99/99/9999" placeholder="Data da Matrícula"/>
+                            <p:outputLabel for="Aluno" value="Aluno: "></p:outputLabel>
+                            <p:selectOneMenu id="Aluno" effect="fold" editable="false" filter="true" filterMatchMode="startsWith">  
+                                <f:selectItems value="#{beanAluno.listaAluno}"></f:selectItems>
+                            </p:selectOneMenu> 
+                            <p:outputLabel for="serie" value="Série: " />
+                            <p:selectOneMenu id="serie" value="#{beanMatricula.modelMatricula.matSerie}" effect="fold" editable="false" filter="true" filterMatchMode="startsWith">  
+                                <f:selectItem itemLabel="G1 - Maternal" itemValue="1ª" />
+                                <f:selectItem itemLabel="G2 - Maternal" itemValue="2ª" />
+                                <f:selectItem itemLabel="G3 - Maternal" itemValue="3ª" />
+                                <f:selectItem itemLabel="G4 - Maternal" itemValue="4ª" />
+                            </p:selectOneMenu>
+                            <p:outputLabel for="Turno" value="Turno: " />
+                            <p:selectOneMenu id="Turno" value="#{beanMatricula.modelMatricula.matTurno}" effect="fold" editable="false" >
+                                <f:selectItem itemLabel="Matutino" itemValue="Matutino" />
+                                <f:selectItem itemLabel="Vespertino" itemValue="Vespertino" />
+                            </p:selectOneMenu>
+                            <p:outputLabel for="Status" value="Situação: "></p:outputLabel>
+                            <p:selectOneRadio value="#{beanMatricula.modelMatricula.matStatus}">
+                                <f:selectItem id="Status" itemLabel="Ativo" itemValue="Ativo"></f:selectItem>
+                                <f:selectItem id="status" itemLabel="Inativo" itemValue="Inativo"></f:selectItem>                            
+                            </p:selectOneRadio>
+                        </p:panelGrid>   
+                    </p:fieldset>
+                    <p:fieldset legend="Opções">    
+                        <p:panelGrid columns="3" >
+                            <p:commandButton value="Enviar" disabled="true"></p:commandButton>
+                            <p:commandButton value="Alterar" ajax="false" action="#{beanMatricula.salvarMatricula()}" update=":frmm1"></p:commandButton>
+                            <p:commandButton value="Excluir" ajax="false" action="#{beanMatricula.salvarMatricula()}" update=":frmm1"></p:commandButton>
+                        </p:panelGrid> 
+                    </p:fieldset>
+                </p:panelGrid>
+            </div> 
+        </p:fieldset>
+    </h:form>
+
+    <h:form id="frmm2">
+        <p:fieldset legend="Lista de Matriculados" rendered="#{beanMatricula.view}">
+            <div header="Growl" class="ui-fluid" >  
+                <p:growl id="growl" showDetail="true" sticky="true" />  
+                <p:commandButton value="Cadastrar Nova" action="#{beanMatricula.mudarParaSave()}" update=":frmm" ajax="false"></p:commandButton>
+                <p:commandButton value="Refresh"  action="#{beanMatricula.setListaMatricula(listaMatricula)}" update=":frmm2" ajax="false"></p:commandButton>
+                <p:dataTable value="#{beanMatricula.listaMatricula}" var="lista" emptyMessage="Não existem valores para exibição" scrollRows="10" scrollable="true" liveScroll="true" 
+                             scrollHeight="360" >
+
+                    <p:column style="width: 105px !important;" headerText="ID" sortBy="#{lista.matId}" filterBy="#{lista.matId}" class="cell">
+                        <h:outputText value="#{lista.matId}" />
+                    </p:column>
+                    
+                    <p:column  headerText="Aluno" sortBy="#{lista.pesId}" filterBy="#{lista.pesId}" class="cell">
+                        <h:outputText value="#{lista.pesId}"/>
+                    </p:column>
+                    
+                    <p:column  headerText="Ano Letivo" sortBy="#{lista.matAnoLetivo}" filterBy="#{lista.matAnoLetivo}" class="cell">
+                        <h:outputText value="#{lista.matAnoLetivo}"/>
+                    </p:column>
+                    
+                    <p:column  headerText="Série" sortBy="#{lista.matSerie}" filterBy="#{lista.matSerie}" class="cell">
+                        <h:outputText value="#{lista.matSerie}"/>
+                    </p:column>
+                    
+                    <p:column  headerText="Turno" sortBy="#{lista.matTurno}" filterBy="#{lista.matTurno}" class="cell">
+                        <h:outputText value="#{lista.matTurno}"/>
+                    </p:column>
+                    
+                    <p:column headerText="OPÇÕES" class="cell" style="width: 90px !important;">
+                        <p:commandButton value="Modificar" ajax="false" action="#{beanMatricula.mudarParaEdit()}" onclick="#{beanMatricula.setModelMatricula(lista)}" update=":frmm1"></p:commandButton>
+                    </p:column>      
+                </p:dataTable>
             </div>
-        </h:form>
-    </p:fieldset> 
+        </p:fieldset>
+    </h:form>
+
 </ui:decorate>

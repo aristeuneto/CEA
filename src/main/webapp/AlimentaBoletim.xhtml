@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://xmlns.jcp.org/jsf/html"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             template="template-cea.xhtml"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:outputScript name="pt_BR.js" library="js"></h:outputScript>    
+    <h:form >
+        <p:fieldset legend="Alunos Matriculados" rendered="#{beanAluno.view}">
+            <div header="Growl" class="ui-fluid" >  
+                <p:growl id="growl" showDetail="true" sticky="true" />  
+                <p:commandButton value="Cadastrar Novo" action="#{beanMatricula.mudarParaSave()}" update=":frmp" ajax="false"></p:commandButton>
+                <p:commandButton value="Refresh"  action="#{beanProfessor.setListaProfessor(listaProfessor)}" update=":frmp2" ajax="false"></p:commandButton>
+                <p:dataTable value="#{beanProfessor.listaProfessor}" var="lista" emptyMessage="Não existem valores para exibição" scrollRows="10" scrollable="true" liveScroll="true" 
+                             scrollHeight="360" >
+
+                    <p:column style="width: 105px !important;" headerText="ID" sortBy="#{lista.pesId}" filterBy="#{lista.pesId}" class="cell">
+                        <h:outputText value="#{lista.pesId}" />
+                    </p:column>
+
+                    <p:column headerText="NOME" sortBy="#{lista.pesNome}" filterBy="#{lista.pesNome}" class="cell" >
+                        <h:outputText value="#{lista.pesNome}"/>
+                    </p:column>
+
+                    <p:column headerText="CPF" sortBy="#{lista.pesCpf}" filterBy="#{lista.pesCpf}" class="cell">
+                        <h:outputText value="#{lista.pesCpf}"/>
+                    </p:column>
+
+                    <p:column headerText="RG" sortBy="#{lista.pesRg}" filterBy="#{lista.pesRg}" class="cell">
+                        <h:outputText value="#{lista.pesRg}"/>
+                    </p:column>
+
+                    <p:column headerText="NASCIMENTO" sortBy="#{lista.pesDtnasc}" filterBy="#{lista.pesDtnasc}" class="cell">
+                        <h:outputText value="#{lista.pesDtnasc}"/>
+                    </p:column>
+
+                    <p:column headerText="FILIAÇÃO" sortBy="#{lista.pesFiliacao}" filterBy="#{lista.pesFiliacao}" class="cell">
+                        <h:outputText value="#{lista.pesFiliacao}"/>
+                    </p:column>
+
+                    <p:column headerText="STATUS" sortBy="#{lista.profStatus}" filterBy="#{lista.profStatus}" class="cell" rendered="false">
+                        <h:outputText value="#{lista.profStatus}" />
+                    </p:column>
+
+                    <p:column headerText="OPÇÕES" class="cell" style="width: 90px !important;">
+                        <p:commandButton value="Modificar" ajax="false" action="#{beanProfessor.mudarParaEdit()}" onclick="#{beanProfessor.setModelProfessor(lista)}" update=":frmp1"></p:commandButton>
+                    </p:column>
+                </p:dataTable>
+            </div>
+        </p:fieldset>
+    </h:form>
+
+
+
+
+
+
+</ui:decorate>
+
