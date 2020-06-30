@@ -98,7 +98,7 @@
                 <p:dataTable value="#{beanDisciplina.listaDisciplina}" var="lista" emptyMessage="Não existem valores para exibição" scrollRows="10" scrollable="true" liveScroll="true" 
                              scrollHeight="360" >
 
-                    <p:column  style="width: 105px !important;" headerText="ID" sortBy="#{lista.discId}" filterBy="#{lista.discId}" class="cell">
+                    <p:column  style="width: 40px !important;" headerText="ID" sortBy="#{lista.discId}" class="cell">
                         <h:outputText value="#{lista.discId}" />
                     </p:column>
 
@@ -118,7 +118,7 @@
                         <h:outputText value="#{lista.discStatus}" />
                     </p:column>
 
-                    <p:column headerText="OPÇÕES" class="cell" style="width: 90px !important;">
+                    <p:column headerText="OPÇÕES" class="cell" style="width: 85px !important;">
                         <p:commandButton value="Modificar" onclick="#{beanDisciplina.setModelDisciplina(lista)}" action="#{beanDisciplina.mudarParaEdit()}" ajax="false" update=":frmd1"></p:commandButton>
                     </p:column>
                 </p:dataTable>  

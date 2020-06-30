@@ -65,9 +65,9 @@
                 <p:commandButton value="Novo" ajax="false" action="#{beanAcesso.mudarParaSave()}" update=":frmc" ></p:commandButton>
                 <p:commandButton value="Refresh" ajax="false" action="#{beanAcesso.setListaAcesso(listaAcesso)}" update=":frmc1"></p:commandButton>
                 <p:dataTable value="#{beanAcesso.listaAcesso}" var="lista" emptyMessage="Não existem valores para exibição" scrollRows="10" scrollable="true" liveScroll="true" 
-                             scrollHeight="170" >
+                             scrollHeight="360" >
 
-                    <p:column style="width: 105px !important;" headerText="ID" sortBy="#{lista.acesId}" filterBy="#{lista.acesId}" class="cell">
+                    <p:column style="width: 40px !important;" headerText="ID" sortBy="#{lista.acesId}"  class="cell">
                         <h:outputText value="#{lista.acesId}" />
                     </p:column>
 
@@ -87,7 +87,7 @@
                         <h:outputText value="#{lista.acesStatus}" />
                     </p:column>
 
-                    <p:column headerText="OPÇÕES" class="cell" style="width: 90px !important;">
+                    <p:column headerText="OPÇÕES" class="cell" style="width: 85px !important;">
                         <p:commandButton value="Modificar" action="#{beanAcesso.mudarParaEdit()}" onclick="#{beanAcesso.setModelAcesso(lista)}" ajax="false" update=":frmc1"></p:commandButton>  
                     </p:column>
                 </p:dataTable>

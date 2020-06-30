@@ -57,7 +57,7 @@
                 <p:dataTable value="#{beanTurma.listaTurma}" var="lista" emptyMessage="Não existem valores para exibição" scrollRows="10" scrollable="true" liveScroll="true" 
                              scrollHeight="360" >
 
-                    <p:column style="width: 105px !important;" headerText="ID" sortBy="#{lista.turmaId}" filterBy="#{lista.turmaId}" class="cell">
+                    <p:column style="width: 40px !important;" headerText="ID" sortBy="#{lista.turmaId}" class="cell">
                         <h:outputText value="#{lista.turmaId}" />
                     </p:column>
 
@@ -73,7 +73,7 @@
                         <h:outputText value="#{lista.turmaStatus}" />
                     </p:column>
 
-                    <p:column headerText="OPÇÕES" class="cell" style="width: 90px !important;">
+                    <p:column headerText="OPÇÕES" class="cell" style="width: 85px !important;">
                         <p:commandButton value="Modificar" action="#{beanTurma.setModelTurma(lista)}" ajax="false" update=":frm2"></p:commandButton>
                     </p:column>
                 </p:dataTable>

@@ -104,9 +104,7 @@
                         <p:commandButton value="Cadastrar Novo" ajax="false" action="#{beanProfessor.mudarParaSave()}" update=":frmp" immediate="true"></p:commandButton>
                         <p:commandButton value="Buscar" ajax="false" action="#{beanProfessor.mudarParaView()}" update=":frmp2" immediate="true"></p:commandButton>
                         <p:panelGrid columns="4" > 
-                            <p:outputLabel value="Id: "></p:outputLabel>
-                            <p:inputText disabled="true" value="#{beanProfessor.modelProfessor.pesId}"></p:inputText><br/>
-                            <h:inputHidden value="#{beanProfessor.modelProfessor.pesId}"></h:inputHidden>
+                           1
                             <p:outputLabel for="Nome" value="Nome: "></p:outputLabel>
                             <p:inputText id="Nome" value="#{beanProfessor.modelProfessor.pesNome}" placeholder="Nome"></p:inputText>
                             <p:outputLabel for="Rg" value="Rg: "></p:outputLabel>
@@ -181,7 +179,7 @@
                 <p:dataTable value="#{beanProfessor.listaProfessor}" var="lista" emptyMessage="Não existem valores para exibição" scrollRows="10" scrollable="true" liveScroll="true" 
                              scrollHeight="360" >
 
-                    <p:column style="width: 105px !important;" headerText="ID" sortBy="#{lista.pesId}" filterBy="#{lista.pesId}" class="cell">
+                    <p:column style="width: 40px !important;" headerText="ID" sortBy="#{lista.pesId}" class="cell">
                         <h:outputText value="#{lista.pesId}" />
                     </p:column>
 
@@ -209,7 +207,7 @@
                         <h:outputText value="#{lista.profStatus}" />
                     </p:column>
 
-                    <p:column headerText="OPÇÕES" class="cell" style="width: 90px !important;">
+                    <p:column headerText="OPÇÕES" class="cell" style="width: 85px !important;">
                         <p:commandButton value="Modificar" ajax="false" action="#{beanProfessor.mudarParaEdit()}" onclick="#{beanProfessor.setModelProfessor(lista)}" update=":frmp1"></p:commandButton>
                     </p:column>
                 </p:dataTable>

@@ -22,9 +22,9 @@ import util.BLDatas;
  */
 @ManagedBean
 @SessionScoped
-public class BeanMatricula extends BeanTela implements Serializable {
+public class BeanMatricula extends BeanTela implements Serializable{
 
-    private ArrayList<ModelMatricula> listaMatricula = null;
+    private ArrayList<ModelMatricula> listaMatricula;
     private ModelMatricula modelMatricula = new ModelMatricula();
     private String data = new String();
     DaoMatricula daoMatricula = new DaoMatricula();
