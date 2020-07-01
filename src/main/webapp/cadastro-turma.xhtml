@@ -22,7 +22,7 @@
         <p:fieldset legend="Cadastro de Turmas" rendered="#{beanTurma.save}">
             <p:growl id="growl" showDetail="true" sticky="true" />    
             <div header="Growl" class="ui-fluid">
-                <p:commandButton value="Buscar" ajax="true" action="#{beanTurma.mudarParaView()}" update=":frm1"></p:commandButton>
+                <p:commandButton value="Buscar" ajax="false" action="#{beanTurma.mudarParaView()}" update=":frm1" immediate="true"></p:commandButton>
                 <p:panelGrid columns="2" >
                     <p:fieldset legend="Dados Gerais"> 
                         <p:panelGrid columns="4" >

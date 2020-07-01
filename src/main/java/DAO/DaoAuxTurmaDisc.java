@@ -78,11 +78,23 @@ public class DaoAuxTurmaDisc {
     }
 
     public List<ModelAuxTurmaDisc> listaAuxTurmaDisc() {
+        try {
+            if (session.isOpen() == false) {
+                session = HibernateUtil.getSessionFactory().openSession();
+            }
         List<ModelAuxTurmaDisc> listaAuxTurmaDiscs = new ArrayList<>();
         org.hibernate.Query sql = session.createQuery("from ModelAuxTurmaDisc");
         listaAuxTurmaDiscs = sql.list();
 
         return listaAuxTurmaDiscs;
+    }catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return null;
     }
 
 }

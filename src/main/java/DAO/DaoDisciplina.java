@@ -78,11 +78,23 @@ public class DaoDisciplina {
     }
 
     public List<ModelDisciplina> listaDisciplina() {
+         try {
+            if (session.isOpen() == false) {
+                session = HibernateUtil.getSessionFactory().openSession();
+            }
         List<ModelDisciplina> listaDisciplinas = new ArrayList<>();
         org.hibernate.Query sql = session.createQuery("from ModelDisciplina");
         listaDisciplinas = sql.list();
 
         return listaDisciplinas;
+    }catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return null;
     }
 
 }

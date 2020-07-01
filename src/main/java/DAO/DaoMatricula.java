@@ -78,11 +78,23 @@ public class DaoMatricula {
     }
 
     public List<ModelMatricula> listaMatricula() {
-        List<ModelMatricula> listaMatriculas = new ArrayList<>();
-        org.hibernate.Query sql = session.createQuery("from ModelMatricula");
-        listaMatriculas = sql.list();
+        try {
+            if (session.isOpen() == false) {
+                session = HibernateUtil.getSessionFactory().openSession();
+            }
+            List<ModelMatricula> listaMatriculas = new ArrayList<>();
+            org.hibernate.Query sql = session.createQuery("from ModelMatricula");
+            listaMatriculas = sql.list();
 
-        return listaMatriculas;
+            return listaMatriculas;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return null;
     }
 
 }

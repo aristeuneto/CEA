@@ -78,11 +78,24 @@ public class DaoAuxProfTurma {
     }
 
     public List<ModelAuxProfTurma> listaAuxProfTurma() {
-        List<ModelAuxProfTurma> listaAuxProfTurmas = new ArrayList<>();
-        org.hibernate.Query sql = session.createQuery("from ModelAuxProfTurma");
-        listaAuxProfTurmas = sql.list();
 
-        return listaAuxProfTurmas;
+        try {
+            if (session.isOpen() == false) {
+                session = HibernateUtil.getSessionFactory().openSession();
+            }
+            List<ModelAuxProfTurma> listaAuxProfTurmas = new ArrayList<>();
+            org.hibernate.Query sql = session.createQuery("from ModelAuxProfTurma");
+            listaAuxProfTurmas = sql.list();
+
+            return listaAuxProfTurmas;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return null;
     }
 
 }

@@ -7,8 +7,6 @@ package DAO;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.Query;
-import model.ModelAluno;
 import model.ModelBoletim;
 import org.hibernate.Session;
 import util.HibernateUtil;
@@ -79,11 +77,22 @@ public class DaoBoletim {
     }
 
     public List<ModelBoletim> listaBoletim() {
+         try {
+            if (session.isOpen() == false) {
+                session = HibernateUtil.getSessionFactory().openSession();
+            }
         List<ModelBoletim> listaBoletim = new ArrayList<>();
         org.hibernate.Query sql = session.createQuery("from ModelBoletim");
         listaBoletim = sql.list();
 
         return listaBoletim;
-    }
-
+    }catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return null;
+}
 }

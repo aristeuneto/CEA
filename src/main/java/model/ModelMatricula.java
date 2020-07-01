@@ -43,6 +43,12 @@ public class ModelMatricula implements Serializable {
 
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 12)
+    @Column(name = "mat_data")
+    private String matData;
+
+    @Basic(optional = false)
+    @NotNull
     @Size(min = 1, max = 20)
     @Column(name = "mat_numero")
     private String matNumero;
@@ -68,9 +74,6 @@ public class ModelMatricula implements Serializable {
     @Size(min = 1, max = 20)
     @Column(name = "mat_serie")
     private String matSerie;
-    @Column(name = "mat_data")
-    @Temporal(TemporalType.DATE)
-    private Date matData;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 10)
@@ -127,11 +130,11 @@ public class ModelMatricula implements Serializable {
         this.matSerie = matSerie;
     }
 
-    public Date getMatData() {
+    public String getMatData() {
         return matData;
     }
 
-    public void setMatData(Date matData) {
+    public void setMatData(String matData) {
         this.matData = matData;
     }
 
@@ -175,6 +178,5 @@ public class ModelMatricula implements Serializable {
     public String toString() {
         return "model.ModelMatricula[ matId=" + matId + " ]";
     }
-
-    
+ 
 }

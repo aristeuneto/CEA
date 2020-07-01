@@ -78,11 +78,23 @@ public class DaoAuxProfDisc {
     }
 
     public List<ModelAuxProfDisc> listaAuxProfDisc() {
-        List<ModelAuxProfDisc> listaAuxProfDiscs = new ArrayList<>();
-        org.hibernate.Query sql = session.createQuery("from ModelAuxProfDisc");
-        listaAuxProfDiscs = sql.list();
+        try {
+            if (session.isOpen() == false) {
+                session = HibernateUtil.getSessionFactory().openSession();
+            }
+            List<ModelAuxProfDisc> listaAuxProfDiscs = new ArrayList<>();
+            org.hibernate.Query sql = session.createQuery("from ModelAuxProfDisc");
+            listaAuxProfDiscs = sql.list();
 
-        return listaAuxProfDiscs;
+            return listaAuxProfDiscs;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return null;
     }
 
 }

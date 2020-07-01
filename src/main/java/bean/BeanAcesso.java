@@ -53,26 +53,36 @@ public class BeanAcesso extends BeanTela {
         }
     }
 
-    public void AtualizarAcesso() {
+ public void AtualizarAcesso(ModelAcesso modelAcesso) {
 
-        DaoAcesso daoAcesso = new DaoAcesso();
-
-        if (getModelAcesso() != null) {
-            daoAcesso.atualizarAcesso(getModelAcesso());
-            setModelAcesso(new ModelAcesso());
-            mensagemSalvo(true);
-        } else {
-            mensagemSalvo(false);
-        }
-
+        daoAcesso.atualizarAcesso(modelAcesso);
+        mudarParaView();
+        mensagemAtualizado(true);
     }
 
-    public void mensagemAtualizar(Boolean status) {
+    public void mensagemAtualizado(Boolean status) {
         FacesContext context = FacesContext.getCurrentInstance();
         if (status) {
             context.addMessage(null, new FacesMessage("Sucesso!", "Cadastro Atualizado!"));
         } else {
             context.addMessage(null, new FacesMessage("Erro!", "Erro ao Atualizar!"));
+        }
+    }
+
+    public void deletarAcesso(ModelAcesso modelAcesso) {
+
+        daoAcesso.excluirAcesso(modelAcesso);
+        mudarParaView();
+        mensagemDeletar(true);
+
+    }
+
+    public void mensagemDeletar(Boolean status) {
+        FacesContext context = FacesContext.getCurrentInstance();
+        if (status) {
+            context.addMessage(null, new FacesMessage("Sucesso!", "Cadastro Deletado!"));
+        } else {
+            context.addMessage(null, new FacesMessage("Erro!", "Erro ao Deletar!"));
         }
     }
 

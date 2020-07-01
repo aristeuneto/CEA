@@ -78,11 +78,23 @@ public class DaoAluno {
     }
 
     public List<ModelAluno> listaAluno() {
-        List<ModelAluno> listaAluno = new ArrayList<>();
-        org.hibernate.Query sql =  session.createQuery("from ModelAluno");
-        listaAluno = sql.list();
+        try {
+            if (session.isOpen() == false) {
+                session = HibernateUtil.getSessionFactory().openSession();
+            }
+            List<ModelAluno> listaAluno = new ArrayList<>();
+            org.hibernate.Query sql = session.createQuery("from ModelAluno");
+            listaAluno = sql.list();
 
-        return listaAluno;
+            return listaAluno;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return null;
     }
 
 }

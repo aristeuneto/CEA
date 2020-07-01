@@ -17,8 +17,8 @@ import util.HibernateUtil;
  * @author Cpd01
  */
 public class DaoProfessor {
-    
-     Session session = HibernateUtil.getSessionFactory().openSession();
+
+    Session session = HibernateUtil.getSessionFactory().openSession();
 
     public void salvarProfessor(ModelProfessor modelProfessor) {
 
@@ -78,11 +78,23 @@ public class DaoProfessor {
     }
 
     public List<ModelProfessor> listaProfessor() {
-        List<ModelProfessor> listaProfessores = new ArrayList<>();
-        org.hibernate.Query sql = session.createQuery("from ModelProfessor");
-        listaProfessores = sql.list();
+        try {
+            if (session.isOpen() == false) {
+                session = HibernateUtil.getSessionFactory().openSession();
+            }
+            List<ModelProfessor> listaProfessores = new ArrayList<>();
+            org.hibernate.Query sql = session.createQuery("from ModelProfessor");
+            listaProfessores = sql.list();
 
-        return listaProfessores;
+            return listaProfessores;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return null;
     }
-    
+
 }

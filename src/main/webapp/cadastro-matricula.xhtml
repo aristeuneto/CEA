@@ -16,6 +16,34 @@
             height: auto;
         }
     </style> 
+    <script type="text/javascript">    
+    PrimeFaces.locales ['de'] = {
+        closeText: 'Schließen',
+        prevText: 'Zurück',
+        nextText: 'Weiter',
+        monthNames: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember' ],
+        monthNamesShort: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez' ],
+        dayNames: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
+        dayNamesShort: ['Son', 'Mon', 'Die', 'Mit', 'Don', 'Fre', 'Sam'],
+        dayNamesMin: ['S', 'M', 'D', 'M ', 'D', 'F ', 'S'],
+        weekHeader: 'Woche',
+        firstDay: 1,
+        isRTL: false,
+        showMonthAfterYear: false,
+        yearSuffix:'',
+        timeOnlyTitle: 'Nur Zeit',
+        timeText: 'Zeit',
+        hourText: 'Stunde',
+        minuteText: 'Minute',
+        secondText: 'Sekunde',
+        currentText: 'Aktuelles Datum',
+        ampm: false,
+        month: 'Monat',
+        week: 'Woche',
+        day: 'Tag',
+        allDayText: 'Ganzer Tag'
+    };
+</script>
     <h:outputScript name="pt_BR.js" library="js"></h:outputScript>
     <h:form id="frmm">
         <p:fieldset legend="Cadastro de Matriculas" rendered="#{beanMatricula.save}">
@@ -30,7 +58,7 @@
                             <p:outputLabel for="Ano" value="Ano Letivo: "></p:outputLabel>                       
                             <p:inputMask id="Ano" value="#{beanMatricula.modelMatricula.matAnoLetivo}" mask="9999" placeholder="Ano Letivo"></p:inputMask>                      
                             <p:outputLabel for="Data" value="Data da Matrícula: "/>
-                            <p:inputMask id="Data" value="#{beanMatricula.data}" mask="99/99/9999" placeholder="Data da Matrícula"/>
+                            <p:inputMask id="Data" value="#{beanMatricula.data}" mask="99/99/9999" placeholder="Data da Matrícula"/> 
                             <p:outputLabel for="Aluno" value="Aluno: "></p:outputLabel>
                             <p:selectOneMenu id="Aluno" effect="fold" editable="false" filter="true" filterMatchMode="startsWith">  
                                 <f:selectItems value="#{beanAluno.listaAluno}"></f:selectItems>
@@ -89,7 +117,7 @@
                                 <f:selectItems value="#{beanAluno.listaAluno}"></f:selectItems>
                             </p:selectOneMenu> 
                             <p:outputLabel for="serie" value="Série: " />
-                            <p:selectOneMenu id="serie" value="#{beanMatricula.modelMatricula.matSerie}" effect="fold" editable="false" filter="true" filterMatchMode="startsWith">  
+                            <p:selectOneMenu  id="serie" value="#{beanMatricula.modelMatricula.matSerie}" effect="fold" editable="false" filter="true" filterMatchMode="startsWith" >  
                                 <f:selectItem itemLabel="G1 - Maternal" itemValue="1ª" />
                                 <f:selectItem itemLabel="G2 - Maternal" itemValue="2ª" />
                                 <f:selectItem itemLabel="G3 - Maternal" itemValue="3ª" />
@@ -120,12 +148,12 @@
     </h:form>
 
     <h:form id="frmm2">
-        <p:fieldset legend="Lista de Matriculados" rendered="#{beanMatricula.view}">
+        <p:fieldset legend="Lista de Matriculas" rendered="#{beanMatricula.view}">
             <div header="Growl" class="ui-fluid" >  
                 <p:growl id="growl" showDetail="true" sticky="true" />  
                 <p:commandButton value="Cadastrar Nova" action="#{beanMatricula.mudarParaSave()}" update=":frmm" ajax="false"></p:commandButton>
                 <p:commandButton value="Refresh"  action="#{beanMatricula.setListaMatricula(listaMatricula)}" update=":frmm2" ajax="false"></p:commandButton>
-                <p:dataTable value="#{beanMatricula.listaMatricula}" var="lista" emptyMessage="Não existem valores para exibição" scrollRows="10" scrollable="true" liveScroll="true" 
+                <p:dataTable value="#{beanMatricula.modelMatricula}" var="lista" emptyMessage="Não existem valores para exibição" scrollRows="10" scrollable="true" liveScroll="true" 
                              scrollHeight="360" >
 
                     <p:column style="width: 40px !important;" headerText="ID" sortBy="#{lista.matId}" class="cell">
@@ -149,7 +177,7 @@
                     </p:column>
 
                     <p:column headerText="OPÇÕES" class="cell" style="width: 90px !important;">
-                        <p:commandButton value="Modificar" ajax="false" action="#{beanMatricula.mudarParaEdit()}" onclick="#{beanMatricula.setModelMatricula(lista)}" update=":frmm1"></p:commandButton>
+                        <p:commandButton value="Modificar" ajax="false" action="#{beanMatricula.setModelMatricula(lista)}" update=":frmm1"></p:commandButton>
                     </p:column>      
                 </p:dataTable>
             </div>

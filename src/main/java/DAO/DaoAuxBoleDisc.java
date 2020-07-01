@@ -79,11 +79,23 @@ public class DaoAuxBoleDisc {
     }
 
     public List<ModelAuxBoleDisc> listaAuxBoleDisc() {
+         try {
+            if (session.isOpen() == false) {
+                session = HibernateUtil.getSessionFactory().openSession();
+            }
         List<ModelAuxBoleDisc> listaAuxBoleDiscs = new ArrayList<>();
         org.hibernate.Query sql = session.createQuery("from ModelAuxBoleDisc");
         listaAuxBoleDiscs = sql.list();
 
         return listaAuxBoleDiscs;
+    }catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return null;
     }
 
 }

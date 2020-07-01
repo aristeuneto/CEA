@@ -22,20 +22,20 @@ import model.ModelBoletim;
 @Named
 @ManagedBean
 @SessionScoped
-public class BeanBoletim {
+public class BeanBoletim extends BeanTela{
 
-    private ArrayList<SelectItem> listaBoletim = null;
+    private ArrayList<ModelBoletim> listaBoletim ;
     private ModelBoletim modelBoletim = new ModelBoletim();
+    DaoBoletim daoBoletim = new DaoBoletim();
 
     public BeanBoletim() {
 
     }
 
     public void salvarBoletim() {
-        DaoBoletim daoAcesso = new DaoBoletim();
 
         if (getModelBoletim() != null) {
-            daoAcesso.salvarBoletim(getModelBoletim());
+            daoBoletim.salvarBoletim(getModelBoletim());
             setModelBoletim(new ModelBoletim());
             mensagemSalvo(true);
         } else {
@@ -53,22 +53,55 @@ public class BeanBoletim {
         }
     }
 
-    public ArrayList<SelectItem> getListaBoletim() {
+    public void AtualizarBoletim(ModelBoletim modelBoletim) {
+
+        daoBoletim.atualizarBoletim(modelBoletim);
+        mudarParaView();
+        mensagemAtualizado(true);
+    }
+
+    public void mensagemAtualizado(Boolean status) {
+        FacesContext context = FacesContext.getCurrentInstance();
+        if (status) {
+            context.addMessage(null, new FacesMessage("Sucesso!", "Cadastro Atualizado!"));
+        } else {
+            context.addMessage(null, new FacesMessage("Erro!", "Erro ao Atualizar!"));
+        }
+    }
+
+    public void deletarAluno(ModelBoletim modelBoletim) {
+
+        daoBoletim.excluirBoletim(modelBoletim);
+        mudarParaView();
+        mensagemDeletar(true);
+
+    }
+
+    public void mensagemDeletar(Boolean status) {
+        FacesContext context = FacesContext.getCurrentInstance();
+        if (status) {
+            context.addMessage(null, new FacesMessage("Sucesso!", "Cadastro Deletado!"));
+        } else {
+            context.addMessage(null, new FacesMessage("Erro!", "Erro ao Deletar!"));
+        }
+    }
+
+    public ArrayList<ModelBoletim> getListaBoletim() {
 
         if (listaBoletim == null) {
             listaBoletim = new ArrayList<>();
             DaoBoletim daoBoletim = new DaoBoletim();
 
             for (ModelBoletim B : daoBoletim.listaBoletim()) {
-                SelectItem s = new SelectItem(B.getBoleId());
-                listaBoletim.add(s);
+                
+                listaBoletim.add(B);
             }
 
         }
         return listaBoletim;
     }
 
-    public void setListaBoletim(ArrayList<SelectItem> listaBoletim) {
+    public void setListaBoletim(ArrayList<ModelBoletim> listaBoletim) {
         this.listaBoletim = listaBoletim;
     }
 

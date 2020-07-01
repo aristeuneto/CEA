@@ -78,10 +78,22 @@ public class DaoEndereco {
     }
 
     public List<ModelEndereco> listaEndereco() {
-        List<ModelEndereco> listaEnderecos = new ArrayList<>();
-        org.hibernate.Query sql = session.createQuery("from ModelEndereco");
-        listaEnderecos = sql.list();
+        try {
+            if (session.isOpen() == false) {
+                session = HibernateUtil.getSessionFactory().openSession();
+            }
+            List<ModelEndereco> listaEnderecos = new ArrayList<>();
+            org.hibernate.Query sql = session.createQuery("from ModelEndereco");
+            listaEnderecos = sql.list();
 
-        return listaEnderecos;
+            return listaEnderecos;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return null;
     }
 }
