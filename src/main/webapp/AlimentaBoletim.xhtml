@@ -8,53 +8,97 @@
              xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:outputScript name="pt_BR.js" library="js"></h:outputScript> 
-
-    <h:form>
-
-        <p:fieldset legend="Alunos Matriculados">
+    <h:form id="fr1" rendered="#{beanTurma.view == true}">
+        <p:fieldset legend="Alunos Matriculados" rendered="#{beanTurma.view}">
             <div header="Growl" class="ui-fluid">  
-                <p:growl id="growl" showDetail="true" sticky="true"/> 
+                <p:growl id="growl" showDetail="true" sticky="true"/>
+                <p:fieldset legend="Dados gerais">
 
-                <p:commandButton value="Refresh"  action="#{beanAluno.setListaAluno(listaAluno)}" update="@form" ajax="false"></p:commandButton>
+                    <p:panelGrid columns="4">  
+                        <p:outputLabel value="Turma "></p:outputLabel>
+                        <p:selectOneMenu style="width: 250px !important;"  value="#{beanAcesso.modelAcesso.pesId}" effect="fold"  filter="true" filterMatchMode="startsWith">
+                            <f:selectItems  value="#{beanTurma.listaTurma}" var="listat" itemValue="#{listat.turmaId}" itemLabel="#{listat.turmaNome}" />
+                        </p:selectOneMenu >
+                        <p:outputLabel value="Aluno "></p:outputLabel>
+                        <p:selectOneMenu style="width: 350px !important;" effect="fold"  editable="false" filter="true" filterMatchMode="startsWith">
+                            <f:selectItems value="#{beanAluno.listaAluno}" var="listaa"  itemValue="#{listaa.pesId}" itemLabel="#{listaa.pesNome}" />
+                        </p:selectOneMenu>
+                        <p:outputLabel value="Disciplina "></p:outputLabel>
+                        <p:selectOneMenu style="width: 250px !important;" value="#{beanAcesso.modelAcesso.pesId}" effect="fold" filter="true" filterMatchMode="startsWith">
+                            <f:selectItems  value="#{beanDisciplina.listaDisciplina}" var="listad" itemValue="#{listad.discId}" itemLabel="#{listad.discNome}"/>
+                        </p:selectOneMenu><br/>
 
-                <p:dataTable value="#{beanTurma.listaTurma}" var="listat" emptyMessage="Não existem valores para exibição" scrollRows="10" 
-                             scrollable="true" liveScroll="true" scrollHeight="360" >
-              
-                    <p:column headerText="ALUNO"  sortBy="#{lista.pesNome}" filterBy="#{lista.pesNome}" class="cell" >
-                        <h:outputText value="#{lista.pesNome}"/>
-                    </p:column>
+                        <p:fieldset legend="Opções">  
+                            <p:panelGrid columns="3">
+                                <p:commandButton value="Add atividade" ajax="false" action="#{beanTurma.mudarParaSave()}" onclick="#{beanAluno.setListaAluno(lista)}" update=":fr2" immediate="true"></p:commandButton>
+                                <p:commandButton value="Limpar" ajax="false" action="reset" update=":fr2" immediate="true"></p:commandButton>
+                            </p:panelGrid>
+                        </p:fieldset>
 
-                    <p:column headerText="CPF" sortBy="#{lista.pesCpf}" filterBy="#{lista.pesCpf}" class="cell">
-                        <h:outputText value="#{lista.pesCpf}"/>
-                    </p:column>
-
-                    <p:column headerText="NASCIMENTO" sortBy="#{lista.pesDtnasc}" filterBy="#{lista.pesDtnasc}" class="cell">
-                        <h:outputText value="#{lista.pesDtnasc}"/>
-                    </p:column>
-
-                    <p:column headerText="FILIAÇÃO" sortBy="#{lista.pesFiliacao}" filterBy="#{lista.pesFiliacao}" class="cell">
-                        <h:outputText value="#{lista.pesFiliacao}"/>
-                    </p:column>
-
-                    <p:column headerText="TURMA" sortBy="#{listat.turmaDescricao}" filterBy="#{listat.turmaDescricao}" class="cell">
-                        <h:outputText value="#{listat.turmaDescricao}"/>
-                    </p:column>
-
-                    <p:column headerText="disciplina" sortBy="#{listad.discNome}" filterBy="#{listad.discNome}" class="cell">
-                        <h:outputText value="#{listad.discNome}"/>
-                    </p:column>
-
-                    <p:column headerText="STATUS" sortBy="#{lista.pesStatus}" filterBy="#{lista.pesStatus}" class="cell" >
-                        <h:outputText value="#{lista.pesStatus}"/>
-                    </p:column>
-
-                    <p:column headerText="OPÇÕES" class="cell" style="width: 85px !important;">
-                        <p:commandLink value="Modificar" ajax="false" action="#{beanBoletim.setModelBoletim(lista)}" onclick="#{beanBoletim.mudarParaEdit()}" update="@form"></p:commandLink>
-                    </p:column>
-                </p:dataTable> 
+                    </p:panelGrid>
+                </p:fieldset> 
             </div>
         </p:fieldset>
     </h:form>
 
-</ui:decorate>
+    <h:form id="fr2" rendered="#{beanTurma.save == true}">
+   
+            <p:fieldset legend="Cadastro de atividades avaliativas" rendered="#{beanTurma.save}">
+                <div header="Growl" class="ui-fluid">  
+                    <p:growl id="growl" showDetail="true" sticky="true"/> 
+                    <p:panelGrid columns="2">
+                        <p:fieldset legend="Aluno selicionado">
+                            <p:panelGrid columns="6">
+                                <p:outputLabel value="Aluno "></p:outputLabel>
+                                <p:inputText value="#{beanAluno.modelAluno.setPesNome(pesNome)}" disabled="true" ></p:inputText>
+                                <p:outputLabel value="Turma "></p:outputLabel>
+                                <p:inputText value="#{listat.setTurmaNome(turmaNome)}" disabled="true"></p:inputText>
+                                <p:outputLabel value="Disciplina "></p:outputLabel>
+                                <p:inputText value="#{listad.setDiscNome(discNome)}" disabled="true"></p:inputText>
+                            </p:panelGrid>
+                        </p:fieldset><br/>
+                        <p:fieldset legend="Dados da atividade">
+                            <p:panelGrid columns="4">
+                                <p:outputLabel value="Unidade "></p:outputLabel>
+                                <p:selectOneMenu style="width: 190px !important;" effect="fold">
+                                    <f:selectItem  itemLabel="Selecione"/>
+                                    <f:selectItem  itemLabel="1º Unidade" itemValue="1º Unidade"/>
+                                    <f:selectItem  itemLabel="2º Unidade"  itemValue="2º Unidade"/> 
+                                    <f:selectItem  itemLabel="3º Unidade"  itemValue="3º Unidade"/>
+                                    <f:selectItem  itemLabel="4º Unidade"  itemValue="4º Unidade"/>
+                                    <f:selectItem  itemLabel="Recuperação"  itemValue="Recuperação"/>
+                                    <f:selectItem  itemLabel="Final"  itemValue="Final"/>
+                                </p:selectOneMenu>
 
+                                <p:outputLabel value="Atividade "></p:outputLabel>
+                                <p:inputText placeholder="Atividade"></p:inputText> 
+                                <p:outputLabel value="Descrição "></p:outputLabel>
+                                <p:inputText placeholder="Descrição"></p:inputText>
+                                <p:outputLabel value="Peso da atividade"></p:outputLabel>
+                                <p:inputMask placeholder="Peso" mask="99,9" style="width: 60px !important;"></p:inputMask> 
+                                <p:outputLabel value="Data de realização "></p:outputLabel>
+                                <p:inputMask placeholder="Data" mask="99/99/9999"></p:inputMask> 
+                                <p:outputLabel value="Nota alcaçada "></p:outputLabel>
+                                <p:inputMask placeholder="Nota" mask="99,9" style="width: 60px !important;"></p:inputMask>
+                            </p:panelGrid>
+                        </p:fieldset>
+                    </p:panelGrid>
+                    <p:fieldset legend="Up-Load de Arquivos" style="width: 400px !important;">
+                        <p:growl id="messages" showDetail="true" />
+                        <h:form enctype="multipart/form-data">        
+                            <p:fileUpload mode="simple"/>
+                            <br />
+                            <p:commandButton value="Guardar"/>     
+                        </h:form>
+                    </p:fieldset>
+                    <p:fieldset legend="Opções" style="width: 300px !important;">  
+                        <p:panelGrid columns="3">
+                            <p:commandButton value="Enviar" ajax="false" action="#{beanTurma.mudarParaView()}" update=":fr1" immediate="true"></p:commandButton>
+                            <p:commandButton value="Alterar" disabled="true"></p:commandButton>
+                            <p:commandButton value="Deletar" disabled="true"></p:commandButton>
+                        </p:panelGrid>
+                    </p:fieldset>
+                </div>
+            </p:fieldset>      
+    </h:form>
+</ui:decorate>
