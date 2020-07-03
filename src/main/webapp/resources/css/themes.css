@@ -48,7 +48,7 @@ legend{
 button{
     background-image: url('../image/bc.png') !important;
     background-repeat: no-repeat; 
-    box-shadow: #99ffff 50px !important;  
+    box-shadow: #99ffff 40px !important;  
     border-radius: 10px;  
 }
 

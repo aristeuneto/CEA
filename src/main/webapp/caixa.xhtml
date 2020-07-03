@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             template="templateCaixa.xhtml"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:f="http://xmlns.jcp.org/jsf/core"
+             xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <h:form rendered="#{beanAcesso.view}">
+        <p:fieldset legend="Fluxo de Caixa C.E.A">
+            <div header="Growl" class="ui-fluid">
+                <p:growl id="growl" showDetail="true" sticky="true" />
+                <div align="right">
+                    <p:panelGrid columns="2">
+                        <p:outputLabel value="Saldo em caixa: "></p:outputLabel>  
+                        <p:inputText  value="R$ = 0.447.37" style=" width: 300px !important; height: 50px !important; align-content: center !important; border-color: #ff0000 !important; text-decoration: #ff0000 !important; font-size: 40px !important;" disabled="true"></p:inputText>
+                    </p:panelGrid>
+                    
+                    <p:panelGrid columns="6">    
+                        <p:commandButton value="RECEBIMENTOS"></p:commandButton>
+                        <p:commandButton value="PAGAMENTOS"></p:commandButton>
+                        <p:commandButton value="TRANSFERÊNCIAS"></p:commandButton>
+                        <p:commandButton value="SOLICITAÇÔES"></p:commandButton>
+                    </p:panelGrid>
+                    <hr/>
+                </div>
+                <p:dataTable  var="document" value="#{beanAcesso.listaAcesso}" scrollable="true" liveScroll="true" scrollHeight="320">
+                    <f:facet name="header">
+                        Recebimentos
+                    </f:facet>
+                    <p:column headerText="Cod" style="width: 40px !important;">
+                        <h:outputText value="#{document.acesId}" />
+                    </p:column>
+                    <p:column headerText="Descrição" style="width: 400px !important;">
+                        <h:outputText value="#{document.acesLogin}" />
+                    </p:column>
+                    <p:column headerText="Contato">
+                        <h:outputText value="#{document.acesLogin}" />
+                    </p:column>
+                    <p:column headerText="Conta">
+                        <h:outputText value="#{document.acesNome}" />
+                    </p:column>
+                    <p:column headerText="Data" style="width: 90px !important;">
+                        <h:outputText value="#{document.toString}" />
+                    </p:column>
+                    <p:column headerText="Status">
+                        <h:outputText value="#{document.acesStatus}" />
+                    </p:column>
+                    <p:column headerText="Total">
+                        <h:outputText />
+                    </p:column>
+                </p:dataTable>   
+            </div>
+        </p:fieldset>
+    </h:form>
+
+</ui:decorate>

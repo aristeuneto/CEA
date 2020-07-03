@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" layout="responsive">
+    <h:head>
+        <title>Syschool - Sistema de Gestão Escolar </title>
+        <link rel="shortcut icon" href="resources/image/cealogo.png" />
+        <link rel="stylesheet" href="resources/css/themes.css" />
+    </h:head>
+    <h:body>
+        <style>
+            body{
+                background-image: url('resources/image/bc.png');      
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+        </style>
+        <p:panelGrid columns="2">
+            <h:graphicImage width="60" height="60" library="image" name="cealogo.png"/>
+            <h:outputLabel><h2>C.E.A  -  Centro Educacional do Andaiá - Módulo Financeiro</h2></h:outputLabel>
+        </p:panelGrid>
+        <p:menubar class="menu">
+            <p:menuitem value="Home" url="indexCaixa.xhtml"></p:menuitem>
+            
+            <p:submenu label="Financeiro">
+                <p:menuitem value="Caixa" url="caixa.xhtml"></p:menuitem>
+                <p:submenu label="Faturamento">
+                    <p:menuitem value="A pagar" url="faturamento.xhtml"></p:menuitem>
+                    <p:menuitem value="A receber" url="#"></p:menuitem>
+                </p:submenu>
+                <p:submenu label="Boletos">
+                    <p:menuitem value="Emissão" url="#"></p:menuitem>
+                    <p:menuitem value="Pendências" url="#"></p:menuitem> 
+                </p:submenu>
+                <p:menuitem value="Movimentações" url="#"></p:menuitem>
+            </p:submenu>
+            <p:menuitem value="Lançamentos" url="#"></p:menuitem>
+            <p:menuitem value="Relatórios" url="#"></p:menuitem>
+            <p:menuitem value="Sair" url="index.xhtml" ></p:menuitem>
+              
+        </p:menubar>
+        <hr/>
+        <ui:insert></ui:insert>
+    </h:body>
+</html>
+

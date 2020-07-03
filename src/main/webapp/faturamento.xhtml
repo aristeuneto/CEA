@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             template="templateCaixa.xhtml"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:f="http://xmlns.jcp.org/jsf/core"
+             xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <h:form id="f1" rendered="#{beanAcesso.view}">
+        <p:fieldset legend="Contas a Pagar">
+            <div header="Growl" class="ui-fluid">
+                <p:growl id="growl" showDetail="true" sticky="true" />       
+                <p:fieldset legend="Por periodo" style="width: 1000px !important;">
+                    <p:panelGrid columns="8">
+                        <p:outputLabel value="DE:" />
+                        <p:calendar  value="#{calendarJava8View.date3}" showOn="button" />
+                        <p:outputLabel value="ATE:" />
+                        <p:calendar  value="#{calendarJava8View.date3}" showOn="button" />
+
+                        <h:outputLabel for="menu" value="Filtrar por:" />
+                        <p:selectCheckboxMenu  label="Filtro" panelStyle="width:250px">
+                            <f:selectItem itemLabel="Vencidos" />
+                            <f:selectItem itemLabel="A vencer" />
+                            <f:selectItem itemLabel="Vencimento px Mês" />
+                            <f:selectItem itemLabel="Faturados" />
+                        </p:selectCheckboxMenu>
+                        <p:commandButton value="BUSCAR" style="float: right !important; " ajax="false" immediate="true"></p:commandButton>
+                    </p:panelGrid> 
+
+                </p:fieldset>
+
+                <p:dataTable var="document" value="#{beanAcesso.listaAcesso}" scrollable="true" liveScroll="true" scrollHeight="300">
+
+                    <f:facet name="header">
+                        Contas a Pagar
+                    </f:facet>
+                    <p:column headerText="Cod" style="width: 40px !important;">
+                        <h:outputText value="#{document.acesId}" />
+                    </p:column>
+                    <p:column headerText="Descrição" style="width: 400px !important;">
+                        <h:outputText value="#{document.acesLogin}" />
+                    </p:column>
+                    <p:column headerText="Tipo">
+                        <h:outputText value="#{document.acesLogin}" />
+                    </p:column>
+                    <p:column headerText="Referêcia">
+                        <h:outputText value="#{document.acesNome}" />
+                    </p:column>
+                    <p:column headerText="Data" style="width: 90px !important;">
+                        <h:outputText value="#{document.toString}" />
+                    </p:column>
+                    <p:column headerText="Status">
+                        <h:outputText value="#{document.acesStatus}" />
+                    </p:column>
+                    <p:column headerText="Total">
+                        <h:outputText />
+                    </p:column>
+                </p:dataTable> 
+
+            </div>
+        </p:fieldset>
+    </h:form>
+</ui:decorate>

@@ -37,6 +37,7 @@ public class BeanBoletim extends BeanTela{
         if (getModelBoletim() != null) {
             daoBoletim.salvarBoletim(getModelBoletim());
             setModelBoletim(new ModelBoletim());
+            mudarParaView();
             mensagemSalvo(true);
         } else {
             mensagemSalvo(false);
@@ -91,7 +92,6 @@ public class BeanBoletim extends BeanTela{
         if (listaBoletim == null) {
             listaBoletim = new ArrayList<>();
             DaoBoletim daoBoletim = new DaoBoletim();
-
             for (ModelBoletim B : daoBoletim.listaBoletim()) {
                 
                 listaBoletim.add(B);

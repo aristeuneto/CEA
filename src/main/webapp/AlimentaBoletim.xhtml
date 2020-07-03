@@ -13,7 +13,7 @@
             <div header="Growl" class="ui-fluid">  
                 <p:growl id="growl" showDetail="true" sticky="true"/>
                 <p:fieldset legend="Dados gerais">
-
+                    <p:commandButton style="width:100px !important; height: 50px !important;" value="Novo Boletim" ajax="false" action="cadastro-boletim.xhtml"  update=":fr2" immediate="true"></p:commandButton>
                     <p:panelGrid columns="4">  
                         <p:outputLabel value="Turma "></p:outputLabel>
                         <p:selectOneMenu style="width: 250px !important;"  value="#{beanAcesso.modelAcesso.pesId}" effect="fold"  filter="true" filterMatchMode="startsWith">
@@ -31,7 +31,7 @@
                         <p:fieldset legend="Opções">  
                             <p:panelGrid columns="3">
                                 <p:commandButton value="Add atividade" ajax="false" action="#{beanTurma.mudarParaSave()}" onclick="#{beanAluno.setListaAluno(lista)}" update=":fr2" immediate="true"></p:commandButton>
-                                <p:commandButton value="Limpar" ajax="false" action="reset" update=":fr2" immediate="true"></p:commandButton>
+                                <p:commandButton value="Refresh" ajax="false" update=":fr2" immediate="true"></p:commandButton>
                             </p:panelGrid>
                         </p:fieldset>
 
@@ -42,8 +42,8 @@
     </h:form>
 
     <h:form id="fr2" rendered="#{beanTurma.save == true}">
-   
-            <p:fieldset legend="Cadastro de atividades avaliativas" rendered="#{beanTurma.save}">
+        <p:fieldset legend="Cadastro de atividades avaliativas" rendered="#{beanTurma.save}">
+            <p:panelGrid columns="2">
                 <div header="Growl" class="ui-fluid">  
                     <p:growl id="growl" showDetail="true" sticky="true"/> 
                     <p:panelGrid columns="2">
@@ -83,22 +83,28 @@
                             </p:panelGrid>
                         </p:fieldset>
                     </p:panelGrid>
-                    <p:fieldset legend="Up-Load de Arquivos" style="width: 400px !important;">
+                    <p:fieldset legend="Up-Load de Arquivos" style="width: 300px !important; height: 230px !important;">
+                        <p:panelGrid columns="2">
                         <p:growl id="messages" showDetail="true" />
-                        <h:form enctype="multipart/form-data">        
+                        <h:form enctype="multipart/form-data"> <br/>       
                             <p:fileUpload mode="simple"/>
+                            <br />
+                            <br />
+                            <br />
                             <br />
                             <p:commandButton value="Guardar"/>     
                         </h:form>
+                        </p:panelGrid>
                     </p:fieldset>
                     <p:fieldset legend="Opções" style="width: 300px !important;">  
                         <p:panelGrid columns="3">
                             <p:commandButton value="Enviar" ajax="false" action="#{beanTurma.mudarParaView()}" update=":fr1" immediate="true"></p:commandButton>
-                            <p:commandButton value="Alterar" disabled="true"></p:commandButton>
+                            <p:commandButton value="Alterar" disabled="true" ></p:commandButton>
                             <p:commandButton value="Deletar" disabled="true"></p:commandButton>
                         </p:panelGrid>
                     </p:fieldset>
                 </div>
-            </p:fieldset>      
+            </p:panelGrid>
+        </p:fieldset> 
     </h:form>
 </ui:decorate>
