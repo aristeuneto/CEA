@@ -29,7 +29,7 @@
                 <p:growl id="growl" showDetail="true" sticky="true" />  
                 <p:commandButton value="Buscar" ajax="false" action="#{beanAluno.mudarParaView()}" update=":frma2" immediate="true"></p:commandButton>
                 <p:panelGrid columns="2" >
-                    <p:fieldset legend="Dados Pessoais">
+                    <p:fieldset legend="Dados Pessoais" style="height: 210px !important;" >
                         <p:panelGrid columns="4" > 
                             <p:outputLabel for="Nome" value="Nome: "></p:outputLabel>
                             <p:inputText id="Nome" value="#{beanAluno.modelAluno.pesNome}" placeholder="Nome"></p:inputText>
@@ -86,7 +86,7 @@
                     </p:fieldset>  
                     <p:fieldset legend="Opções">    
                         <p:panelGrid columns="3" >
-                            <p:commandButton value="Enviar" action="#{beanAluno.salvarAluno()}" update=":frma"></p:commandButton>
+                            <p:commandButton value="Enviar" action="#{beanAluno.salvarAluno()}" update=":frma" ajax="false"></p:commandButton>
                             <p:commandButton value="Alterar" disabled="true"></p:commandButton>
                             <p:commandButton value="Excluir" disabled="true"></p:commandButton>
                         </p:panelGrid>  
@@ -106,7 +106,7 @@
                     <p:fieldset legend="Dados Pessoais">
                         <p:panelGrid columns="4" > 
                             <p:outputLabel value="Id: "></p:outputLabel>
-                            <p:inputText disabled="true" value="#{beanAluno.modelAluno.pesId}"></p:inputText><br/>
+                            <p:inputText disabled="true" value="#{beanAluno.modelAluno.pesId}" style="width: 50px;"></p:inputText><br/>
                             <h:inputHidden value="#{beanAluno.modelAluno.pesId}"></h:inputHidden>
                             <p:outputLabel for="Nome" value="Nome: "></p:outputLabel>
                             <p:inputText id="Nome" value="#{beanAluno.modelAluno.pesNome}" placeholder="Nome"></p:inputText>

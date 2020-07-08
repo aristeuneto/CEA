@@ -8,7 +8,6 @@ package bean;
 import DAO.DaoAluno;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -100,7 +99,7 @@ public class BeanAluno extends BeanTela {
             context.addMessage(null, new FacesMessage("Erro!", "Erro ao Deletar!"));
         }
     }
-    
+
     public ModelAluno getModelAluno() {
         return modelAluno;
     }
@@ -133,19 +132,21 @@ public class BeanAluno extends BeanTela {
         this.dataNascimento = dataNascimento;
     }
 
+    
     public ArrayList<ModelAluno> getListaAluno() {
 
         listaAluno = (ArrayList<ModelAluno>) daoAluno.listaAluno();
-        if (listaAluno == null) {
-            listaAluno = new ArrayList<>();    
-            for (ModelAluno A : listaAluno) {
 
-                listaAluno.add(A);
+        if (listaAluno == null) {
+            listaAluno = new ArrayList<>();
+            for (ModelAluno A : listaAluno) {             
+                    listaAluno.add(A);
+                }
             }
+
+            return listaAluno;
         }
 
-        return listaAluno;
-    }
 
     public void setListaAluno(ArrayList<ModelAluno> listaAluno) {
         this.listaAluno = listaAluno;

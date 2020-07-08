@@ -12,9 +12,11 @@
         <p:fieldset legend="Alunos Matriculados" rendered="#{beanTurma.view}">
             <div header="Growl" class="ui-fluid">  
                 <p:growl id="growl" showDetail="true" sticky="true"/>
+                <p:commandButton style="width:100px !important; height: 50px !important;" value="Novo Boletim" ajax="false" action="cadastro-boletim.xhtml"  update=":fr2" immediate="true"></p:commandButton>
+                <br />
+                <br />
                 <p:fieldset legend="Dados gerais">
-                    <p:commandButton style="width:100px !important; height: 50px !important;" value="Novo Boletim" ajax="false" action="cadastro-boletim.xhtml"  update=":fr2" immediate="true"></p:commandButton>
-                    <p:panelGrid columns="4">  
+                    <p:panelGrid columns="4">          
                         <p:outputLabel value="Turma "></p:outputLabel>
                         <p:selectOneMenu style="width: 250px !important;"  value="#{beanAcesso.modelAcesso.pesId}" effect="fold"  filter="true" filterMatchMode="startsWith">
                             <f:selectItems  value="#{beanTurma.listaTurma}" var="listat" itemValue="#{listat.turmaId}" itemLabel="#{listat.turmaNome}" />
@@ -47,19 +49,21 @@
                 <div header="Growl" class="ui-fluid">  
                     <p:growl id="growl" showDetail="true" sticky="true"/> 
                     <p:panelGrid columns="2">
-                        <p:fieldset legend="Aluno selicionado">
+                        <p:commandButton value="Voltar" ajax="false" action="#{beanTurma.mudarParaView()}" update=":fr2" immediate="true"></p:commandButton>
+                        <br />
+                        <p:fieldset legend="Aluno selecionado">
                             <p:panelGrid columns="6">
                                 <p:outputLabel value="Aluno "></p:outputLabel>
-                                <p:inputText value="#{beanAluno.modelAluno.setPesNome(pesNome)}" disabled="true" ></p:inputText>
+                                <p:inputText value="#{beanAluno.modelAluno.pesNome}" readonly="true" ></p:inputText>
                                 <p:outputLabel value="Turma "></p:outputLabel>
-                                <p:inputText value="#{listat.setTurmaNome(turmaNome)}" disabled="true"></p:inputText>
+                                <p:inputText value="#{beanTurma.modelTurma.turmaNome}" readonly="true"></p:inputText>
                                 <p:outputLabel value="Disciplina "></p:outputLabel>
-                                <p:inputText value="#{listad.setDiscNome(discNome)}" disabled="true"></p:inputText>
+                                <p:inputText value="#{beanDisciplina.modelDisciplina.discNome}" readonly="true"></p:inputText>
                             </p:panelGrid>
                         </p:fieldset><br/>
                         <p:fieldset legend="Dados da atividade">
                             <p:panelGrid columns="4">
-                                <p:outputLabel value="Unidade "></p:outputLabel>
+                                <p:outputLabel value="Unidade: "></p:outputLabel>
                                 <p:selectOneMenu style="width: 190px !important;" effect="fold">
                                     <f:selectItem  itemLabel="Selecione"/>
                                     <f:selectItem  itemLabel="1º Unidade" itemValue="1º Unidade"/>
@@ -70,30 +74,30 @@
                                     <f:selectItem  itemLabel="Final"  itemValue="Final"/>
                                 </p:selectOneMenu>
 
-                                <p:outputLabel value="Atividade "></p:outputLabel>
+                                <p:outputLabel value="Atividade: "></p:outputLabel>
                                 <p:inputText placeholder="Atividade"></p:inputText> 
-                                <p:outputLabel value="Descrição "></p:outputLabel>
+                                <p:outputLabel value="Descrição: "></p:outputLabel>
                                 <p:inputText placeholder="Descrição"></p:inputText>
-                                <p:outputLabel value="Peso da atividade"></p:outputLabel>
+                                <p:outputLabel value="Peso da atividade:"></p:outputLabel>
                                 <p:inputMask placeholder="Peso" mask="99,9" style="width: 60px !important;"></p:inputMask> 
-                                <p:outputLabel value="Data de realização "></p:outputLabel>
+                                <p:outputLabel value="Data de realização: "></p:outputLabel>
                                 <p:inputMask placeholder="Data" mask="99/99/9999"></p:inputMask> 
-                                <p:outputLabel value="Nota alcaçada "></p:outputLabel>
+                                <p:outputLabel value="Nota alcançada: "></p:outputLabel>
                                 <p:inputMask placeholder="Nota" mask="99,9" style="width: 60px !important;"></p:inputMask>
                             </p:panelGrid>
                         </p:fieldset>
                     </p:panelGrid>
-                    <p:fieldset legend="Up-Load de Arquivos" style="width: 300px !important; height: 230px !important;">
+                    <p:fieldset legend="UpLoad de Arquivos" style="width: 300px !important; height: 230px !important;">
                         <p:panelGrid columns="2">
-                        <p:growl id="messages" showDetail="true" />
-                        <h:form enctype="multipart/form-data"> <br/>       
-                            <p:fileUpload mode="simple"/>
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <p:commandButton value="Guardar"/>     
-                        </h:form>
+                            <p:growl id="messages" showDetail="true" />
+                            <h:form enctype="multipart/form-data"> <br/>       
+                                <p:fileUpload mode="simple"/>
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <p:commandButton value="Guardar"/>     
+                            </h:form>
                         </p:panelGrid>
                     </p:fieldset>
                     <p:fieldset legend="Opções" style="width: 300px !important;">  

@@ -26,7 +26,7 @@
                 <p:growl id="growl" showDetail="true" sticky="true" /> 
                 <p:commandButton value="Buscar" ajax="false" action="#{beanProfessor.mudarParaView()}" update=":frma2" immediate="true"></p:commandButton>
                 <p:panelGrid columns="2" >
-                    <p:fieldset legend="Dados Pessoais">   
+                    <p:fieldset legend="Dados Pessoais" style="height: 210px;">   
                         <p:panelGrid columns="4" > 
                             <p:outputLabel for="Nome" value="Nome: "></p:outputLabel>
                             <p:inputText id="Nome" value="#{beanProfessor.modelProfessor.pesNome}" placeholder="Nome"></p:inputText>
@@ -101,10 +101,11 @@
                 <p:commandButton value="Buscar" ajax="false" action="#{beanProfessor.mudarParaView()}" update=":frmp2" immediate="true"></p:commandButton>
                 <p:panelGrid columns="2" >
                     <p:fieldset legend="Dados Pessoais"> 
-                        <p:commandButton value="Cadastrar Novo" ajax="false" action="#{beanProfessor.mudarParaSave()}" update=":frmp" immediate="true"></p:commandButton>
-                        <p:commandButton value="Buscar" ajax="false" action="#{beanProfessor.mudarParaView()}" update=":frmp2" immediate="true"></p:commandButton>
+                    
                         <p:panelGrid columns="4" > 
-                           1
+                            <p:outputLabel value="Id: "></p:outputLabel>
+                            <p:inputText disabled="true" value="#{beanProfessor.modelProfessor.pesId}" style="width: 50px;"></p:inputText><br/>
+                            <h:inputHidden value="#{beanProfessor.modelProfessor.pesId}"></h:inputHidden>
                             <p:outputLabel for="Nome" value="Nome: "></p:outputLabel>
                             <p:inputText id="Nome" value="#{beanProfessor.modelProfessor.pesNome}" placeholder="Nome"></p:inputText>
                             <p:outputLabel for="Rg" value="Rg: "></p:outputLabel>
@@ -190,7 +191,7 @@
                     <p:column headerText="CPF" sortBy="#{lista.pesCpf}" filterBy="#{lista.pesCpf}" class="cell">
                         <h:outputText value="#{lista.pesCpf}"/>
                     </p:column>
-                    
+
                     <p:column headerText="RG" sortBy="#{lista.pesRg}" filterBy="#{lista.pesRg}" class="cell">
                         <h:outputText value="#{lista.pesRg}"/>
                     </p:column>

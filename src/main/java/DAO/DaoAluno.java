@@ -7,7 +7,6 @@ package DAO;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.Query;
 import model.ModelAluno;
 import org.hibernate.Session;
 import util.HibernateUtil;
@@ -27,7 +26,6 @@ public class DaoAluno {
             session.getTransaction().begin();
             session.persist(modelAluno);
             session.getTransaction().commit();
-            session.flush();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -45,6 +43,8 @@ public class DaoAluno {
         try {
 
             session.getTransaction().begin();
+            session.flush();
+            session.clear();
             session.delete(modelAluno);
             session.getTransaction().commit();
             session.flush();
@@ -64,6 +64,8 @@ public class DaoAluno {
 
         try {
             session.getTransaction().begin();
+            session.flush();
+            session.clear();
             session.update(modelAluno);
             session.getTransaction().commit();
             session.flush();
@@ -85,7 +87,6 @@ public class DaoAluno {
             List<ModelAluno> listaAluno = new ArrayList<>();
             org.hibernate.Query sql = session.createQuery("from ModelAluno");
             listaAluno = sql.list();
-
             return listaAluno;
         } catch (Exception e) {
             e.printStackTrace();
